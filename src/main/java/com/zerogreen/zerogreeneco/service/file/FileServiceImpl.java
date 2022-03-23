@@ -1,5 +1,7 @@
 package com.zerogreen.zerogreeneco.service.file;
 
+import com.zerogreen.zerogreeneco.entity.community.BoardImage;
+import com.zerogreen.zerogreeneco.entity.detail.ReviewImage;
 import com.zerogreen.zerogreeneco.entity.file.RegisterFile;
 import com.zerogreen.zerogreeneco.entity.file.StoreImageFile;
 import lombok.RequiredArgsConstructor;
