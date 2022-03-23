@@ -1,5 +1,13 @@
 package com.zerogreen.zerogreeneco.controller;
 
+import com.zerogreen.zerogreeneco.dto.store.NonApprovalStoreDto;
+import com.zerogreen.zerogreeneco.entity.userentity.Member;
+import com.zerogreen.zerogreeneco.entity.userentity.StoreMember;
+import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
+import com.zerogreen.zerogreeneco.repository.user.MemberRepository;
+import com.zerogreen.zerogreeneco.security.auth.PrincipalDetails;
+import com.zerogreen.zerogreeneco.service.community.CommunityBoardService;
+import com.zerogreen.zerogreeneco.service.user.StoreMemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.annotation.Secured;
@@ -10,15 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
-import zerogreen.eco.dto.store.NonApprovalStoreDto;
-import zerogreen.eco.entity.userentity.Member;
-import zerogreen.eco.entity.userentity.StoreMember;
-import zerogreen.eco.entity.userentity.UserRole;
-import zerogreen.eco.repository.user.MemberRepository;
-import zerogreen.eco.security.auth.PrincipalDetails;
-import zerogreen.eco.service.community.CommunityBoardService;
-import zerogreen.eco.service.user.StoreMemberService;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
