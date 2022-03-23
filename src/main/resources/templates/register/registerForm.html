@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script th:inline="javascript" th:src="@{/bootstrap/js/join.js}"></script>
+        <link rel="stylesheet" th:href="@{/bootstrap/css/register.css}">
+        <div style="margin: 2em 0 !important;">
+            <div>
+                <div class="py-5 text-center">
+                    <h2 class="title"><span>회원가입</span></h2>
+                </div>
+
+                <form th:action th:object="${member}" method="post" id="reg-form">
+                    <div class="center-box">
+                        <!--로그인 ID-->
+                        <div>
+                            <label for="username" class="join-label">로그인 ID</label>
+                            <div>
+                                <input type="text" id="username" th:field="*{username}" class="form-control login-box">
+                                <button type="button" class="sendMail" id="send-mail">인증</button>
+                            </div>
+                            <div th:errors="*{username}" class="field-error">아이디 오류</div>
+                            <div class="email-msg"></div>
+                        </div>
+                        <div style="display:none;" class="auth-box">
+                            <input type="text" class="authKey form-control login-box">
+                            <button type="button" id="authConfirm" class="sendMail">인증 확인</button>
+                            <div class="auth-msg"></div>
+                        </div>
+
+                        <!--비밀번호-->
+                        <div>
+                            <label for="password" class="join-label">비밀번호</label>
+                            <input type="password" id="password" th:field="*{password}" class="form-control input-box">
+                            <div th:errors="*{password}" class="field-error">
+                                비번 오류
+                            </div>
+                            <div class="password-error"></div>
+                        </div>
+                        <div>
+                            <label for="re-password" class="join-label">비밀번호 확인</label>
+                            <input type="password" id="re-password" class="form-control input-box">
+                            <div class="re-password-error"></div>
+                        </div>
+
+                        <!--닉네임-->
+                        <div>
+                            <label for="nickname" class="join-label">닉네임</label>
+                            <input type="text" id="nickname" th:field="*{nickname}" class="form-control login-box">
+                            <button type="button" class="sendMail" id="nickname-check">중복 확인</button>
+                            <div th:errors="*{nickname}" class="field-error nickname-error">
+                                닉네임 오류
+                            </div>
+                            <div class="nickname-error"></div>
+                        </div>
+
+                        <!--전화번호-->
+                        <div>
+                            <label for="phoneNumber" class="join-label">전화번호</label>
+                            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control login-box">
+                            <button type="button" class="sendMail" id="phoneNumber-check">중복 확인</button>
+                            <div th:errors="*{phoneNumber}" class="field-error">
+                                전화 오류
+                            </div>
+                            <div class="phoneNumber-error"></div>
+
+                        </div>
+
+                        <!--베지테리언 등급-->
+                        <div>
+                            <label for="vegetarianGrade" class="join-label">베지테리언 등급</label>
+                            <select th:field="*{vegetarianGrade}" id="vegetarianGrade" class="input-box vege-box">
+                                <option value="">==베지테리언 등급==</option>
+                                <option th:each="vegan : ${vegan}" th:value="${vegan.name()}" th:text="${vegan.vegetarian}"></option>
+                            </select>
+                        </div>
+
+                        <!--버튼-->
+                        <hr class="my-4 hr-margin">
+                        <div>
+                            <button class="cancle-btn" th:onclick="|location.href='@{/}'|" type="button">취소</button>
+                            <button id="joinBtn" class="regi-btn" type="button" disabled="true">회원 가입</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </th:block>
+</th:block>
+</html>

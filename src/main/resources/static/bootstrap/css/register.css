@@ -1,0 +1,156 @@
+.center-box {
+    text-align: center;
+    width: 320px;
+    margin: 0 auto;
+}
+
+.join-label {
+    display: block;
+    width: 300px;
+    margin: 10px 0;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 1em !important;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.input-box {
+    width: 260px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.login-box {
+    width: 180px;
+    height: 40px;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 2px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.vege-box {
+    width: 300px !important;
+}
+
+.sendMail {
+    width: 75px !important;
+    height: 40px !important;
+    display: inline-block;
+    background: #f1c40f;
+    font-size: 1em;
+    padding: 0 !important;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.post-box {
+    width: 160px !important;
+    height: 40px !important;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 2px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.postBtn {
+    width: 95px !important;
+    height: 42px !important;
+    display: inline !important;
+    background: #f1c40f !important;
+    font-size: 0.9em !important;
+    padding: 0 !important;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.storeType {
+    text-align: left;
+    margin-bottom: 30px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.hr-margin {
+    margin: 1.5em 0 2em 0;
+}
+
+.pw-label {
+    display: block;
+    width: 300px;
+    margin: 10px;
+    text-align: left;
+    font-size: 1em !important;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.pw-box {
+    width: 260px;
+    height: 40px;
+    border: solid 1px #eee;
+    line-height: 3em;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11pt;
+}
+
+
+.regi-btn {
+    background: #f1c40f;
+    width: 147px !important;
+    height: 50px !important;
+    font-size: 1em;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.cancle-btn {
+    width: 147px !important;
+    height: 50px !important;
+    font-size: 1em;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #d4d4d4;
+}
+
+.modify-btn {
+    width: 302px;
+    height: 40px;
+    margin-top: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: white;
+    font-size: 1rem;
+    background: #f1c40f;
+}
+
+.text-btn {
+    text-decoration: underline;
+    color: lightgrey;
+    margin-top: 40px;
+    display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.8rem;
+}
+
+.delete-btn {
+    width: 302px;
+    height: 40px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: white;
+    font-size: 1rem;
+    background: #e6382c;
+}
+
+.modal-section {
+    width: 300px;
+    margin: 30px 20px;
+}
+
+.deleteModal {
+    width: 400px !important;
+}
+
+.field-error{
+    color: #dc3545;
+}
+
+hr {
+    margin: 40px 0;
+}

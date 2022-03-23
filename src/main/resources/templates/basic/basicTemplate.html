@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<th:block th:fragment="setContent(content)">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+        <meta name="description" content="환경보호를 실천하는 가게 정보를 쉽게 찾아볼 수 없을까? for Green & Zero waste, ZeroGreen">
+        <meta name="keywords" content="제로그린, zerogreen, 비건, 채식, 환경보호, 친환경, SNS, 소셜, 맛집, 카페, 맛집지도, 비건맛집, 비건푸드">
+
+        <title>제로그린</title>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!--    libs for stomp and sockjs-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+        <!--    end libs for stomp and sockjs-->
+        <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+
+        <link rel="stylesheet" th:href="@{/bootstrap/css/main.css}"/>
+        <link rel="stylesheet" th:href="@{/bootstrap/css/mainpage/mainpage.css}"/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@100;300;400&display=swap"
+              rel="stylesheet">
+        <link rel="icon" type="image/x-icon" th:href="@{/bootstrap/images/favicon.png}"/>
+    </head>
+
+    <body>
+    <div id="page-wrapper">
+        <!-- Header -->
+        <div id="header-wrapper">
+            <header id="header" class="container">
+                <!-- Logo -->
+                <div id="logo">
+                    <h1><a th:href="@{/}">제로그린</a></h1>
+                </div>
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a th:href="@{/shop/list}">제로웨이스트샵</a></li>
+                        <li><a th:href="@{/food/list}">비건맛집</a></li>
+                        <li><a th:href="@{/community}">커뮤니티</a></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/approvalStore}">가게회원 관리</a></li>
+                    </ul>
+                </nav>
+                <!--Before Login-->
+                <div sec:authorize="isAnonymous()">
+                    <button class="btn-login" th:onclick="|location.href='@{/login}'|">로그인</button>
+                </div>
+                <!--After Login-->
+                <div sec:authorize="isAuthenticated()">
+                    <button id="btn-logout" class="btn-login" th:onclick="|location.href='@{/logout}'|">로그아웃</button>
+                        <img class="profile" th:src="@{'/bootstrap/images/profile/' +${session.veganGrade}+'.png'}"
+                             th:onclick="|location.href='@{/members/memberMyInfo}'|"
+                             sec:authorize="hasAnyRole({'ROLE_USER','ROLE_AUTH_USER'})"/>
+                        <img class="profile" th:src="@{/bootstrap/images/profile/STORE.png}"
+                             th:onclick="|location.href='@{/stores/myInfo}'|"
+                             sec:authorize="hasAnyRole({'ROLE_STORE','ROLE_UN_STORE'})"/>
+                </div>
+            </header>
+        </div>
+        <!-- Main -->
+        <section>
+            <div id="main-wrapper">
+                <div class="container">
+                    <div id="content">
+                        <th:block th:replace="${content}"></th:block>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <div id="footer-wrapper">
+            <footer id="footer" class="container">
+                <p>Copyright © zerogreen. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+    </body>
+</th:block>
+</html>

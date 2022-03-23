@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <link rel="stylesheet" th:href="@{/bootstrap/css/findMember.css}"/>
+        <script th:inline="javascript">
+            $(function () {
+                $("#find-id-btn").click(function () {
+                    let phoneNumber = $("#phoneNumber").val();
+
+                    $.ajax({
+                        url: "/zerogreen/findMember/id",
+                        type: "post",
+                        data: {
+                            phoneNumber: phoneNumber
+                        },
+                    }).done(function (fragment) {
+                        $("#result-id").replaceWith(fragment);
+                    });
+                });
+            });
+        </script>
+        <div class="password-wrapper">
+            <div class="password-find">
+                <ul class="fm-tab-wrapper">
+                    <li class="fm-tab" id="id-tab">
+                        <a class="noto-font" th:href="@{/findMember/id}">아이디 찾기</a>
+                    </li>
+                    <li class="fm-tab">
+                        <a class="noto-font" th:href="@{/findMember/password}">비밀번호 찾기</a>
+                    </li>
+                </ul>
+                <hr/>
+                <h1>회원 가입시 등록한 연락처를 입력해주세요.</h1>
+                <br>
+                <form method="post" th:action="@{/findMember/id}" th:object="${findMember}">
+                    <div th:if="${#fields.hasGlobalErrors()}">
+                        <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+                    </div>
+                    <input type="text" th:field="*{phoneNumber}" class="fm-input" placeholder="연락처를 입력해주세요."><br>
+                </form>
+                <button type="button" id="find-id-btn">아이디 찾기</button>
+                <div id="result-id">
+                    <div th:if="${findResult} != null">
+                        <p>회원님의 아이디는 <b>[[${findResult}]]</b>입니다.</p>
+                        <button type="button" th:onclick="|location.href='@{/login}'|">
+                            로그인하러 가기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</th:block>

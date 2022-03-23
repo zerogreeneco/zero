@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html th:replace="~{basic/basicJoinLayout :: layout(~{::article})}" lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <article>
+        <h1>추가 정보</h1>
+        <form method="post" th:object="${member}" th:action="@{/members/kakao/addData}">
+        <label for="phoneNumber">전화번호</label>
+        <input type="text" class="form-control" th:field="*{phoneNumber}">
+        <input type="hidden" id="member-id" th:value="${memberId}">
+
+            <label for="vegetarianGrade">베지테리언 등급</label>
+        <select th:field="*{vegetarianGrade}">
+            <option value="">==베지테리언 등급==</option>
+            <option th:each="vegan : ${vegan}" th:value="${vegan.name()}" th:text="${vegan.vegetarian}"></option>
+        </select>
+            <button type="submit" id="kakao-join-btn" class="w-100 btn btn-primary btn-lg">회원가입</button>
+        </form>
+    </article>
+</body>
+</html>

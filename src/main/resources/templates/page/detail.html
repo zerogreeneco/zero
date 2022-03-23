@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml"
+          xmlns:sec="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <!--페이지 수정 부분 시작-->
+
+        <!-- 페이지 css/ js 추가 -->
+        <link th:href="@{/bootstrap/css/page/detail.css}" rel="stylesheet"/>
+        <link id="contextPathHolder" th:data-contextPath="${#httpServletRequest.getContextPath()}"/>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+        <script th:src="@{/bootstrap/js/detail/detailReview.js}"></script>
+        <script th:src="@{/bootstrap/js/detail/detail.js}"></script>
+
+        <!-- 본문 시작 -->
+        <div class="detail-content">
+
+            <!-- 1열 -->
+            <div class="detail-top">
+                <div class="div21" style="position: relative;" th:if="${#lists.size(storeImageList) >= 1}">
+                    <span id="image-left-top" class="arrow-left-top arrow"
+                          th:if="${#lists.size(storeImageList) >= 5}">&#139;</span>
+                    <span id="image-right-top" class="arrow-right-top arrow"
+                          th:if="${#lists.size(storeImageList) >= 5}">&#155;</span>
+                    <div class="slider-container">
+                        <div class="image-slider-top slider">
+                            <div class="card sImg-list" th:each="sImg: ${storeImageList}">
+                                <img class="inline" th:src="@{/page/detail/image/} + ${getStore.storeName} + ${sImg.thumbnailName}"
+                                     th:value="${sImg.fileName}"
+                                     width="200px" height="200px">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end slider-container -->
+                </div>
+            </div>
+
+            <!-- 2열 -->
+            <div class="detail-sec">
+                <div class="store-name">
+                    <span class="js-storeName">[[${getStore.storeName}]]</span>
+                </div>
+                <div class="sec-flex">
+                    <!-- 좋아요 정보 -->
+                    <div class="inline sec sec-left">
+                        <div class="inline">
+                            <!-- 회원 좋아요 -->
+                            <div sec:authorize="isAuthenticated()" id="like-wrapper">
+
+                                <div th:if="${cntLike} == 0">
+                                    <img class="liking dislike" th:attr="src = @{/bootstrap/images/like/disLike.png}">
+                                </div>
+
+                                <div  th:if="${cntLike} == 1">
+                                    <img class="liking like" th:attr="src = @{/bootstrap/images/like/like.png}">
+                                </div>
+                            </div>
+                            <!-- 비회원 좋아요 -->
+                            <div sec:authorize="isAnonymous()">
+                                <img th:attr="src = @{/bootstrap/images/like/disLike.png}" class="like-img"/>
+                            </div>
+                        </div>
+                            <!--좋아요 수-->
+                            <span class="like-cnt">[[${getStore.likesCount}]]</span>
+                    </div>
+
+                    <!-- 리뷰정보 -->
+                    <div class="inline sec sec-right">
+                        <div class="inline">
+                            <img class="speechBalloon" th:attr="src = @{/bootstrap/images/etc/bubble.png}">
+                        </div>
+                        <span class="review-cnt">[[${getStore.reviewCount}]]</span>
+                    </div>
+                </div>
+
+                <!-- 히든할것 -->
+                <div style="display:none;">
+                    <div sec:authorize="isAuthenticated()">
+                        <div class="js-username" th:text="${member}"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 3열 -->
+            <div class="detail-thr">
+                <!-- 3열 좌측 -->
+                <div class="thr-thr inline">
+                    <div class="thr thr-left inline">
+                        <div th:each="menu: ${menuList}">
+                            <span th:if="${menu.vegetarianGrade} != null">
+                                <img th:src="@{'/bootstrap/images/profile/' +${menu.vegetarianGrade}+'.png'}"
+                                 class="veganImg">
+                            </span>
+                            <span class="inline menu1" th:text="${menu.menuName}"></span>
+                            <span class="inline menu2">-----------</span>
+                            <span class="inline menu3" th:text="${menu.menuPrice}"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3열 우측 -->
+                <div class="thr-thr inline">
+                    <div class="thr thr-right inline" th:object="${getStore}">
+                        <span th:if="*{storeInfo.storePhoneNumber} != null" >전화번호 : </span><span th:text="*{storeInfo.storePhoneNumber}"></span><br>
+                        <span th:if="*{not #strings.isEmpty(storeInfo.openTime) and not #strings.isEmpty(storeInfo.closeTime)}">
+                            영업시간 : [[*{storeInfo.openTime}]] - [[*{storeInfo.closeTime}]]<br></span>
+                        <span th:if="*{not #strings.isEmpty(storeInfo.socialAddress1)}">소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셜 : [[${getStore.storeInfo.socialAddress1}]]<br></span>
+                        <span th:if="${not #strings.isEmpty(getStore.storeInfo.socialAddress2)}">소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;셜 : [[${getStore.storeInfo.socialAddress2}]]<br/></span>
+                        <span th:if="${not #strings.isEmpty(getStore.storeInfo.storeAddress)}">가게주소 : [[${getStore.storeInfo.storeAddress}]]</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 3.5열  -->
+            <div class="thr-bottom" th:if="${not #strings.isEmpty(getStore.storeInfo.storeDescription)}">
+                <span>[[${getStore.storeInfo.storeDescription}]]</span>
+            </div>
+
+            <!-- 4열 -->
+            <div class="detail-map">
+                <div id="map" style="width:80%;height:350px;border-radius: 10px;"></div>
+                <script type="text/javascript" th:src="@{/bootstrap/js/detail/detailMap.js}"></script>
+                <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8b90a59d1c1c795a8266f3f47ebfd1ac&libraries=services"></script><br>
+                <input id="mapAddress" type="hidden" th:value="${getStore.storeInfo.storeAddress}">
+            </div>
+
+            <!-- 5열 -->
+            <div class="textList" sec:authorize="isAnonymous()">
+                <span class="no-data inline ">로그인 후 리뷰를 남겨주세요!</span>
+            </div>
+
+            <!-- 리뷰작성칸 -->
+            <div class="rv" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_AUTH_USER')">
+                <div class="div16 inline">
+
+                <!-- preview -->
+                <div id="preview">
+                </div>
+
+                <!-- 리뷰작성 textarea -->
+                <form id="replyForm" method="POST" th:object="${review}" enctype="multipart/form-data"
+                th:action="@{'/page/detail/addReview/'}+${getStore.sno}">
+                    <span class="js-storeId" style="display:none;">[[${getStore.sno}]]</span>
+
+                    <div class="insert-sec" >
+                        <textarea th:field="*{reviewText}" name="reviewText" id="reviewText" class="reviewText"
+                                  onkeyup="limitTextInput(this)" placeholder="리뷰를 남겨보세요!"></textarea>
+                        <div class="text-count-div">
+                            <span>띄어쓰기 포함 최대 500자까지 입력이 가능합니다. </span>
+                            <span class="text-count">0 / 500</span>
+                        </div>
+                        <div th:error="*{reviewText}">
+                        </div>
+                        <div class="errorMessage"></div>
+                    </div>
+
+                    <div class="button-sec">
+                        <label class="img-input rvrv-btn" for="img-input">사진선택</label><br>
+                        <input class="img-input" id="img-input" th:field="*{imageFiles}" name="reviewImages" type="file"
+                               accept="image/jpg,image/png,image/jpeg"
+                               multiple="multiple" style="display:none;"/>
+                        <label class="rvrv-btn" for="rv-btn">리뷰등록</label>
+                        <button type="submit" id="rv-btn" style="display:none;">리뷰등록</button>
+                        <!--                    <span typeof="button" class="rvrv-btn inline" id="rv-btn">리뷰등록</span>-->
+                    </div>
+                </form>
+                </div>
+            </div>
+
+            <!-- 리뷰 이미지+텍스트 리스트 -->
+            <div class="wrapper-review-list">
+                <!-- 리뷰리스트 -->
+                <div id="reviewList" class="reviewList inline">
+                    <!-- 리뷰 이미지 리스트 -->
+                    <div class="rv-images" style="position: relative;" th:if="${reviewImageList != null}">
+                        <span id="image-left" class="arrow-left arrow">&#139;</span>
+                        <span id="image-right" class="arrow-right arrow">&#155;</span>
+                        <div class="slider-container">
+                            <div class="image-slider slider">
+                                <div class="card rv-img-list" th:each="imageList: ${reviewImageList}">
+                                    <img class="inline rv-imageOnly" th:src="@{/page/detail/images/{imageList}(imageList=*{imageList.thumbnailName})}"
+                                         th:value="${imageList.thumbnailName}"
+                                         width="120px" height="120px">
+                                    <img class="inline rv-imageOnlyOrigin" style="display:none;"
+                                         th:src="@{/page/detail/images/{imageList}(imageList=*{imageList.reviewFileName})}"
+                                         th:value="${imageList.uploadFileName}">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end slider-container -->
+                    </div>
+                    <!-- end review image list -->
+
+                    <div th:each="mReview : ${memberReview}">
+                        <!-- 멤버리뷰 리스트 -->
+                        <div class="reviewBox">
+                            <span class="reviewProfile">
+                                <img th:src="@{'/bootstrap/images/profile/' +${mReview.vegetarianGrade}+'.png'}"
+                                     th:onclick="|location.href='@{/members/memberMyInfo}'|" width="15px" height="15px">
+                            </span>
+                            <span class="rno" style="display:none;" th:text="${mReview.rno}"></span>
+                            <span class="rv-nickname">[[${mReview.nickname}]]</span>
+                            <span class="rv-date inline">[[${#temporals.format(mReview.createdTime, 'yyyy-MM-dd HH:mm')}]]</span>
+                            <br>
+                            <div class="div13">
+                                <div th:if="${reviewImageList != null}" class="inline div12">
+                                    <div class="div11 inline"></div>
+                                    <div class="rv-img inline" th:each="mImage: ${reviewImageList}"
+                                         th:if="${mImage.detailReview.id == mReview.rno}">
+                                        <img class="inline mImage mImage-fr"
+                                             th:src="@{/page/detail/images/{mImage}(mImage=*{mImage.thumbnailName})}"
+                                             th:value="${mImage.thumbnailName}"
+                                             width="120px" height="120px" >
+                                        <img class="inline mImageOrigin mImage-fr" style="display:none;"
+                                             th:src="@{/page/detail/images/{mImage}(mImage=*{mImage.reviewFileName})}"
+                                             th:value="${mImage.uploadFileName}">
+                                    </div>
+
+                                    <div class="inline imgInfo" th:each="mImage, idx: ${reviewImageList}" style="display:none;"
+                                         th:if="${mImage.detailReview.id == mReview.rno}">
+                                        <input class="imgPath" th:value="${mImage.filePath}">
+                                        <input class="imgThumbPath" th:value="${mImage.thumbnailName}">
+                                        <input class="rnoRno" th:value="${mImage.detailReview.id}">
+                                        <input class="imgId" th:value="${mImage.id}">
+                                    </div>
+                                </div>
+                                <!-- div12 end-->
+                                <div class="div14">
+                                    <textarea class="mrv-textarea" name="reviewText" onkeyup="limitTextInput(this)" readonly>[[${mReview.reviewText}]]</textarea>
+                                    <div class="text-count-div hidden-text-count" style="display:none;">
+                                        <span>띄어쓰기 포함 최대 500자까지 입력이 가능합니다. </span>
+                                        <span class="text-count">0 / 500</span>
+                                    </div>
+                                </div>
+                                <!-- div14 end-->
+                            </div>
+                            <!-- div13 end -->
+
+                            <div class="btn-Box">
+                                <span class="srv-toAdd inline mrv-btn" th:if="${rvMember == mReview.sno}">답글</span>
+                                <span class="mrv-modify inline mrv-btn" th:if="${rvMember} == ${mReview.id}">수정</span>
+                                <span class="rv-delete mrv-delete inline mrv-btn" onclick="deleteImage(this)" th:if="${rvMember} == ${mReview.id}">삭제</span>
+                            </div>
+
+                            <!-- 스토어 리뷰 입력창 -->
+                            <div class="srv-input" style="display:none;">
+                                <div class="div15">
+                                    <span class="js-sno" style="display:none;">[[${mReview.sno}]]</span>
+                                    <textarea class="srv-input-textarea" name="storeReviewText" id="storeReviewText"
+                                              onkeyup="limitTextInput(this)" placeholder="답글을 입력해주세요"></textarea>
+                                    <div class="text-count-div sr-count-div">
+                                        <span>띄어쓰기 포함 최대 500자까지 입력이 가능합니다. </span>
+                                        <span class="text-count">0 / 500</span>
+                                    </div>
+                                </div>
+                                <div class="btn-Box">
+                                    <span class="srv-adding inline mrv-btn" id="srv-adding">등록</span>
+                                </div>
+                            </div>
+
+                            <!-- 스토어 리뷰 리스트 -->
+                            <div class="sReview-Box" th:each="sReview: ${mReview.nestedReviewList}">
+
+                                <div class="sReview-smallBox">
+                                    <div class="inline">
+                                        <img class="downArrow" th:attr="src = @{/bootstrap/images/etc/arrow.png}">
+                                    </div>
+                                    <span class="sReview-profile">
+                                        <img th:src="@{'/bootstrap/images/profile/STORE.png'}"
+                                             width="16px" height="16px">
+                                    </span>
+                                    <span class="srno rno" th:text="${sReview.rno}" style="display:none;"></span>
+                                    <span class="srv-storeName">[[${sReview.storeName}]]</span>
+                                    <span class="rv-date inline">[[${#temporals.format(sReview.createdTime, 'yyyy-MM-dd HH:mm')}]]</span>
+                                    <br>
+                                    <textarea class="storeReviewText" name="storeReviewText" onkeyup="limitTextInput(this)" readonly>[[${sReview.reviewText}]]</textarea>
+                                    <div class="text-count-div hidden-text-count width60" style="display:none;">
+                                        <span>띄어쓰기 포함 최대 500자까지 입력이 가능합니다. </span>
+                                        <span class="text-count">0 / 500</span>
+                                    </div>
+
+                                    <div class="btn-Box">
+                                        <span class="srv-modify inline mrv-btn" th:if="${rvMember} == ${sReview.id}">수정</span>
+                                        <span class="rv-delete srv-delete inline mrv-btn" th:if="${rvMember} == ${sReview.id}">삭제</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end storeReviews list -->
+
+                        </div>
+                        <!-- end reviewBox -->
+                    </div>
+                    <!-- end div - Each -->
+                </div>
+                <!-- end rv-list -->
+            </div>
+            <!-- end review images and review list -->
+
+<!--            <button type="button" id="more-list"> + </button>-->
+
+            <!-- To the top -->
+            <div>
+                <button id="top-btn">
+                    <img th:src="@{/bootstrap/images/arrowup.png}" style="width: 35px;"/>
+                </button>
+            </div>
+
+            <!-- review image list modal1 -->
+            <div class="modal modal1" style="display:none;">
+                <span class="close">&times;</span>
+                <span id="modal-left" class="modal-arrow-left arrow">&#139;</span>
+                <span id="modal-right"  class="modal-arrow-right arrow">&#155;</span>
+                <div class="slider-container">
+                    <div class="modal-slider slider">
+                        <div class="card modalEach">
+                            <img class="modal_content" id="img01">
+                        </div>
+                    </div>
+                </div>
+                <!-- end slider-container -->
+            </div>
+            <!-- end modal1 -->
+
+            <!-- review image modal2 -->
+            <div class="modal modal2" style="display:none;">
+                <span class="close">&times;</span>
+                <span id="modal-left2" class="modal-arrow-left arrow">&#139;</span>
+                <span id="modal-right2"  class="modal-arrow-right arrow">&#155;</span>
+                <div class="slider-container">
+                    <div class="modal-slider slider">
+                        <div class="card modalEach">
+                            <img class="modal_content">
+                        </div>
+                    </div>
+                </div>
+                <!-- end slider-container -->
+            </div>
+            <!-- end modal2 -->
+
+        </div>
+        <!-- end of page-->
+
+
+    </th:block>
+</th:block>

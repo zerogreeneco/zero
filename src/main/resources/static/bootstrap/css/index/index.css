@@ -1,0 +1,189 @@
+/*로그인 팝업창*/
+#popup-wrap{
+    background-color:rgba(255, 255, 255, .8);
+    justify-content:center;
+    align-items:center;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    display:none;
+    padding:15px;
+    z-index: 99;
+}
+.popup {
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+    height: 200px;
+    background: white;
+    box-shadow: 0 2px 10px 0 rgb(35 30 35 / 30%);
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    border-radius: 12px;
+}
+#popup-text {
+    margin: 20px 0;
+    display: block;
+    line-height: 20pt;
+    font-size: 1.1em;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#popup-login {
+    width: 120px;
+    height: 40px;
+    font-size: 1em;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f1c40f;
+}
+#popup-cancle {
+    width: 120px;
+    height: 40px;
+    font-size: 1em;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #d4d4d4;
+}
+
+/*지도*/
+#rightSide {
+    width: 39%;
+    height: auto;
+    padding: 105px 0 10px 10px;
+}
+#map {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+/*샵 리스트*/
+#leftSide {
+    width: 57%;
+    margin-right: 30px;
+    overflow: hidden;
+}
+
+/*카드 슬라이더*/
+.slider-container {
+    margin: 0 25px;
+    padding-left: 0.8em;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1280px) {
+    .slider-container {
+        padding-left: 0.3em !important;
+    }
+}
+
+.slider {
+    display: inline-flex;
+}
+
+.arrow {
+    top: 35%;
+    font-size: 4em;
+    position: absolute;
+    z-index: 999;
+    font-family: 'Gothic A1', sans-serif;
+    color: lightgray;
+    cursor: pointer;
+    padding: 0px !important;
+    background: none !important;
+}
+.arrow-left {
+    left: 0;
+}
+.arrow-right {
+    right: 0;
+}
+
+.cate-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-left: 35px;
+}
+.margin-title {
+    margin-top: 50px;
+}
+.shopList-box {
+    display: flex;
+    list-style: none;
+    transition: left 0.5s ease-out;
+}
+.card {
+  margin: 10px 20px 10px 0;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+  overflow: hidden;
+  width: 180px;
+}
+.card-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 15px 15px 15px;
+}
+.card-body span {
+  font-size: 13px;
+  margin: 0 0 5px;
+}
+.shop-name {
+    font-size: 0.9em !important;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+@media screen and (max-width: 736px) {
+    #leftSide {
+        width: 100% !important;
+        margin: 0px !important;
+    }
+
+    .slider-container {
+        padding-left: 1.6em !important;
+    }
+
+    #shopList-card {
+        width: 100% !important;
+    }
+
+    .shopList-box {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .card {
+        position: relative;
+        left: -25px; top: 0;
+        width: 200px;
+        margin: 10px 5px 10px 5px !important;
+    }
+
+    #rightSide {
+        display: block !important;
+        padding: 50px 0 0 0 !important;
+        width: 100% !important;
+        height: 400px !important;
+    }
+
+    .cate-title {
+        margin-top: 50px !important;
+        margin-left: -20px !important;
+    }
+}

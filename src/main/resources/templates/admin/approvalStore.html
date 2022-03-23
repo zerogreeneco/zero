@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <link th:href="@{/bootstrap/css/page/list.css}" rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <style>
+            .am-pageNo {
+                margin: 0 auto;
+            }
+
+            .am-pageNo .am-ul {
+                list-style: none;
+                text-align: center;
+            }
+
+            .am-pageNo button[type=button] {
+                float: right;
+            }
+
+            .am-ul li {
+                display: inline-block;
+                text-align: center;
+            }
+
+            .am-ul li a {
+                float: left;
+                padding: 4px;
+                margin-right: 3px;
+                width: 15px;
+                color: #000;
+                font: bold 12px tahoma;
+                border: 1px solid #eee;
+                text-align: center;
+                text-decoration: none;
+            }
+
+            .am-ul li a:hover, ul li a:focus {
+                color: #fff;
+                border: 1px solid #f1c40f;
+                background-color: #f1c40f;
+            }
+        </style>
+        <section>
+            <!--검색-->
+            <div class="form-area">
+                <form th:method="get" th:action>
+                    <select class="dropdown" name="searchType">
+                        <option value="storeId">아이디</option>
+                        <option value="storeName">가게명</option>
+                        <option value="regNum">사업자 등록번호</option>
+                    </select>
+                    <div class="search-bar">
+                        <input id="search-input" name="keyword">
+                        <img class="truncate_icon" th:src="@{/bootstrap/images/list/close.png}"/>
+                    </div>
+                    <button class="btn_search" type="button">
+                        <img class="search_icon" th:src="@{/bootstrap/images/list/search.png}">
+                    </button>
+                </form>
+                <div id="approval-list">
+                    <form method="post" th:action="@{/admin/approve}">
+                        <table>
+                            <tr>
+                                <th><input id="check-all" type="checkbox" name="memberId-check"></th>
+                                <th>아이디</th>
+                                <th>상호명</th>
+                                <th>가게 연락처</th>
+                                <th>가게 주소</th>
+                                <th>등록번호</th>
+                                <th>파일이름</th>
+                            </tr>
+                            <tr th:each="store : ${result.dtoList}">
+                                <td><input type="checkbox" class="form-check-input"
+                                           th:value="${store.memberId}" name="memberId"></td>
+                                <td th:text="${store.username}"></td>
+                                <td th:text="${store.storeName}"></td>
+                                <td th:text="${store.storePhoneNumber}"></td>
+                                <td th:text="${store.storeAddress}"></td>
+                                <td th:text="${store.storeRegNum}"></td>
+                                <td th:if="${store.fileId}">
+                                    <a th:href="|/zerogreen/admin/approvalStore/attach/${store.fileId}|"
+                                       th:text="${store.uploadFileName}"></a>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="am-pageNo">
+                            <button type="button" id="approval-btn">승인</button>
+                            <ul class="am-ul">
+                                <li th:if="${result.prev}">
+                                    <a tabindex="-1" th:href="@{/admin/approvalStore(page=${result.start -1})}">
+                                        &lt;&lt;
+                                    </a>
+                                </li>
+                                <li th:each="page : ${result.pageList}">
+                                    <a th:href="@{/admin/approvalStore(page=${page})}">
+                                        [[${page}]]
+                                    </a>
+                                </li>
+                                <li th:if="${result.next}">
+                                    <a th:href="@{/admin/approvalStore(page=${result.end + 1})}">
+                                        &gt;&gt;
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <script th:inline="javascript">
+            $(function () {
+                // AJAX 호출 후 이벤트 발생하지 않는 현상 해결
+                $(document).on("click", "#approval-btn", function (e) {
+                    let obj = $("[name=memberId]");
+                    let memberArray = [];
+
+                    $("input:checkbox[name=memberId]:checked").each(function () {
+                        memberArray.push($(this).val());
+                    });
+
+                    let val = $("#hiddenValue").val(memberArray);
+                    alert(memberArray);
+
+                    $.ajax({
+                        url: "/admin/approve",
+                        type: "post",
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        // dataType: "json",
+                        data: {
+                            memberId: memberArray
+                        }
+                    })
+                        .done(function (fragment) {
+                            $("#approval-list").replaceWith(fragment);
+                        });
+                });
+
+                // 체크박스 전체 선택/해제
+                $(document).on("click", "#check-all", function () {
+                    if ($("#check-all").is(":checked")) {
+                        $("input[name=memberId]").prop("checked", true);
+                    } else {
+                        $("input[name=memberId]").prop("checked", false);
+                    }
+                });
+            });
+        </script>
+    </th:block>
+</th:block>

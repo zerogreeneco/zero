@@ -1,0 +1,221 @@
+.community-container {
+    margin: 0 auto;
+}
+
+#content-left {
+    width: 65%;
+    display: inline-block;
+    margin: 1em 0;
+    float: left;
+}
+
+#content-right {
+    width: 25%;
+    display: inline-block;
+    float: right;
+}
+
+@media screen and (max-width: 570px) {
+    #content-left { width: 55% !important;}
+    #content-right { width: 35% !important;}
+}
+
+@media screen and (max-width: 540px) {
+    #content-left { width: 39% !important;}
+    #content-right { width: auto !important;}
+}
+
+/* 카테고리 리스트 */
+ul.category-list {
+    text-align: center;
+    display: inline-block;
+    margin-top: 12px;
+}
+
+ul.category-list li {
+    display: inherit;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    min-width: 50px;
+    height: 20px;
+    border: 2px solid #16a085;
+    border-radius: 30px;
+    padding: 5px 15px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+ul.category-list li a {
+    color: #16a085;
+}
+
+@media screen and (max-width: 710px){
+    .category-list { margin-left: 20px; }
+}
+
+.list-wrapper {
+    display: table;
+    margin: 0 auto;
+    border-bottom: 1px solid lightgray;
+    height: 150px;
+}
+
+.cm-content {
+    display: table-cell;
+    height: 150px;
+}
+
+/* 리스트 카테고리 */
+.main-list-category {
+    margin: 15px 0 10px 0;
+}
+
+.cm-category {
+    display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-radius: 15px;
+    padding: 8px 15px;
+    background-color: #f1c40f;
+    font-size: 0.9em;
+    color: #FFF;
+    text-decoration: none;
+}
+
+/* 리스트 텍스트 */
+.main-list-text {
+    height: 80px;
+    margin: 10px 0 0 5px;
+}
+
+.main-list-text a {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    width: 30em;
+    overflow: hidden;
+    height: 80px;
+}
+
+@media screen and (max-width: 650px) {
+    .main-list-text a {
+        width: 25em !important;
+        margin-right: 5em;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .main-list-text a {
+        width: 15em !important;
+        margin-right: 3em;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .main-list-text a {
+        width: 12em !important;
+        margin-right: 3em;
+    }
+}
+
+.main-like-btn {
+    cursor: pointer;
+}
+
+/* 썸네일 */
+.thumbnail-box {
+    height: 11em;
+    width: 11em;
+    border: 1px solid lightgray;
+    margin: 30px 0px 25px 0;
+    float: right;
+}
+
+/* 버튼 */
+#write-btn {
+    position: fixed;
+    bottom: 16%;
+    right: 4%;
+    width:60px;
+    height: 60px;
+    border-radius: 50px;
+    background: #f1c40f;
+    padding: 0 !important;
+    z-index: 999;
+}
+#write-btn img {
+    width: 30px;
+    margin-top: 4px;
+}
+
+#top-btn {
+    position: fixed;
+    bottom: 5%;
+    right: 4%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    background: #f1c40f;
+    padding: 0 !important;
+    z-index: 999;
+}
+#top-btn img {
+    width: 30px;
+    margin-top: 4px;
+}
+/* 게시물 정보 */
+.number-section {
+    margin: 5px 0 0 5px;
+}
+
+.main-list-profile {
+    width: 20px;
+    height: 20px;
+}
+
+.main-list-nickname {
+    display: inline-block;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+    vertical-align: top;
+    padding-top: 2px;
+}
+
+.number {
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+.eye-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.heart-icon, .msg-icon {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-bottom: 2px;
+}
+
+
+
+/* 더보기 버튼 */
+#more-list {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 100px;
+    height: 50px;
+    font-size: 35px;
+    font-weight: 400;
+    display: none;
+    padding: 0 !important;
+}
+
+/* 게시물 없을 때 */
+.list-none {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%);
+}

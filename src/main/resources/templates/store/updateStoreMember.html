@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml"
+          xmlns:sec="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <link rel="stylesheet" th:href="@{/bootstrap/css/register.css}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <script th:src="@{/bootstrap/js/store/accountUpdate.js}"></script>
+        <div class="container" sec:authorize="isAuthenticated()">
+            <div class="center-box">
+                <div sec:authorize="hasAnyRole('ROLE_STORE','ROLE_UN_STORE')">
+                    <!--회원 정보수정 input-->
+                    <h2 class="title">회원 정보 수정</h2>
+
+                    <form method="post" id="storeAccountUpdate" th:action="@{/stores/update/account}" th:object="${member}">
+                        <div>
+                            <label class="join-label">회원 ID</label>
+                            <input type="hidden" th:field="*{userName}">
+                            <input type="text" class="form-control input-box" th:value="${member.userName}" disabled>
+                        </div>
+                        <div>
+                            <label class="join-label">전화번호</label>
+                            <input type="text" class="form-control login-box" th:field="*{phoneNumber}"
+                                   onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                            <button type="button" class="sendMail" id="phoneCheck">중복 확인</button>
+                            <div style="color: #dc3545" th:errors="*{phoneNumber}">
+                                전화 오류
+                            </div>
+                            <div class="phoneNumber-error"></div>
+                        </div>
+                    </form>
+                    <div>
+                        <button type="button" class="modify-btn" id="btnUpdate">정보 수정</button>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- 비밀번호 수정 input -->
+                    <form th:object="${password}">
+                        <div>
+                            <label class="join-label">현재 비밀번호</label>
+                            <input type="password" class="form-control input-box" id="storePassword"
+                                   th:field="*{password}">
+                            <div th:if="${#fields.hasGlobalErrors()}">
+                                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+                            </div>
+                            <div class="pwd-error"></div>
+                        </div>
+                        <div>
+                            <label class="join-label">새로운 비밀번호</label>
+                            <input type="password" class="form-control input-box"
+                                   th:field="*{newPassword}">
+                            <div class="rePwd-error"></div>
+                        </div>
+                        <div>
+                            <label class="join-label">새로운 비밀번호 확인</label>
+                            <input type="password" class="form-control input-box" id="checkNewPassword">
+                            <div class="check-error"></div>
+                        </div>
+                        <!-- 비밀번호 변경, 회원탈퇴 button -->
+                    </form>
+                    <div>
+                        <button class="modify-btn" onclick="pwdChange()">비밀번호 변경</button>
+                        <a class="text-btn" href="#deleteModal" rel="modal:open">회원탈퇴를 하시겠습니까?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 회원탈퇴 모달창 -->
+        <div id="deleteModal" class="modal deleteModal">
+            <div class="modal-section" th:object="${password}">
+                <h3 style="text-align: center;">회원 탈퇴하기</h3>
+                <label class="pw-label">비밀번호</label>
+                <input type="password" class="form-control pw-box" th:field="*{password}">
+                <div class="del-error"></div>
+                <div th:if="${#fields.hasGlobalErrors()}">
+                    <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+                </div>
+                <button type="submit" class="delete-btn" onclick="storeMemberDel()">회원탈퇴</button>
+            </div>
+        </div>
+    </th:block>
+</th:block>

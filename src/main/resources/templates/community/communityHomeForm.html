@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml"
+          xmlns:sec="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <link th:href="@{/bootstrap/css/page/list.css}" rel="stylesheet"/>
+        <link th:href="@{/bootstrap/css/community/communityList.css}" rel="stylesheet"/>
+        <script th:inline="javascript" th:src="@{/bootstrap/js/community/community.js}"></script>
+
+        <!-- 버튼 -->
+        <div>
+            <button id="top-btn">
+                <img th:src="@{/bootstrap/images/arrowup.png}" style="width: 35px;"/>
+            </button>
+        </div>
+        <div sec:authorize="hasAnyRole('ROLE_USER','ROLE_AUTH_USER','ROLE_ADMIN')">
+            <button id="write-btn" type="button" th:onclick="|location.href='@{/community/write}'|">
+                <img th:src="@{/bootstrap/images/edit.png}" style="width: 35px;"/>
+            </button>
+        </div>
+
+        <!--검색-->
+        <div class="form-area">
+            <form th:method="get" th:action>
+                <select class="dropdown" name="searchType">
+                    <option th:each="searchType : ${T(zerogreen.eco.dto.search.SearchType).values()}"
+                            th:value="${searchType}" th:text="${searchType.searchName}"></option>
+                </select>
+                <div class="search-bar">
+                    <input id="search-input" name="keyword" th:value="${keyword}">
+                    <img class="truncate_icon" th:src="@{/bootstrap/images/list/close.png}"/>
+                </div>
+                <button class="btn_search" type="submit">
+                    <img class="search_icon" th:src="@{/bootstrap/images/list/search.png}">
+                </button>
+            </form>
+
+            <!-- 카테고리 -->
+            <div>
+                <ul class="category-list">
+                    <li>
+                        <a th:href="@{/community}"> 전체 </a>
+                    </li>
+                    <li th:each="categories : ${category}" th:value="${categories.name()}">
+                        <a th:text="${categories.categoryName}"
+                           th:href="@{/community(category=${categories.name()}) }"></a>
+                        <input class="category-name" type="hidden" th:value="${categories.name()}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 리스트 -->
+        <div id="more-wrapper">
+        <div class="list-wrapper" th:each="community : ${communityList}">
+            <input type="hidden" th:value="${community.id}" class="list-board-id">
+
+            <div class="cm-content">
+                <!--리스트 왼쪽-->
+                <div id="content-left">
+                    <div class="main-list-category">
+                        <!-- 게시글 카테고리 라벨 -->
+                        <span>
+                            <a th:href="@{/community(category=${community.category.name()}) }"
+                               th:text="${community.category.categoryName}" class="cm-category">카테고리</a>
+                        </span>
+                        <!-- 게시글 미리보기 -->
+                        <div class="main-list-text">
+                            <p><a th:href="@{/community/read/{boardId}(boardId = ${community.id})}"
+                                  th:text="${community.text}" style="line-height: 130%;">글 내용</a></p>
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <!-- 게시자 -->
+                        <div class="writer-section">
+                            <img class="main-list-profile"
+                                 th:src="@{'/bootstrap/images/profile/' +${community.vegetarianGrade}+'.png'}"
+                                 width="15px" height="15px">
+                            <div class="main-list-nickname" th:text="${community.nickname}">닉네임</div>
+                        </div>
+
+                        <div class="number-section">
+                            <!-- 조회수 -->
+                            <span>
+                                <img class="eye-icon" th:src="@{/bootstrap/images/list/visibility.png}">
+                                <span class="number">[[${community.count}]]</span>
+                            </span>
+                            <!-- 회원 좋아요 -->
+                            <span sec:authorize="isAuthenticated()" id="like-wrapper">
+                                <span class="like-count">
+                                    <span class="main-like-btn">
+                                        <img class="like-img heart-icon"
+                                             th:attr="src = @{/bootstrap/images/like/disLike.png}">
+                                    </span>
+                                    <span class="test-count number">[[${community.like}]]</span>
+                                </span>
+                            </span>
+                            <!-- 비회원 좋아요 -->
+                            <span sec:authorize="isAnonymous()">
+                                <img class="like-img heart-icon" th:attr="src = @{/bootstrap/images/like/disLike.png}">
+                                <span class="number">[[${community.like}]]</span>
+                            </span>
+                            <!-- 댓글수 -->
+                            <span>
+                                <img class="msg-icon" th:src="@{/bootstrap/images/etc/bubble.png}">
+                                <span class="number">[[${community.replyCount}]]</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!--리스트 오른쪽-->
+                <div id="content-right">
+                    <!--썸네일-->
+                    <div class="thumbnail-box" style="border: none;">
+                        <img th:if="${not #strings.isEmpty(community.thumbnail)}"
+                             th:src="@{/community/images/{imageFile}(imageFile=${community.thumbnail})}"
+                             th:value="${community.thumbnail}"
+                             width="178px" height="auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <button type="button" id="more-list"> + </button>
+
+        <!-- 게시글이 없을 때 -->
+        <div class="list-none">
+            <span id="sorry-emoji">😅</span>
+            <span id="sorry-text">게시물이 없습니다.<br>새로운 글을 작성해보세요!</span>
+        </div>
+    </th:block>
+</th:block>
+</html>

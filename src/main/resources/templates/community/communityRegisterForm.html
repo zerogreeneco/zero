@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <link th:href="@{/bootstrap/css/community/communityDetailView.css}" rel="stylesheet"/>
+        <script th:inline="javascript" th:src="@{/bootstrap/js/community/communityWrite.js}"></script>
+        <form class="write-form" method="post" th:object="${writeForm}" th:action="@{/community/write}" enctype="multipart/form-data">
+            <div id="rg-main-wrapper">
+                <div>
+                    <select th:field="*{category}">
+                        <option th:each="categories : ${category}"
+                                th:value="${categories.name()}"
+                                th:text="${categories.categoryName}">
+                        </option>
+                    </select>
+<!--/*                    <input type="checkbox" th:field="*{chatCheck}" id="chatCheck">*/-->
+<!--                    <label for="chatCheck">말걸기 허용</label>-->
+                </div>
+                <div>
+                    <input type="checkbox" id="chat" th:field="*{chat}" value="false">
+                    <label for="chat">채팅 허용</label>
+                </div>
+                <div>
+                    <textarea th:field="*{text}" class="rg-input"></textarea>
+                </div>
+                <input type="file" multiple="multiple" th:field="*{imageFiles}" accept="image/jpg,image/png,image/jpeg,image/gif" >
+                <div id="select-img"><img id="rg-img" src=""/></div>
+            </div>
+
+            <div id="button-section">
+                <button id="write-btn" type="submit">작성</button>
+                <button id="cancle-btn" type="button" onclick="goBack()">취소</button>
+            </div>
+        </form>
+    </th:block>
+</th:block>
+</html>

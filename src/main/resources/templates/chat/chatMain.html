@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+
+        <form class="form-signing" action="/zerogreen/chat/newChat" method="POST"
+              onsubmit="return nameChk();">
+            <div class="form-group col-xs-10">
+                <input type="text" id="receiver" name="receiver" class="form-control"
+                       placeholder="상대방 이름을 입력하세요" maxlength="20" required>
+                <input type="hidden" id="sender" th:value="${myId}" name="sender"
+                       class="form-control" placeholder="상대방 이름을 입력하세요" maxlength="20"
+                       required>
+                <strong class="alert alert-danger" id="failMessage" style="display : none; color:red;">잠시 후 다시 시도해 주세요.</strong>
+                <strong class="alert alert-success" id="comeMessage" style="display : none; color:red;">새로운 메세지가 도착했습니다!</strong>
+                <strong class="alert alert-success" id="noticeCome" style="display : none; color:red;">새로운 알림이 도착했습니다!</strong>
+                <strong class="alert alert-danger" id="nameMessage" style="display : none; color:red;">이름을 다시 확인해주세요!</strong>
+            </div>
+            <br><br>
+            <div class="form-group col-xs-2">
+                <button type="submit" class="btn btn-default pull-right">채팅방 만들기</button>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+
+        <div class='row' th:each="chatRoom:${chatRooms}">
+            <div class='col-lg-12'>
+                <div class='media'>
+                    <div class='media-body'>
+                        <h4 class='media-heading' th:text="${chatRoom.writer}"></h4>
+                        <h4 class="small pull-right"
+                            th:text="${#temporals.format(chatRoom.time, 'yyyy-MM-dd HH:mm:ss')}"></h4>
+                    </div>
+                    <p th:text="${chatRoom.lastMessage}"></p>
+                    <a class="btn btn-default pull-right"
+                       th:href="@{/personalChat/{id} (id = ${chatRoom.id})}">입장</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+
+        <script th:inline="javascript">
+        /* <![CDATA[*/
+        var id = /*[[${userId}]]*/
+        /* ]]> */
+
+        /* <![CDATA[*/
+        var nickname = /*[[${myId}]]*/
+        /* ]]> */
+        var stompClient = null;
+        var url = 'http://localhost:8080/zerogreen';
+        var socket = new SockJS(url + '/chat');
+        connect();
+
+        function connect() {
+            console.log("connecting to chat...")
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function () {
+                stompClient.subscribe('/topic/' + nickname, function (e) {
+                    if(e.body.toString() == "notice"){
+                        alertClosing('noticeCome',2000);
+                    }
+                    else{
+                        alertClosing('comeMessage',2000);
+                    }
+                });
+            });
+        }
+
+        function disconnect() {
+            if (stompClient !== null) {
+                stompClient.disconnect();
+            }
+        }
+        window.onbeforeunload = function(e){
+            disconnect();
+        }
+
+        function alertClosing(selector, delay){
+            document.getElementById(selector).style.display = "inline-block";
+            window.setTimeout(function(){
+                document.getElementById(selector).style.display = "none";
+            },delay);
+        }
+
+        function nameChk(){
+            var flag = false;
+            $.ajax({
+                type:'GET',
+                url: '/zerogreen/users/nameChk/' + $("#receiver").val(),
+                contentType: 'application/json; charset=utf-8',
+                async: false
+            }).done(function(e){
+                if(e == "success"){
+                    console.log(e);
+                    flag = true;
+                }
+                else {
+                    flag = false;
+                    alertClosing("nameMessage",2000);
+                }
+            }).fail(function(e){
+                flag = false;
+                alertClosing("failMessage",2000);
+            })
+            return flag;
+        }
+
+        function notice(){
+            if(nickname == ""){
+                noticeList = document.getElementById("noticeList");
+                noticeList.innerHTML = "";
+            }
+            else {
+                $.ajax({
+                    type:'GET',
+                    url: '/users/notice',
+                    data : {name : nickname},
+                    dataType : 'json',
+                    contentType: 'application/json; charset=utf-8',
+                }).done(function(e){
+                    console.log(e);
+                    noticeList = document.getElementById("noticeList");
+                    noticeList.innerHTML = "";
+                    for(var i= 0; i< e.link.length;++i){
+                        noticeList.innerHTML = "<li><strong>" + e.content[i] + "</strong><br><small>" + dateParse(e.time[i])+ "</small> <button class = 'btn btn-default' onclick=goLink('" +  e.link[i] + "');>이동</button></li><hr>" + noticeList.innerHTML;
+                    }
+                }).fail(function(e){
+                    alert("잠시 후 시도해주세요");
+                })
+            }
+
+        }
+        function dateParse(e){
+            str = e.substring(0,4) + "-" + e.substring(5,7) + "-" + e.substring(8,10) +" " + e.substring(11,19);
+            return str;
+        }
+        function goLink(e){
+            window.location.href = e;
+        }
+
+        </script>
+    </th:block>
+</th:block>
+</html>

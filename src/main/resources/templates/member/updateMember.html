@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml"
+          xmlns:sec="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <link rel="stylesheet" th:href="@{/bootstrap/css/register.css}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <script th:inline="javascript" th:src="@{/bootstrap/js/member/updateMember.js}"></script>
+        <div class="container" sec:authorize="isAuthenticated()">
+            <div class="center-box">
+                <h2 class="title">회원 정보 수정</h2>
+
+                <!--회원 정보수정 input-->
+                <div>
+                    <form id="memberUpdate" action="" th:action="@{/members/account}" method="post"
+                          th:object="${member}">
+                        <input type="hidden">
+                        <div>
+                            <label for="username" class="join-label">회원 ID</label>
+                            <input type="text" id="username" th:field="*{username}" class="form-control input-box"
+                                   disabled>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_USER')">
+                            <label for="nickname" class="join-label">닉네임</label>
+                            <input id="nickname" type="text" th:field="*{nickname}" class="form-control input-box">
+                            <div th:errors="*{nickname}">
+                                닉네임 오류
+                            </div>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_USER')">
+                            <label for="phoneNumber" class="join-label">전화번호</label>
+                            <input id="phoneNumber" type="text" th:field="*{phoneNumber}"
+                                   class="form-control input-box">
+                            <div th:errors="*{phoneNumber}">
+                                전화 오류
+                            </div>
+                        </div>
+                        <div>
+                            <label for="vegetarianGrade" class="join-label">베지테리언 등급</label>
+                            <select th:field="*{vegetarianGrade}" id="vegetarianGrade" class="input-box vege-box">
+                                <option th:each="vegan : ${allPartVegan}" th:value="${vegan.name()}"
+                                        th:text="${vegan.vegetarian}"></option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <!-- 정보수정 button -->
+                <div sec:authorize="hasRole('ROLE_USER')">
+                    <button id="info-submit" class="modify-btn" type="button">정보 수정</button>
+                </div>
+                <div sec:authorize="hasRole('ROLE_AUTH_USER')">
+                    <button id="auth-info-submit" class="modify-btn" type="button">정보 수정</button>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- 비밀번호 수정 input -->
+                <div sec:authorize="hasRole('ROLE_USER')">
+                    <form id="passwordChange" method="post" th:action="@{/members/account/pwdChange}"
+                          th:object="${password}">
+                        <div>
+                            <label for="password" class="join-label">현재 비밀번호</label>
+                            <input type="password" class="form-control input-box" id="password"
+                                   th:field="*{password}">
+                            <div th:if="${#fields.hasGlobalErrors()}">
+                                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+                            </div>
+                            <div class="password-error"></div>
+                        </div>
+                        <div>
+                            <label for="newPassword" class="join-label">새로운 비밀번호</label>
+                            <input type="password" class="form-control input-box" id="newPassword"
+                                   th:field="*{newPassword}">
+                            <div class="re-password-error"></div>
+                        </div>
+                        <div>
+                            <label for="re-newPassword" class="join-label">새로운 비밀번호 확인</label>
+                            <input type="password" class="form-control input-box" id="re-newPassword">
+                        </div>
+                    </form>
+                    <!-- 비밀번호 변경, 회원탈퇴 button -->
+                    <div>
+                        <button id="pwd-change" class="modify-btn" type="submit">비밀번호 변경</button>
+                        <a id="delete-btn" class="text-btn" href="#deleteModal" rel="modal:open">회원탈퇴를 하시겠습니까?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 회원탈퇴 모달창 -->
+        <div id="deleteModal" class="modal deleteModal">
+            <div th:object="${password}" class="modal-section">
+                <h3 style="text-align: center;">회원 탈퇴하기</h3>
+                <label for="password" class="pw-label">비밀번호</label>
+                <input type="password" id="delete_id" class="form-control pw-box" th:field="*{password}">
+                <div th:if="${#fields.hasGlobalErrors()}">
+                    <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+                </div>
+                <button type="submit" id="delete_id_btn" class="delete-btn">회원탈퇴</button>
+            </div>
+        </div>
+
+    </th:block>
+</th:block>

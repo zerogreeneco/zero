@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <style>
+            .welcome-box {
+                text-align: center;
+            }
+            .welcome-box h1 {
+                margin-bottom: 50px;
+            }
+        </style>
+        <div class="welcome-box">
+            <h3>[[${nickname}]]님 가입을 환영합니다!</h3>
+            <button><a th:href="@{/login}">로그인하러 가기</a></button>
+        </div>
+    </th:block>
+</th:block>

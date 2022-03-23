@@ -1,0 +1,123 @@
+/*
+Store Update
+*/
+.update-box{
+    width: 260px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*영업시간*/
+.time {
+    width: 140px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*가게소개*/
+#store-name {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 15px;
+}
+
+.description{
+    height: 150px;
+}
+.cm-text-count{
+    float: right;
+}
+
+/*메뉴*/
+.menu{
+    width: 165px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.price{
+    width: 50px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*메뉴 비건 등급*/
+input[type="radio"]:checked ~img{
+    border: 3px solid #16a085;
+}
+.grade{
+    width: 2.3em;
+    height: 2.3em;
+    border-radius: 50px;
+    background: #fff;
+    cursor: pointer;
+    padding: 0.1em;
+    border: 1px solid lightgrey;
+}
+
+/*리스트 테이블*/
+.table{
+    width: 500px;
+    margin-left: -90px;
+}
+
+/*이미지 리스트*/
+.selectedImg{
+    margin-left:5px;
+}
+.img-list{
+    width:500px;
+    position: relative;
+    margin:0 0 30px -90px;
+}
+#img-box{
+    margin: 0 25px;
+    overflow: hidden;
+}
+.img-slider{
+    display: inline-flex;
+}
+.store-img{
+    display: inline-block;
+    margin-left: 3px;
+}
+
+/*버튼*/
+.add{
+    height: 25px;
+    cursor: pointer;
+}
+.addBtn{
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 0 0 20px 0;
+    border-radius: 15px;
+    background-color: lightgray;
+    color: #FFF;
+    cursor: pointer;
+}
+.truncate_icon{
+    height: 18px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+.arrow {
+    top: 35%;
+    font-size: 4em;
+    position: absolute;
+    font-family: 'Gothic A1', sans-serif;
+    color: lightgray;
+    cursor: pointer;
+    padding: 0px !important;
+    background: none !important;
+}
+.arrow-left {
+    left: 0;
+}
+.arrow-right {
+    right: 0;
+}
+

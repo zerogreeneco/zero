@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+
+        <!-- 페이지 css/ js 추가 -->
+        <link th:href="@{/bootstrap/css/page/list.css}" rel="stylesheet"/>
+        <script th:src="@{/bootstrap/js/store/storeList.js}"></script>
+
+        <!-- 본문 시작 -->
+        <div>
+            <!--검색-->
+            <div style="position: relative">
+                <div class="form-area">
+
+                    <form method="get" th:action="@{/food/list}" id="foodSearchForm">
+                        <select class="dropdown" name="searchType">
+                            <option value="store_name">식당 이름</option>
+<!--                            <option value="item">메뉴</option>-->
+                        </select>
+                        <div class="search-bar">
+                            <input id="search-input" name="keyword" th:value="${keyword}">
+                            <img class="truncate_icon" th:src="@{/bootstrap/images/list/close.png}"/>
+                        </div>
+                        <button class="btn_search">
+                            <img class="search_icon" th:src="@{/bootstrap/images/list/search.png}">
+                        </button>
+                    </form>
+
+                    <!-- 사업장 종류 -->
+                    <div class="listNav">
+                        <label class="form-check-label" th:onclick="getFoodList()">
+                            <input type="radio" class="form-check-input storeType" th:name="storeType">
+                        전체</label>
+
+                        <label class="form-check-label" value="VEGAN_FOOD"
+                               th:onclick="getTypeList('VEGAN_FOOD')">
+                        <input type="radio" class="form-check-input storeType" name="storeType">
+                        비건 음식점</label>
+
+                        <label class="form-check-label" value="GENERAL_FOOD"
+                               th:onclick="getTypeList('GENERAL_FOOD')">
+                        <input type="radio" class="form-check-input storeType" name="storeType">
+                        친환경 포장</label>
+                    </div>
+                </div>
+            </div>
+
+            <div style="position: relative">
+                <div class="align" id="food-align">
+                    <div class="card" th:each="list : ${list}"
+                         th:onclick="|location.href='@{/page/detail/{id}(id=${list.id})}'|">
+                        <div class="card-header" th:if="${#strings.isEmpty(list.thumbnailName)}">
+                            <span class="mini-sorry">😅</span>
+                            <span class="mini-text">아직 등록된 사진이 없어요</span>
+                        </div>
+                        <div class="card-header" th:if="${not #strings.isEmpty(list.thumbnailName)}">
+                            <img th:src="@{/page/detail/image/} + ${list.storeName} + ${list.thumbnailName}"
+                                 th:value="${list.thumbnailName}" width="300px" height="300px"/>
+                        </div>
+                        <div class="shopList-box">
+                            <div class="card-body">
+                                <span class="like"><img class="icon" th:src="@{/bootstrap/images/list/heart.png}">[[${list.like}]]</span>
+                                <span class="shop-name">[[${list.storeName}]]</span>
+                                <span>
+                            <img class="icon" th:src="@{/bootstrap/images/list/call.png}"> [[${list.storePhoneNumber}]]</span>
+                                <span th:if="${#strings.isEmpty(list.openTime)}">
+                            <img class="icon" th:src="@{/bootstrap/images/list/clock.png}"> 매장 확인 필요</span>
+                                <span th:unless="${#strings.isEmpty(list.openTime)}">
+                            <img class="icon" th:src="@{/bootstrap/images/list/clock.png}"> [[${list.openTime}]] ~ [[${list.closeTime}]]</span>
+                                <span th:if="${#strings.isEmpty(list.menuName)}">
+                                    <img class="icon" th:src="@{/bootstrap/images/list/box.png}"> 매장 확인 필요</span>
+                                <span th:if="${not #strings.isEmpty(list.menuName)}">
+                                    <img class="icon"
+                                         th:src="@{/bootstrap/images/list/box.png}"> [[${list.menuName}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="nextPage" id="nextFood">더보기</button>
+        </div>
+        <button id="btnTop">
+            <img th:src="@{/bootstrap/images/arrowup.png}" style="width: 35px;"/>
+        </button>
+        <div class="list-none">
+            <span id="sorry-emoji">😅</span>
+            <span id="sorry-text">찾으시는 가게가 없네요</span>
+        </div>
+        <script th:inline="javascript">
+            //전체 리스트 이동
+            function getFoodList() {
+                /*[+
+                const url = [[@{/food/list}]];
+                +]*/
+
+                location.href = url;
+            }
+
+            //카테고리 리스트 이동
+            function getTypeList(name) {
+                /*[+
+                const url = [[@{/food/list}]] +
+                    "?type=" +name;
+                +]*/
+
+                location.href = url;
+            }
+        </script>
+    </th:block>
+</th:block>
+

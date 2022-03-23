@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+<form method="post" th:action>
+    가입시 등록한 이메일로 전송된 인증번호를 인증하면 회원가입이 완료됩니다.
+    // 삭제
+    <input type="text" name="inputKey">
+    <button type="submit">인증 확인</button>
+</form>
+    </th:block>
+</th:block>
