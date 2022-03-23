@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
-import zerogreen.eco.entity.userentity.BasicUser;
-import zerogreen.eco.service.user.BasicUserServiceImpl;
-import zerogreen.eco.webSocket.entity.ChatRoom;
-import zerogreen.eco.webSocket.entity.Notice;
-import zerogreen.eco.webSocket.repository.NoticeRepository;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.service.user.BasicUserServiceImpl;
+import com.zerogreen.zerogreeneco.webSocket.entity.ChatRoom;
+import com.zerogreen.zerogreeneco.webSocket.entity.Notice;
+import com.zerogreen.zerogreeneco.webSocket.repository.NoticeRepository;
 
 import java.time.LocalDateTime;
 

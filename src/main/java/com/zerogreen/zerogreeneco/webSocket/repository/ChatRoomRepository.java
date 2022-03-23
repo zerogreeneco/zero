@@ -2,7 +2,7 @@ package com.zerogreen.zerogreeneco.webSocket.repository;
 
 
 import org.springframework.data.repository.CrudRepository;
-import zerogreen.eco.webSocket.entity.ChatRoom;
+import com.zerogreen.zerogreeneco.webSocket.entity.ChatRoom;
 
 import java.util.Optional;
 

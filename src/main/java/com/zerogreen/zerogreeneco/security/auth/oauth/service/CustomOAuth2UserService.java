@@ -9,11 +9,11 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.entity.userentity.Member;
-import zerogreen.eco.repository.user.MemberRepository;
-import zerogreen.eco.security.auth.PrincipalDetails;
-import zerogreen.eco.security.dto.OAuthAttributes;
-import zerogreen.eco.security.dto.SessionUser;
+import com.zerogreen.zerogreeneco.entity.userentity.Member;
+import com.zerogreen.zerogreeneco.repository.user.MemberRepository;
+import com.zerogreen.zerogreeneco.security.auth.PrincipalDetails;
+import com.zerogreen.zerogreeneco.security.dto.OAuthAttributes;
+import com.zerogreen.zerogreeneco.security.dto.SessionUser;
 
 import javax.servlet.http.HttpSession;
 

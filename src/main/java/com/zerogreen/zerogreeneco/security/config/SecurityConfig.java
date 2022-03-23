@@ -15,10 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
-import zerogreen.eco.security.auth.PrincipalDetailsService;
-import zerogreen.eco.security.auth.oauth.service.CustomOAuth2UserService;
-import zerogreen.eco.security.handler.CustomAuthenticationFailureHandler;
-import zerogreen.eco.security.handler.LoginSuccessHandler;
+import com.zerogreen.zerogreeneco.security.auth.PrincipalDetailsService;
+import com.zerogreen.zerogreeneco.security.auth.oauth.service.CustomOAuth2UserService;
+import com.zerogreen.zerogreeneco.security.handler.CustomAuthenticationFailureHandler;
+import com.zerogreen.zerogreeneco.security.handler.LoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터 체인에 등록
