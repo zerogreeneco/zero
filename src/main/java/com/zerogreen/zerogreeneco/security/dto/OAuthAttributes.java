@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import zerogreen.eco.entity.userentity.Member;
-import zerogreen.eco.entity.userentity.UserRole;
-import zerogreen.eco.entity.userentity.VegetarianGrade;
+import com.zerogreen.zerogreeneco.entity.userentity.Member;
+import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
+import com.zerogreen.zerogreeneco.entity.userentity.VegetarianGrade;
 
 import java.util.Map;
 import java.util.UUID;

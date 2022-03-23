@@ -3,12 +3,12 @@ package com.zerogreen.zerogreeneco.webSocket.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.entity.userentity.BasicUser;
-import zerogreen.eco.service.user.BasicUserServiceImpl;
-import zerogreen.eco.webSocket.entity.ChatRoom;
-import zerogreen.eco.webSocket.entity.ChatRoomJoin;
-import zerogreen.eco.webSocket.repository.ChatRoomJoinRepository;
-import zerogreen.eco.webSocket.repository.ChatRoomRepository;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.service.user.BasicUserServiceImpl;
+import com.zerogreen.zerogreeneco.webSocket.entity.ChatRoom;
+import com.zerogreen.zerogreeneco.webSocket.entity.ChatRoomJoin;
+import com.zerogreen.zerogreeneco.webSocket.repository.ChatRoomJoinRepository;
+import com.zerogreen.zerogreeneco.webSocket.repository.ChatRoomRepository;
 
 import java.util.HashSet;
 import java.util.List;

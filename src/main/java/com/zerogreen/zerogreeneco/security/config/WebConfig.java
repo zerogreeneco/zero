@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import zerogreen.eco.security.auth.oauth.LoginUserArgumentResolver;
+import com.zerogreen.zerogreeneco.security.auth.oauth.LoginUserArgumentResolver;
 
 import java.util.List;
 

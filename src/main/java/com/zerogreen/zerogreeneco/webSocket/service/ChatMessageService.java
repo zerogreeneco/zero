@@ -3,10 +3,10 @@ package com.zerogreen.zerogreeneco.webSocket.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.service.user.BasicUserServiceImpl;
-import zerogreen.eco.webSocket.controller.ChatMessageForm;
-import zerogreen.eco.webSocket.entity.ChatMessage;
-import zerogreen.eco.webSocket.repository.ChatMessageRepository;
+import com.zerogreen.zerogreeneco.service.user.BasicUserServiceImpl;
+import com.zerogreen.zerogreeneco.webSocket.controller.ChatMessageForm;
+import com.zerogreen.zerogreeneco.webSocket.entity.ChatMessage;
+import com.zerogreen.zerogreeneco.webSocket.repository.ChatMessageRepository;
 
 import java.time.LocalDateTime;
 

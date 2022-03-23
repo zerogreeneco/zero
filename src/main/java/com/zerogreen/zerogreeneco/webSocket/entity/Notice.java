@@ -2,7 +2,7 @@ package com.zerogreen.zerogreeneco.webSocket.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import zerogreen.eco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

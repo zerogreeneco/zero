@@ -1,7 +1,7 @@
 package com.zerogreen.zerogreeneco.security.dto;
 
 import lombok.Getter;
-import zerogreen.eco.entity.userentity.Member;
+import com.zerogreen.zerogreeneco.entity.userentity.Member;
 
 import java.io.Serializable;
 
