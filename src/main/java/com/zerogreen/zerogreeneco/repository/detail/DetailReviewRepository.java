@@ -1,9 +1,9 @@
 package com.zerogreen.zerogreeneco.repository.detail;
 
+import com.zerogreen.zerogreeneco.entity.detail.DetailReview;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import zerogreen.eco.entity.detail.DetailReview;
 
 import java.util.List;
 

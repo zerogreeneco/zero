@@ -1,17 +1,17 @@
 package com.zerogreen.zerogreeneco.repository.user;
 
+import com.zerogreen.zerogreeneco.entity.userentity.StoreMember;
+import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
+import com.zerogreen.zerogreeneco.repository.list.StoreListRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import zerogreen.eco.entity.userentity.StoreMember;
-import zerogreen.eco.entity.userentity.UserRole;
-import zerogreen.eco.repository.list.StoreListRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface StoreMemberRepository extends JpaRepository<StoreMember, Long>,
-        StoreMemberRepositoryCustom, StoreListRepository{
+        StoreMemberRepositoryCustom, StoreListRepository {
 
     Optional<StoreMember> findByUsername(String username);
 

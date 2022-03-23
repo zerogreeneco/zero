@@ -1,8 +1,9 @@
 package com.zerogreen.zerogreeneco.repository.user;
 
-import zerogreen.eco.dto.store.NonApprovalStoreDto;
-import zerogreen.eco.dto.store.StoreDto;
-import zerogreen.eco.entity.userentity.UserRole;
+
+import com.zerogreen.zerogreeneco.dto.store.NonApprovalStoreDto;
+import com.zerogreen.zerogreeneco.dto.store.StoreDto;
+import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
 
 import java.util.List;
 

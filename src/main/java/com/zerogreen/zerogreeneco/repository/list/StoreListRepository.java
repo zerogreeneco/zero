@@ -1,10 +1,10 @@
 package com.zerogreen.zerogreeneco.repository.list;
 
+import com.zerogreen.zerogreeneco.dto.search.SearchCondition;
+import com.zerogreen.zerogreeneco.dto.store.StoreDto;
+import com.zerogreen.zerogreeneco.entity.userentity.StoreType;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import zerogreen.eco.dto.search.SearchCondition;
-import zerogreen.eco.dto.store.StoreDto;
-import zerogreen.eco.entity.userentity.StoreType;
 
 public interface StoreListRepository {
     Slice<StoreDto> getShopList(Pageable pageable);

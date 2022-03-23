@@ -4,17 +4,18 @@ import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import zerogreen.eco.dto.detail.DetailReviewDto;
-import zerogreen.eco.entity.detail.QReviewImage;
-import zerogreen.eco.entity.file.QStoreImageFile;
+import com.zerogreen.zerogreeneco.dto.detail.DetailReviewDto;
+import com.zerogreen.zerogreeneco.entity.detail.QReviewImage;
+import com.zerogreen.zerogreeneco.entity.file.QStoreImageFile;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static zerogreen.eco.entity.detail.QDetailReview.detailReview;
-import static zerogreen.eco.entity.userentity.QBasicUser.basicUser;
-import static zerogreen.eco.entity.userentity.QMember.member;
-import static zerogreen.eco.entity.userentity.QStoreMember.storeMember;
+import static com.zerogreen.zerogreeneco.entity.detail.QDetailReview.detailReview;
+import static com.zerogreen.zerogreeneco.entity.userentity.QBasicUser.basicUser;
+import static com.zerogreen.zerogreeneco.entity.userentity.QMember.member;
+import static com.zerogreen.zerogreeneco.entity.userentity.QStoreMember.storeMember;
+
 
 public class DetailReviewRepositoryImpl implements DetailReviewRepositoryCustom{
 

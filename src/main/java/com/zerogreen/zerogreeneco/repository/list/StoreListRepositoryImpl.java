@@ -6,24 +6,25 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.zerogreen.zerogreeneco.dto.search.SearchCondition;
+import com.zerogreen.zerogreeneco.dto.search.StoreSearchType;
+import com.zerogreen.zerogreeneco.dto.store.StoreDto;
+import com.zerogreen.zerogreeneco.entity.file.QStoreImageFile;
+import com.zerogreen.zerogreeneco.entity.userentity.StoreMember;
+import com.zerogreen.zerogreeneco.entity.userentity.StoreType;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.util.StringUtils;
-import zerogreen.eco.dto.search.SearchCondition;
-import zerogreen.eco.dto.search.StoreSearchType;
-import zerogreen.eco.dto.store.StoreDto;
-import zerogreen.eco.entity.file.QStoreImageFile;
-import zerogreen.eco.entity.userentity.StoreMember;
-import zerogreen.eco.entity.userentity.StoreType;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static zerogreen.eco.entity.detail.QLikes.likes;
-import static zerogreen.eco.entity.userentity.QStoreMember.storeMember;
-import static zerogreen.eco.entity.userentity.QStoreMenu.storeMenu;
-import static zerogreen.eco.entity.userentity.UserRole.STORE;
+import static com.zerogreen.zerogreeneco.entity.detail.QLikes.likes;
+import static com.zerogreen.zerogreeneco.entity.userentity.QStoreMember.storeMember;
+import static com.zerogreen.zerogreeneco.entity.userentity.QStoreMenu.storeMenu;
+import static com.zerogreen.zerogreeneco.entity.userentity.UserRole.STORE;
+
 
 public class StoreListRepositoryImpl implements StoreListRepository {
 

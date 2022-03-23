@@ -1,11 +1,11 @@
 package com.zerogreen.zerogreeneco.repository.community;
 
+import com.zerogreen.zerogreeneco.dto.community.CommunityRequestDto;
+import com.zerogreen.zerogreeneco.dto.community.CommunityResponseDto;
+import com.zerogreen.zerogreeneco.dto.search.SearchCondition;
+import com.zerogreen.zerogreeneco.entity.community.Category;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import zerogreen.eco.dto.community.CommunityRequestDto;
-import zerogreen.eco.dto.community.CommunityResponseDto;
-import zerogreen.eco.dto.search.SearchCondition;
-import zerogreen.eco.entity.community.Category;
 
 public interface CommunityBoardRepositoryCustom {
 

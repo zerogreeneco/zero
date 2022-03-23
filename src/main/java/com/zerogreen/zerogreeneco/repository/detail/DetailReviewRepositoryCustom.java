@@ -1,6 +1,7 @@
 package com.zerogreen.zerogreeneco.repository.detail;
 
-import zerogreen.eco.dto.detail.DetailReviewDto;
+
+import com.zerogreen.zerogreeneco.dto.detail.DetailReviewDto;
 
 import java.util.List;
 

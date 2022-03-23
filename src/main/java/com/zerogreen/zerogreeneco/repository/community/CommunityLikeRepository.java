@@ -1,10 +1,10 @@
 package com.zerogreen.zerogreeneco.repository.community;
 
+import com.zerogreen.zerogreeneco.entity.community.CommunityLike;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import zerogreen.eco.entity.community.CommunityLike;
 
 public interface CommunityLikeRepository extends JpaRepository<CommunityLike, Long> {
 

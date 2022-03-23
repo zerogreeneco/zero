@@ -1,9 +1,9 @@
 package com.zerogreen.zerogreeneco.repository.community;
 
+import com.zerogreen.zerogreeneco.entity.community.BoardImage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import zerogreen.eco.entity.community.BoardImage;
 
 import java.util.List;
 

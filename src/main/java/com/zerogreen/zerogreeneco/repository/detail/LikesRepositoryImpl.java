@@ -4,15 +4,16 @@ import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import zerogreen.eco.dto.detail.LikesDto;
-import zerogreen.eco.entity.file.QStoreImageFile;
+import com.zerogreen.zerogreeneco.dto.detail.LikesDto;
+import com.zerogreen.zerogreeneco.entity.file.QStoreImageFile;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static zerogreen.eco.entity.detail.QLikes.likes;
-import static zerogreen.eco.entity.userentity.QBasicUser.basicUser;
-import static zerogreen.eco.entity.userentity.QStoreMember.storeMember;
+import static com.zerogreen.zerogreeneco.entity.detail.QLikes.likes;
+import static com.zerogreen.zerogreeneco.entity.userentity.QBasicUser.basicUser;
+import static com.zerogreen.zerogreeneco.entity.userentity.QStoreMember.storeMember;
+
 
 public class LikesRepositoryImpl implements LikesRepositoryCustom{
 

@@ -4,6 +4,7 @@ import com.zerogreen.zerogreeneco.dto.api.ApiReturnDto;
 import com.zerogreen.zerogreeneco.dto.community.CommunityReplyDto;
 import com.zerogreen.zerogreeneco.dto.community.CommunityResponseDto;
 import com.zerogreen.zerogreeneco.dto.paging.RequestPageSortDto;
+import com.zerogreen.zerogreeneco.entity.community.Category;
 import com.zerogreen.zerogreeneco.service.community.CommunityBoardService;
 import com.zerogreen.zerogreeneco.service.community.CommunityReplyService;
 import lombok.RequiredArgsConstructor;

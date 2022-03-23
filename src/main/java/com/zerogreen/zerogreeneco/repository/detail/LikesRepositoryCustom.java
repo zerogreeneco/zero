@@ -1,6 +1,7 @@
 package com.zerogreen.zerogreeneco.repository.detail;
 
-import zerogreen.eco.dto.detail.LikesDto;
+
+import com.zerogreen.zerogreeneco.dto.detail.LikesDto;
 
 import java.util.List;
 

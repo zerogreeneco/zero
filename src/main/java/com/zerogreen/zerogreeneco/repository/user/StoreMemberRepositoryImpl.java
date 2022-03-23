@@ -4,21 +4,21 @@ import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import zerogreen.eco.dto.store.NonApprovalStoreDto;
-import zerogreen.eco.dto.store.StoreDto;
-import zerogreen.eco.entity.detail.QDetailReview;
-import zerogreen.eco.entity.detail.QLikes;
-import zerogreen.eco.entity.userentity.QBasicUser;
-import zerogreen.eco.entity.userentity.QStoreMember;
-import zerogreen.eco.entity.userentity.UserRole;
+import com.zerogreen.zerogreeneco.dto.store.NonApprovalStoreDto;
+import com.zerogreen.zerogreeneco.dto.store.StoreDto;
+import com.zerogreen.zerogreeneco.entity.detail.QDetailReview;
+import com.zerogreen.zerogreeneco.entity.detail.QLikes;
+import com.zerogreen.zerogreeneco.entity.userentity.QBasicUser;
+import com.zerogreen.zerogreeneco.entity.userentity.QStoreMember;
+import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.querydsl.core.types.ExpressionUtils.count;
-import static zerogreen.eco.entity.userentity.QBasicUser.basicUser;
-import static zerogreen.eco.entity.userentity.QStoreMember.storeMember;
-import static zerogreen.eco.entity.userentity.UserRole.USER;
+import static com.zerogreen.zerogreeneco.entity.userentity.QBasicUser.basicUser;
+import static com.zerogreen.zerogreeneco.entity.userentity.QStoreMember.storeMember;
+import static com.zerogreen.zerogreeneco.entity.userentity.UserRole.USER;
 
 public class StoreMemberRepositoryImpl implements StoreMemberRepositoryCustom {
 

@@ -6,22 +6,22 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.zerogreen.zerogreeneco.dto.community.CommunityRequestDto;
+import com.zerogreen.zerogreeneco.dto.community.CommunityResponseDto;
+import com.zerogreen.zerogreeneco.dto.search.SearchCondition;
+import com.zerogreen.zerogreeneco.dto.search.SearchType;
+import com.zerogreen.zerogreeneco.entity.community.*;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.util.StringUtils;
-import zerogreen.eco.dto.community.CommunityRequestDto;
-import zerogreen.eco.dto.community.CommunityResponseDto;
-import zerogreen.eco.dto.search.SearchCondition;
-import zerogreen.eco.dto.search.SearchType;
-import zerogreen.eco.entity.community.*;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.querydsl.core.types.ExpressionUtils.count;
-import static zerogreen.eco.entity.community.QCommunityBoard.communityBoard;
-import static zerogreen.eco.entity.userentity.QMember.member;
+import static com.zerogreen.zerogreeneco.entity.community.QCommunityBoard.communityBoard;
+import static com.zerogreen.zerogreeneco.entity.userentity.QMember.member;
 
 public class CommunityBoardRepositoryImpl implements CommunityBoardRepositoryCustom {
 

@@ -1,11 +1,11 @@
 package com.zerogreen.zerogreeneco.repository.community;
 
+import com.zerogreen.zerogreeneco.entity.community.CommunityBoard;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.entity.community.CommunityBoard;
 
 public interface CommunityBoardRepository extends JpaRepository<CommunityBoard, Long>, CommunityBoardRepositoryCustom {
 

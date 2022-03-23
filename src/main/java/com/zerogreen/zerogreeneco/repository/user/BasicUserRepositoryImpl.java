@@ -4,22 +4,23 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.zerogreen.zerogreeneco.dto.store.NonApprovalStoreDto;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.entity.userentity.QBasicUser;
+import com.zerogreen.zerogreeneco.entity.userentity.QStoreMember;
+import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.util.StringUtils;
-import zerogreen.eco.dto.store.NonApprovalStoreDto;
-import zerogreen.eco.entity.userentity.BasicUser;
-import zerogreen.eco.entity.userentity.QBasicUser;
-import zerogreen.eco.entity.userentity.QStoreMember;
-import zerogreen.eco.entity.userentity.UserRole;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static zerogreen.eco.entity.file.QRegisterFile.registerFile;
-import static zerogreen.eco.entity.userentity.QBasicUser.basicUser;
+import static com.zerogreen.zerogreeneco.entity.file.QRegisterFile.registerFile;
+import static com.zerogreen.zerogreeneco.entity.userentity.QBasicUser.basicUser;
+
 
 public class BasicUserRepositoryImpl implements BasicUserRepositoryCustom {
 
