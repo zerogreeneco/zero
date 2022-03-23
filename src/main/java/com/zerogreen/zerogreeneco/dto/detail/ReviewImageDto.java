@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -23,6 +24,7 @@ public class ReviewImageDto {
     private StoreMember storeMember;
     private List<MultipartFile> reviewImages;
     private String thumbnailName;
+    private LocalDateTime createdDate;
 
 
     //스토어 전체 리뷰 이미지 리스트 뿌리기
@@ -34,6 +36,7 @@ public class ReviewImageDto {
         this.storeMember = reviewImage.getStoreMember();
         this.filePath = reviewImage.getFilePath();
         this.thumbnailName = reviewImage.getThumbnailName();
+        this.createdDate = reviewImage.getCreatedDate();
     }
 
 }

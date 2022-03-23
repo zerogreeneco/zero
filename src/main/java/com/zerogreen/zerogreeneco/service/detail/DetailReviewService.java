@@ -5,20 +5,16 @@ import com.zerogreen.zerogreeneco.dto.detail.DetailReviewDto;
 import com.zerogreen.zerogreeneco.entity.detail.DetailReview;
 import com.zerogreen.zerogreeneco.entity.detail.ReviewImage;
 import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface DetailReviewService {
     //save reviews
     Long saveImageReview(String reviewText, Long sno, BasicUser basicUser, List<ReviewImage> reviewImages);
-    //void saveReview(String reviewText, Long sno, BasicUser basicUser);
-    //Long saveReview(String reviewText, Long sno, BasicUser basicUser, List<ReviewImage> reviewImages);
-    //Long saveReview(String reviewText, Long sno, BasicUser basicUser);
-
-
     //listing (Detail)
     List<DetailReviewDto> findByStore(Long sno);
-//    Page<DetailReviewDto> findByStore1(Long sno, Pageable pageable);
     //save comments
     void saveNestedReview(String reviewText, Long sno, BasicUser basicUser, Long rno);
     //edit reviews

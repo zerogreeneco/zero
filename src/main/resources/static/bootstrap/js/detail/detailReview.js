@@ -4,6 +4,97 @@ $(document).ready(function(e){
     let sno = $(".js-storeId").text();
     let count = 0;
 
+    //** 페이징 작업중 **
+    function paging(totalData, dataPerPage, pageCount, currentPage) {
+        console.log("currentPage : " + currentPage);
+
+        totalPage = Math.ceil(totalData / dataPerPage); //총 페이지 수
+
+        if(totalPage<pageCount){
+            pageCount=totalPage;
+        }
+
+        let pageGroup = Math.ceil(currentPage / pageCount); // 페이지 그룹
+        let last = pageGroup * pageCount; //화면에 보여질 마지막 페이지 번호
+
+        if (last > totalPage) {
+            last = totalPage;
+        }
+
+        let first = last - (pageCount - 1); //화면에 보여질 첫번째 페이지 번호
+        let next = last + 1;
+        let prev = first - 1;
+
+        let pageHtml = "";
+
+        if (prev > 0) {
+            pageHtml += "<li><a href='#' id='prev'> 이전 </a></li>";
+        }
+
+        //페이징 번호 표시
+        for (var i = first; i <= last; i++) {
+        if (currentPage == i) {
+              pageHtml +=
+                "<li class='on'><a href='#' id='" + i + "'>" + i + "</a></li>";
+        } else {
+              pageHtml += "<li><a href='#' id='" + i + "'>" + i + "</a></li>";
+            }
+        }
+
+        if (last < totalPage) {
+            pageHtml += "<li><a href='#' id='next'> 다음 </a></li>";
+        }
+
+        $("#pagingul").html(pageHtml);
+        let displayCount = "";
+        displayCount = "현재 1 - " + totalPage + " 페이지 / " + totalData + "건";
+        $("#displayCount").text(displayCount);
+
+
+        //페이징 번호 클릭 이벤트
+        $("#pagingul li a").click(function () {
+        let $id = $(this).attr("id");
+        selectedPage = $(this).text();
+
+        if ($id == "next") selectedPage = next;
+        if ($id == "prev") selectedPage = prev;
+
+        //전역변수에 선택한 페이지 번호를 담는다...
+        globalCurrentPage = selectedPage;
+        //페이징 표시 재호출
+        paging(totalData, dataPerPage, pageCount, selectedPage);
+        //글 목록 표시 재호출
+        displayData(selectedPage, dataPerPage);
+        });
+    }
+
+/*        여기까지               */
+
+
+    //리뷰 이미지 등록시 div14 css 재설정 ** on working **
+   $('.div14').on('change',function (e) {
+       let img = $(this).parent().find('.div12').find('.rv-img').val();
+       let div13 = $(this).parent('.div13');
+
+        if (img != null) {
+            $(this).css('marginLeft','130px');
+            div13.css('min-height','8em');
+        }
+   });
+   $('.div14').change();
+
+/*
+    function divChange(event) {
+       let img = $(event).parent().find('.div12').find('.rv-img').val();
+       console.log(">>>>>>>>> "+img);
+       let div13 = $(event).parent('.div13');
+
+        if (img != null) {
+            $(event).css('marginLeft','130px');
+            div13.css('min-height','8em');
+        }
+    }
+*/
 
     //show 대댓글 입력박스
     $(".srv-toAdd").on("click", function(){
@@ -129,16 +220,17 @@ $(document).ready(function(e){
        let rno = $(this).parent().parent().children(".rno").text();
 
        $.ajax({
-            url: contextPath + "/deleteReview/"+rno ,
-            type:"DELETE",
+            url: "/deleteReview/" + sno + "/" + rno ,
+            method:"DELETE",
             contentType:"application/json; charset=utf-8",
-            dataType:"json",
+//            dataType:"json",
             data: JSON.stringify({
                 rno: rno
             })
             })
             .done(function (fragment) {
-                //$("#reviewList").replaceWith(fragment);
+//                $(this).parent().parent().parent(".div17").html("");
+//                $("#reviewList").replaceWith(fragment);
                 $(".review-cnt").html(Number(cnt.text())-1);
                 self.location.reload();
             });
@@ -150,10 +242,9 @@ $(document).ready(function(e){
        let srno = $(this).parent().parent().children(".srno").text();
 
        $.ajax({
-            url: contextPath + "/deleteReview/"+srno ,
-            type:"DELETE",
+            url: contextPath + "/deleteReview/" + sno + "/" + srno ,
+            method:"DELETE",
             contentType:"application/json; charset=utf-8",
-            dataType:"json",
             data: JSON.stringify({
                 rno: srno
             })
@@ -171,19 +262,6 @@ $(document).ready(function(e){
         $(this).height(this.scrollHeight + 10);
    });
    $('textarea').keyup();
-
-
-    //리뷰 이미지 등록시 div14 css 재설정
-   $('.div14').on('change',function (e) {
-       let img = $(this).parent().parent().find('.div12').find('.rv-img').val();
-       let div13 = $(this).parent('.div13');
-
-        if (img != null) {
-            $(this).css('marginLeft','130px');
-            div13.css('min-height','8em');
-        }
-   });
-   $('.div14').change();
 
 
     //리뷰이미지 슬라이드
@@ -296,11 +374,11 @@ $(document).ready(function(e){
           $('#preview').empty();
 
           let files = e.target.files;
-          let arr =Array.prototype.slice.call(files);
+          let arr = Array.prototype.slice.call(files);
 
           //업로드 가능 파일인지 체크
           for(i=0; i < files.length; i++){
-            if(!checkExtension(files[i].name,files[i].size,files.length)){
+            if(!checkExtension(files[i].name,files.length)){
             return false;
             }
           }
@@ -310,6 +388,7 @@ $(document).ready(function(e){
 
 
     //프리뷰 삭제 ** on working **
+/*
     $("#preview").on("click", "ul button", function() {
         console.log("clickyyyyyyyyyyyy");
 
@@ -326,6 +405,7 @@ $(document).ready(function(e){
         previewImg.empty();
 
     });
+*/
 
 
     //리뷰 유효성 검사 ** 작업중 **
@@ -343,50 +423,16 @@ $(document).ready(function(e){
 */
 
 
-    // save Reviews
-/*
-    $("#rv-btn").click(function () {
-        let reviewText = $("#reviewText");
-        let imageList = $("#img-input");
-
-        $.ajax({
-            url: contextPath+'/page/detail/addReview/' + sno,
-            method: "POST",
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-            data: {
-                sno: sno,
-                reviewText: reviewText.val(),
-            }
-        })
-            .done(function (fragment) {
-                $("#reviewList").replaceWith(fragment);
-                $(".review-cnt").html(Number(cnt.text())+1);
-                //alert("댓글이 등록되었습니다.");
-                $("#reviewText").val("");
-                //$("#text-count").text("0 / 100");
-            });
-
-    }); // end save reviews
-*/
-
 }); //end script
 
 
+
 //업로드 가능한 파일크기, 파일
-function checkExtension(fileName, fileSize, fileLength){
+function checkExtension(fileName, fileLength){
 
     let maxLength = 5;
     let regex = new RegExp("(.*?)\.(jpg|png|jpeg|JPG|PNG|JPEG)$");
-/*
-    let maxSize = 1048576;  //1MB
 
-    //파일 사이즈 검사
-    if(fileSize >= maxSize){
-        alert('파일 사이즈 초과');
-        $("input[type='file']").val("");  //파일 초기화
-        return false;
-    }
-*/
     if (fileLength > maxLength) {
         alert('최대 5개까지 등록 가능합니다.');
         return false;
@@ -428,7 +474,7 @@ function preview(arr){
 } //end function(preview)
 
 
-// 글자 수 제한
+// 글자 수 제한 (왜 온로드 밖에 있어야하지..?)
 function limitTextInput(event) {
     let countText = $(event).parent().children().children(".text-count");
     countText.html($(event).val().length + " / 500");
@@ -440,7 +486,7 @@ function limitTextInput(event) {
 }
 
 
-//리뷰 이미지 로컬 삭제
+//리뷰 이미지 로컬 삭제 (왜 온로드 밖에 있어야하지..?)
 function deleteImage(event) {
 
     let parentChildren = $(event).parent().parent().find(".div12").find(".imgInfo");
@@ -454,6 +500,7 @@ function deleteImage(event) {
         for (let i = 0; i < parentChildren.length; i++) {
             let filePath = parentChildren.eq(i).children(".imgPath").val();
             let thumbnailName = parentChildren.eq(i).children(".imgThumbPath").val();
+            let createdDate = parentChildren.eq(i).children(".imgCreatedDate").val();
 
             (function(i) {
 
@@ -465,7 +512,8 @@ function deleteImage(event) {
                     async: false,
                     data: JSON.stringify({
                         filePath: filePath,
-                        thumbnailName: thumbnailName
+                        thumbnailName: thumbnailName,
+                        createdDate: createdDate
                     })
                 })
                 .done(function (data) {
@@ -477,46 +525,3 @@ function deleteImage(event) {
        }//end for statement
     } //end if statement
 } //end of function deleteImage
-
-
-/*
-function showResult(uploadResultArr1){
-    var uploadUL = $(".ul1");
-    var str = "";
-    $(uploadResultArr1).each(function(i,obj){
-        str += "<li data-name='" + obj.fileName + "' data-path='"
-            + obj.sfolderPath + "' data-uuid='"+obj.suuid+"'>";
-        str += "<div>";
-        str += "<button type='button' data-file='" + obj.imageURL
-            + "\' class='btn-warning btn-sm'>X</button><br>";
-        str += "<img src='"+contextPath+"/storeDisplay?fileName="+obj.thumbnailURL+"'>";;
-        str += "</div>";
-        str += "</li>";
-    });
-    uploadUL.append(str);
-}
-*/
-
-
-
-//이하 성공한 것들
-
-/*
-//다중파일 ** 뷰에 onchange="getPreview(event)" 추가 **
-function getPreview(event){
-    for(let image of event.target.files){
-        let reader = new FileReader();
-
-        reader.onload = function(event){
-            let img = document.createElement("img");
-
-            img.setAttribute("src", event.target.result);
-            document.querySelector("div#preview").appendChild(img);
-        };
-
-        console.log("FR"+image);
-        reader.readAsDataURL(image);
-    }
-}
-*/
-

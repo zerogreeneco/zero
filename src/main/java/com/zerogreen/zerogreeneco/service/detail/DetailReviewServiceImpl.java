@@ -54,11 +54,6 @@ public class DetailReviewServiceImpl implements DetailReviewService {
         return reviewList.stream().map(DetailReviewDto::new).collect(Collectors.toList());
     }
 
-//    @Override
-//    public Page<DetailReviewDto> findByStore1(Long sno, Pageable pageable) {
-//        return detailReviewRepository.findByStore1(sno, pageable);
-//    }
-
     //대댓글 (detail)
     @Override
     @Transactional
@@ -122,29 +117,6 @@ public class DetailReviewServiceImpl implements DetailReviewService {
         parentReview.addNestedReview(childReview);
         return childReview.getId();
     }
-
-    //save reviews
-/*
-    @Override
-    @Transactional
-    public Long saveReview(String reviewText, Long sno, BasicUser basicUser) {
-        StoreMember storeMember = storeMemberRepository.findById(sno).orElseThrow();
-        DetailReview saveReview = detailReviewRepository.save(new DetailReview(reviewText, basicUser, storeMember));// 생성자 없음 왜요,,?
-*/
-/*
-        if(reviewImages.size() != 0) {
-            for (ReviewImage image : reviewImages) {
-                log.info("aaaaaaaareviewImage " + image);
-
-                reviewImageRepository.save(new ReviewImage(
-                        image.getUploadFileName(), image.getReviewFileName(), image.getFilePath(), saveReview, storeMember));
-            }
-        }
-*//*
-
-        return saveReview.getId();
-    }
-*/
 
 
 }
