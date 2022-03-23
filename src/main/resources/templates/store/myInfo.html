@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml"
+          xmlns:sec="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+
+        <!-- 페이지 css/ js 추가 -->
+        <link th:href="@{/bootstrap/css/member/memberMyInfo.css}" rel="stylesheet"/>
+        <script th:src="@{/bootstrap/js/member/memberMyInfo.js}"></script>
+
+        <div style="margin: 0 auto;" sec:authorize="isAuthenticated()">
+            <div sec:authorize="hasRole('ROLE_STORE')">
+                <!--왼쪽 프로필-->
+                <div class="leftSide">
+                    <div class="profile-div inline">
+                        <div class="profile-image">
+                            <img th:src="@{'/bootstrap/images/profile/STORE.png'}" width="70px" height="70px">
+                        </div>
+                        <span class="profile-name">[[${info.storeName}]]</span>
+                    </div>
+
+                    <!-- 정보 수정 버튼 -->
+                    <div class="profile-div">
+                        <span class="chatting profile-btn inline"
+                              th:onclick="|location.href='@{/page/detail/{sno}(sno=${info.sno})}'|">내 가게</span>
+                    </div>
+                    <div class="profile-div">
+                        <span class="editMyInfo profile-btn inline" th:onclick="|location.href='@{/stores/update/account}'|">내 회원 정보 수정</span>
+                    </div>
+                    <div class="profile-div">
+                        <span class="chatting profile-btn inline" th:onclick="|location.href='@{/stores/update/info}'|">내 가게 정보 수정</span>
+                    </div>
+                </div>
+
+                <!--우측 메뉴들-->
+                <div class="rightSide">
+                    <!--우측 상단 찜한가게+내 리뷰-->
+                    <div class="counting">
+                        <div class="div-cnt inline cursor"
+                             th:onclick="|location.href='@{/page/detail/{sno}(sno=${info.sno})}'|">
+                            <span>[[${info.likesCount}]]</span><br>
+                            <span>내 가게 찜</span>
+                        </div>
+                        <div class="div-cnt inline cursor"
+                             th:onclick="|location.href='@{/page/detail/{sno}(sno=${info.sno})}'|">
+                            <span>[[${info.reviewCount}]]</span><br>
+                            <span>내 가게 리뷰</span>
+                        </div>
+                    </div>
+
+                    <!-- 고객 리뷰 리스트 슬라이더 -->
+                    <div class="textList">
+                        <span>내 가게 리뷰</span>
+                    </div>
+
+                    <div class="listing" th:if="${review.size()>0}">
+                        <div style="position: relative;">
+                            <span id="review-left" class="arrow-left">&#139;</span>
+                            <span id="review-right" class="arrow-right">&#155;</span>
+
+                            <div class="slider-container">
+                                <div class="review-slider slider">
+                                    <div class="card cursor" th:each="review:${review}"
+                                         th:onclick="|location.href='@{/page/detail/{sno}(sno=${info.sno})}'|">
+                                        <div class="card-header" th:if="${#strings.isEmpty(review.reviewThumbnail)}">
+                                            <span class="sorry-emoji">😅</span>
+                                            <span class="sorry-text">등록된 사진이 없어요</span>
+                                        </div>
+                                        <div class="card-header" th:if="${not #strings.isEmpty(review.reviewThumbnail)}">
+                                            <img th:src="@{/page/detail/images/{review}(review=*{review.reviewThumbnail})}"
+                                                 th:value="${review.reviewThumbnail}" width="300px" height="300px"/>
+                                        </div>
+                                        <div class="card-body">
+                                            <span class="shop-name">
+                                                <img th:src="@{'/bootstrap/images/profile/'+${review.vegetarianGrade}+'.png'}"
+                                                 width="15px" height="15px">[[${review.nickname}]]</span>
+                                            <span class="shop-name reviewText">[[${review.reviewText}]]</span>
+                                            <span class="shop-name">[[${#temporals.format(review.createdTime, 'yyyy-MM-dd HH:mm')}]]</span>
+                                        </div>
+                                    </div>
+                                    <!-- end th:each-->
+                                </div>
+                            </div>
+                            <!--end slider-container -->
+                        </div>
+
+                    </div>
+                    <div class="listing" th:if="${review.size()==0}">
+                        <span id="sorry-emoji">😅</span>
+                        <span id="sorry-text">아직 작성된 댓글이 없어요</span>
+                    </div>
+
+                    <!-- end myReviews -->
+
+                </div>
+                <!-- end of right section -->
+            </div>
+            <div sec:authorize="hasRole('ROLE_UN_STORE')">
+                <!--왼쪽 프로필-->
+                <div class="leftSide">
+                    <div class="profile-div inline">
+                        <div class="profile-image">
+                            <img th:src="@{'/bootstrap/images/profile/STORE.png'}" width="70px" height="70px">
+                        </div>
+                        <span class="profile-name">[[${info.storeName}]]</span>
+                    </div>
+
+                    <!-- 정보 수정 버튼 -->
+                    <div class="profile-div">
+                        <span class="editMyInfo profile-btn inline" th:onclick="|location.href='@{/stores/account}'|">내 회원 정보 수정</span>
+                    </div>
+                </div>
+
+                <!--우측 메뉴들-->
+                <div class="rightSide">
+                    <div style="padding-top: 3rem;">
+                        <span class="sorry-emoji">😅</span>
+                        <span class="sorry-text">관리자 승인 대기 중 입니다</span>
+                    </div>
+                </div>
+                <!-- end of right section -->
+            </div>
+        </div>
+        <!-- end page -->
+    </th:block>
+</th:block>

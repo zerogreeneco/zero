@@ -1,0 +1,53 @@
+.btn-login {
+    margin: 0 40px 0 0;
+    right: 0;
+    top: 10%;
+    position: absolute;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1rem;
+    background: #f1c40f;
+    height: 80%;
+    width: 12%;
+}
+
+#btn-logout {
+    right: 20px !important;
+}
+
+.profile {
+    position: absolute;
+    top: 7%;
+    right: 0;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50px;
+    background: #fff;
+    padding: 0.2em;
+}
+
+.profile:hover {
+    cursor: pointer;
+}
+
+.card-header{
+    height: 180px;
+    background-color: #c7c7c73b;
+    text-align: center;
+}
+
+.mini-sorry {
+    font-size: 2em;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.mini-text {
+    display: block;
+    font-size: 1em;
+    color: lightgrey;
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.5;
+    text-align: center;
+}

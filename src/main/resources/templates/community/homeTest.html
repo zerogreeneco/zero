@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <link rel="stylesheet" th:href="@{/bootstrap/css/community/communityDeatailView.css}"/>
+        <link th:href="@{/bootstrap/css/community/communityList.css}" rel="stylesheet"/>
+
+        <script th:inline="javascript" th:src="@{/bootstrap/js/community/community.js}"></script>
+        <script>
+
+            let startNum = 1;
+
+            $(window).scroll(function () {
+                let $window = $(this);
+                let scrollTop = $window.scrollTop();
+                let widowHeight = $window.height();
+                let documentHeight = $(document).height();
+
+                console.log("documentHeight : " + documentHeight + "/ scrollTop : " + scrollTop + "/ windowHeight : " + widowHeight);
+                if (scrollTop + widowHeight + 30 > documentHeight) {
+                    ++startNum;
+                    $.ajax({
+                        url: "/zerogreen/api/communityList?page=" + startNum,
+                        method: "get",
+                        dataType: "json",
+                        contentType: "application/json;charset=UTF-8"
+                    })
+                        .done(function (data) {
+                            console.log(data);
+                            let html = "";
+                            for (let i in data.data.content) {
+                                let contentElement = data.data.content[i];
+                                console.log(contentElement.text);
+                                console.log(contentElement.category);
+                                console.log(contentElement.nickname);
+                                console.log(contentElement.like);
+                                html += "<div class=\"list-wrapper\">"
+                                html += "<div class=\"cm-content\">\n";
+                                html += "<div id=\"content-left\">";
+                                html += "<div class=\"main-list-category\">";
+                                html += "<span>";
+                                html += "<p><a>" + contentElement.category + "</a></p>";
+                                html += "</span>";
+                                html += "<div class=\"main-list-text\">";
+                                html += "<p><a onclick='detailView(contentElement.id)'>" + contentElement.text + "</a></p>"
+                                html += "</div>";
+                                html += "</div>";
+                                html += "<div>";
+                                html += "<div class=\"writer-section\">";
+                                html += "<div class=\"main-list-nickname\" >" + contentElement.nickname + "</div>";
+                                html += "</div>";
+                                html += "<div class=\"number-section\">";
+                                html += "<span>";
+                                html += "<span class=\"number\">" + contentElement.count + "</span>";
+                                html += "</span>";
+                                html += "<span class=\"like-count\">";
+                                html += "<span class=\"test-count number\">" + contentElement.like + "</span>";
+                                html += "</span>";
+                                html += "<span>";
+                                html += "<span class=\"number\">" + contentElement.replyCount + "</span>"
+                                html += "</span>";
+                                html += "</div>";
+                                html += "</div>";
+                                html += "</div>";
+
+                            }
+                            $("#content").html(html);
+                        });
+                }
+            });
+
+                $.ajax({
+                    url: "/zerogreen/api/communityList?page=" + startNum,
+                    method: "get",
+                    dataType: "json",
+                    contentType: "application/json;charset=UTF-8"
+                })
+                    .done(function (data) {
+                        console.log(data);
+                        let html = "";
+                        for (let i in data.data.content) {
+                            let contentElement = data.data.content[i];
+                            console.log(contentElement.text);
+                            console.log(contentElement.category);
+                            console.log(contentElement.nickname);
+                            console.log(contentElement.like);
+                            html += "<div class=\"list-wrapper\">"
+                            html += "<div class=\"cm-content\">\n";
+                            html += "<div id=\"content-left\">";
+                            html += "<div class=\"main-list-category\">";
+                            html += "<span>";
+                            html += "<div class=\"main-list-text\">";
+                            html += "<p><a >" + contentElement.category + "</a></p>";
+                            html += "</span>";
+                            html += "<div class=\"main-list-text\">";
+                            html += "<p><a onclick='detailView('contentElement.id')'>" + contentElement.text + "</a></p>"
+                            html += "</div>";
+                            html += "</div>";
+                            html += "<div>";
+                            html += "<div class=\"writer-section\">";
+                            html += "<div class=\"main-list-nickname\" >" + contentElement.nickname + "</div>";
+                            html += "</div>";
+                            html += "<div class=\"number-section\">";
+                            html += "<span>";
+                            html += "<span class=\"number\">" + contentElement.count + "</span>";
+                            html += "</span>";
+                            html += "<span class=\"like-count\">";
+                            html += "<span class=\"test-count number\">" + contentElement.like + "</span>";
+                            html += "</span>";
+                            html += "<span>";
+                            html += "<span class=\"number\">" + contentElement.replyCount + "</span>"
+                            html += "</span>";
+                            html += "</div>";
+                            html += "</div>";
+                            html += "</div>";
+
+                        }
+                        $("#content").append(html);
+                    });
+
+            function detailView(boardId) {
+                location.href = "http://localhost:8080/zerogreen/community/read/" + boardId;
+            }
+
+        </script>
+
+
+    </th:block>
+</th:block>
+</html>

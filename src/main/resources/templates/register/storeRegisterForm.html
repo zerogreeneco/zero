@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <link rel="stylesheet" th:href="@{/bootstrap/css/register.css}" />
+
+        <style>
+            .center-box {
+                text-align: center; width: 300px; margin: 0 auto;
+            }
+            .join-label {
+                display: block; width: 300px; margin: 10px 0; text-align: left; font-size: 1em !important;
+            }
+            .input-box {
+                width: 300px; height: 40px; margin-bottom: 10px;
+            }
+            .login-box {
+                width: 230px; height: 40px; display: inline; margin-bottom: 10px;
+            }
+            .sendMail {
+                width: 65px !important; height: 40px !important; display: inline; background: #f1c40f; font-size: 1em; padding: 0 !important;
+            }
+            .post-box {
+                width: 200px; height: 40px; display: inline; margin-bottom: 10px;
+            }
+            .postBtn {
+                width: 95px !important; height: 40px !important; display: inline !important; background: #f1c40f !important; font-size: 0.9em !important; padding: 0 !important;
+            }
+            .storeType {
+                text-align: left; margin-bottom: 30px;
+            }
+            .hr-margin {
+                margin: 1.5em 0 2em 0;
+            }
+            .regi-btn {
+                background: #f1c40f; width: 147px !important; height: 50px !important; font-size: 1em;
+            }
+        </style>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script th:inline="javascript" th:src="@{/bootstrap/js/join.js}"></script>
+        <link rel="stylesheet" th:href="@{/bootstrap/css/register.css}">
+
+
+        <div style="margin: 2em 0 !important;">
+            <div>
+                <div class="py-5 text-center">
+                    <h2 class="title"><span>회원가입</span></h2>
+                </div>
+
+                <form th:action th:object="${store}" method="post" enctype="multipart/form-data" id="reg-form">
+                    <div class="center-box">
+                        <div id="personal-info">
+                            <!-- 이메일 주소(아이디) -->
+                            <div>
+                                <label for="username" class="join-label">로그인 ID</label>
+                                <div>
+                                    <input type="text" id="username" th:field="*{username}" class="form-control login-box">
+                                    <button type="button" id="send-mail" class="sendMail">인증</button>
+                                </div>
+                                <div th:errors="*{username}" class="field-error">
+                                    아이디 오류
+                                </div>
+                                <div class="email-msg"></div>
+                            </div>
+                            <!-- 이메일 인증 -->
+                            <div style="display:none;" class="auth-box">
+                                <input type="text" class="authKey form-control login-box">
+                                <button type="button" id="authConfirm" class="sendMail">인증 확인</button>
+                                <div class="auth-msg"></div>
+                            </div>
+                            <!-- 비밀번호 (재확인 창 추가 필요) -->
+                            <div>
+                                <label for="password" class="join-label">비밀번호</label>
+                                <input type="password" id="password" th:field="*{password}" class="form-control input-box">
+                                <div th:errors="*{password}" class="field-error">
+                                    비번 오류
+                                </div>
+                                <div class="password-error"></div>
+                            </div>
+                            <div>
+                                <label for="re-password" class="join-label">비밀번호 확인</label>
+                                <input type="password" id="re-password" class="form-control input-box">
+                                <div class="re-password-error"></div>
+                            </div>
+                            <!-- 개인 연락처 -->
+                            <div>
+                                <label for="phoneNumber" class="join-label">전화번호</label>
+                                <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control login-box">
+                                <button type="button" class="sendMail" id="phoneNumber-check">중복 확인</button>
+                                <div th:errors="*{phoneNumber}" class="field-error">
+                                    전화 오류
+                                </div>
+                                <div class="phoneNumber-error"></div>
+                            </div>
+                        </div>
+                        <!-- 가게 이름 -->
+                        <div class="store-info">
+                            <div>
+                                <label for="storeName" class="join-label">가게 이름</label>
+                                <input id="storeName" type="text" th:field="*{storeName}" class="form-control input-box">
+                                <div th:errors="*{storeName}" class="field-error">
+                                    가게 이름 오류
+                                </div>
+                            </div>
+                            <!-- 주소 입력창 -->
+                            <div>
+                                <label class="join-label">가게 주소</label>
+                                <div>
+                                    <input type="text" id="sample6_postcode" class="post-box" th:field="*{postalCode}" placeholder="우편번호" readonly>
+                                    <input type="button" class="postBtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                                </div>
+                                <input type="text" id="sample6_address" class="input-box" th:field="*{storeAddress}" placeholder="주소" readonly><br>
+                                <input type="text" id="sample6_detailAddress" class="input-box" th:field="*{storeDetailAddress}" placeholder="상세주소">
+                                <input type="text" id="sample6_extraAddress" class="input-box" placeholder="참고항목" readonly>
+                            </div>
+                            <!-- 사업자 등록번호 -->
+                            <div>
+                                <label for="storeRegNum" class="join-label">사업자 등록 번호</label>
+                                <input type="text" id="storeRegNum" th:field="*{storeRegNum}" class="form-control login-box">
+                                <button type="button" class="sendMail" id="storeRegNum-check">중복 확인</button>
+                                <div th:errors="*{storeRegNum}" class="field-error">
+                                    사업자 등록번호 오류
+                                </div>
+                                <div class="regNum-error"></div>
+                            </div>
+                            <!-- 가게 연락처 -->
+                            <div>
+                                <label for="storePhoneNumber" class="join-label">가게 전화번호</label>
+                                <input type="text" id="storePhoneNumber" th:field="*{storePhoneNumber}" class="form-control input-box">
+                                <div th:errors="*{storePhoneNumber}" class="field-error">
+                                    전화 오류
+                                </div>
+                            </div>
+                            <!-- 사업장 종류 -->
+                            <div class="storeType">
+                                <label class="join-label">사업장 종류</label>
+                                <div th:each="stores : ${storeTypes}">
+                                    <input type="radio" style="margin-left: 10px;" th:field="*{storeType}" th:value="${stores.name()}">
+                                    <label th:for="${#ids.prev('storeType')}" th:text="${stores.storeType}"></label>
+                                </div>
+                            </div>
+                            <!-- 첨부 파일 -->
+                            <div>
+                                <label class="join-label">첨부파일</label>
+                                <input type="file" class="input-box" th:field="*{attachFile}">
+                            </div>
+                            <div th:if="${#fields.hasGlobalErrors()}">
+                                <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+                            </div>
+                        </div>
+
+                        <hr class="my-4 hr-margin">
+                        <div>
+                            <button class="cancle-btn" th:onclick="|location.href='@{/}'|" type="button">취소 </button>
+                            <button id="joinBtn" class="regi-btn" type="button" disabled="true">회원 가입</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script>
+            function sample6_execDaumPostcode() {
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                        var addr = ''; // 주소 변수
+                        var extraAddr = ''; // 참고항목 변수
+
+                        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                            addr = data.roadAddress;
+                        } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                            addr = data.jibunAddress;
+                        }
+
+                        // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                        if(data.userSelectedType === 'R'){
+                            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                extraAddr += data.bname;
+                            }
+                            // 건물명이 있고, 공동주택일 경우 추가한다.
+                            if(data.buildingName !== '' && data.apartment === 'Y'){
+                                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                            }
+                            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                            if(extraAddr !== ''){
+                                extraAddr = ' (' + extraAddr + ')';
+                            }
+                            // 조합된 참고항목을 해당 필드에 넣는다.
+                            document.getElementById("sample6_extraAddress").value = extraAddr;
+
+                        } else {
+                            document.getElementById("sample6_extraAddress").value = '';
+                        }
+                        document.get
+                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                        document.getElementById('sample6_postcode').value = data.zonecode;
+                        document.getElementById("sample6_address").value = addr;
+                        // 커서를 상세주소 필드로 이동한다.
+                        document.getElementById("sample6_detailAddress").focus();
+                    }
+                }).open();
+            }
+        </script>
+
+    </th:block>
+</th:block>
+</html>

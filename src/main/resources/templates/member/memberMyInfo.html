@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+
+    <!-- 페이지 css/ js 추가 -->
+    <link id="contextPathHolder" th:data-contextPath="${#httpServletRequest.getContextPath()}"/>
+    <link th:href="@{/bootstrap/css/member/memberMyInfo.css}" rel="stylesheet"/>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script th:src="@{/bootstrap/js/member/memberMyInfo.js}"></script>
+
+    <div style="margin: 0 auto;">
+        <!--    왼쪽 프로필-->
+        <div class="leftSide">
+            <div class="profile-div inline">
+                <div class="profile-image">
+                    <img th:src="@{'/bootstrap/images/profile/' +${session.veganGrade}+'.png'}"
+                         width="70px" height="70px">
+                </div>
+
+                <span class="profile-name">[[${session.loginUserNickname}]]</span>
+            </div>
+            <div class="profile-div">
+                <span class="editMyInfo profile-btn inline"
+                      th:onclick="|javascript:goAccount('${session.memberId}')|" >내정보</span>
+            </div>
+
+            <div class="profile-div">
+                <span class="chatting profile-btn inline"
+                      th:onclick="|location.href='@{/chat}'|">내채팅</span>
+            </div>
+        </div>
+
+        <!--    우측 메뉴들-->
+        <div class="rightSide">
+            <!--     우측 상단 찜한가게+내 리뷰-->
+            <div class="counting">
+                <div class="div-cnt inline">
+                    <span>[[${likesCount}]]</span><br>
+                    <span>찜 한 가게</span>
+                </div>
+                <div class="div-cnt inline">
+                    <span>[[${reviewCount}]]</span><br>
+                    <span>내가 쓴 리뷰</span>
+                </div>
+            </div>
+
+
+            <!-- 찜한가게-->
+            <div class="textList">
+                <span>찜 한 가게</span>
+                <span class="no-data" th:if="${#lists.size(listOfLikes) <= 0}">좋아하는 가게를 찜 해보세요!</span>
+            </div>
+
+            <div class="listing">
+                <div style="position: relative;" th:if="${#lists.size(listOfLikes) >= 1}">
+                    <span id="like-left" class="arrow-left" th:if="${#lists.size(listOfLikes) >= 2}">&#139;</span>
+                    <span id="like-right"  class="arrow-right" th:if="${#lists.size(listOfLikes) >= 2}">&#155;</span>
+
+                    <div class="slider-container">
+                        <div class="like-slider slider">
+                            <div class="card" th:each="liking: ${listOfLikes}"
+                                 th:onclick="|javascript: goStore('${liking.storeMember.id}')|">
+
+                                <div class="card-header">
+                                    <img th:src="@{/members/memberMyInfo/image/} + ${liking.storeMember.storeName} + ${liking.thumbnailName}"
+                                         th:onerror="this.src='https://via.placeholder.com/300'"
+                                         th:value="${liking.thumbnailName}"/>
+                                </div>
+
+                                <div class="shopList-box">
+                                    <div class="card-body">
+                                        <span class="shop-name">[[${liking.storeMember.storeName}]]</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- end th:each-->
+                        </div>
+                    </div>
+                    <!--end slider-container -->
+                </div>
+            </div>
+            <!-- end liked stores -->
+
+
+            <!--     내 리뷰-->
+            <div class="textList">
+                <span>내가 쓴 리뷰</span>
+                <span class="no-data" th:if="${#lists.size(listOfReview) <= 0}">만족스러웠던 가게에 리뷰를 남겨보세요!</span>
+            </div>
+
+            <div class="listing" >
+                <div style="position: relative;" th:if="${#lists.size(listOfReview) >= 1}">
+                    <span id="review-left" class="arrow-left" th:if="${#lists.size(listOfReview) >= 2}">&#139;</span>
+                    <span id="review-right"  class="arrow-right" th:if="${#lists.size(listOfReview) >= 2}">&#155;</span>
+
+                    <div class="slider-container">
+                        <div class="review-slider slider">
+                            <div class="card" th:each="review: ${listOfReview}"
+                                 th:onclick="|javascript: goStore('${review.sno}')|">
+
+                                <div class="card-header">
+                                    <img th:src="@{/members/memberMyInfo/image/} + ${review.storeName} + ${review.storeThumbnail}"
+                                         th:onerror="this.src='https://via.placeholder.com/300'"
+                                         th:value="${review.storeThumbnail}"/>
+                                </div>
+
+                                <div class="shopList-box">
+                                    <div class="card-body">
+                                        <span class="shop-name">[[${review.storeName}]]</span>
+                                        <span class="shop-name reviewText">[[${review.reviewText}]]</span>
+                                        <span class="shop-name">[[${#temporals.format(review.createdTime, 'yyyy-MM-dd HH:mm')}]]</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- end th:each-->
+                        </div>
+                    </div>
+                    <!--end slider-container -->
+                </div>
+
+            </div>
+            <!-- end myReviews -->
+
+        </div>
+        <!-- end of right section -->
+    </div>
+    <!-- end page -->
+
+
+    <script th:inline="javascript">
+        function goAccount(id) {
+            //alert('goAccount');
+            var url = [[@{/members/account}]];
+            location.href = url;
+        }
+
+        function goStore(sno) {
+            //alert('goStore');
+            var url = [[@{/page/detail}]] + "/" +sno ;
+            location.href = url;
+        }
+
+    </script>
+
+    </th:block>
+</th:block>

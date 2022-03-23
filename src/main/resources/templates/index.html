@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml"
+          xmlns:sec="http://www.w3.org/1999/xhtml">
+    <th:block th:fragment="content">
+        <link rel="stylesheet" th:href="@{/bootstrap/css/index/index.css}"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300&display=swap" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous"></script>
+        <script type="text/javascript" th:src="@{/bootstrap/js/index/slider.js}"></script>
+        <script type="text/javascript" th:src="@{/bootstrap/js/map.js}"></script>
+
+        <div class="row gtr-200">
+            <!--Shop List-->
+            <div id="leftSide">
+                <!--식당 리스트-->
+                <div style="position: relative;">
+                    <span class="cate-title">내 주변 맛집</span>
+                    <button id="food-left" class="arrow arrow-left">&#139;</button>
+                    <button id="food-right" class="arrow arrow-right">&#155;</button>
+                    <div class="slider-container">
+                        <div class="food-slider slider">
+                            <div class="card" th:each="temp : ${approval}"
+                                 th:unless="${temp.storeType.toString().equals('ECO_SHOP')}"
+                                 th:onclick="|javascript: goStore('${temp.memberId}')|">
+                                <div class="card-header">
+                                    <span class="mini-sorry">😅</span>
+                                    <span class="mini-text">아직 등록된 사진이 없어요</span>
+                                </div>
+                                <div class="shopList-box">
+                                    <div class="card-body">
+                                        <span class="shop-name" th:vlaue="${temp.storeType}">배지넣을거임</span>
+                                        <span class="shop-name" th:vlaue="${temp.storeName}">[[${temp.storeName}]]</span>
+                                        <span class="nn-name">test2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--제로웨이스트샵 리스트-->
+                <div class="margin-title" style="position: relative;">
+                    <span class="cate-title">근처 제로웨이스트샵</span>
+                    <button id="shop-left" class="arrow arrow-left">&#139;</button>
+                    <button id="shop-right" class="arrow arrow-right">&#155;</button>
+                    <div class="slider-container">
+                        <div class="shop-slider slider">
+                            <div class="card" th:each="temp : ${approval}"
+                                 th:if="${temp.storeType.toString().equals('ECO_SHOP')}"
+                                 th:onclick="|javascript: goStore('${temp.memberId}')|">
+                                <div class="card-header">
+                                    <span class="mini-sorry">😅</span>
+                                    <span class="mini-text">아직 등록된 사진이 없어요</span>
+                                </div>
+                                <div class="shopList-box">
+                                    <div class="card-body">
+                                        <span class="shop-name" th:vlaue="${temp.storeType}">배지넣을거임</span>
+                                        <span class="shop-name" th:vlaue="${temp.storeName}">[[${temp.storeName}]]</span>
+                                        <span class="nn-name">test</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Google Map-->
+            <div id="rightSide">
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            function goStore(sno) {
+                //alert('goStore');
+                /*[+
+                var url = [[@{page/detail}]] + "/" +sno ;
+                +]*/
+                location.href = url;
+            }
+
+        </script>
+
+        <!--지도 부분-->
+        <script type="text/javascript"
+                src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8b90a59d1c1c795a8266f3f47ebfd1ac&libraries=services"></script>
+        <div th:each="app,i : ${approval}" class="ddiv" hidden>
+            <input class="mapAddress" th:value="${app.storeAddress}" hidden>
+            <input class="mapType" th:value="${app.storeType}" hidden>
+            <input id="mapSize" th:value="${i.size}" hidden>
+            <span class="kkmmkkmm"></span>
+            <input class="mapEco" th:if="${app.storeType.toString().equals('ECO_SHOP')}" th:value="${app.storeAddress}"
+                   th:text="${app.storeAddress} + ' ' + ${app.storeType}" hidden>
+            <input class="mapVFood" th:if="${app.storeType.toString().equals('VEGAN_FOOD')}"
+                   th:value="${app.storeAddress}"
+                   th:text="${app.storeAddress} + ' ' + ${app.storeType}" hidden>
+            <input class="mapGFood" th:if="${app.storeType.toString().equals('GENERAL_FOOD')}"
+                   th:value="${app.storeAddress}" th:text="${app.storeAddress} + ' ' + ${app.storeType}" hidden>
+            <hr>
+        </div>
+    </th:block>
+</th:block>
+</html>

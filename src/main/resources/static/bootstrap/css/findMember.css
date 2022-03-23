@@ -1,0 +1,67 @@
+.password-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.password-find {
+    display: inline-block;
+    width: 400px;
+}
+
+.fm-input {
+    margin-bottom: 10px;
+}
+
+.fm-tab-wrapper {
+    list-style-type: none;
+    display: table;
+    width: 400px;
+    margin-bottom: 5px;
+    padding-left: 0;
+    table-layout: fixed;
+    background: #d4d4d4;
+    border-radius: 8px 8px 0 0;
+}
+
+.fm-tab-wrapper .fm-tab {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    height: 40px;
+}
+
+.fm-tab a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#id-tab {
+    background: #2ecc71;
+    border-radius: 8px 0 0 0;
+}
+
+#pw-tab {
+    background: #2ecc71;
+    border-radius: 0 8px 0 0;
+}
+
+.password-find input[type=text] {
+    width: 250px;
+    height: 38px;
+    border-radius: 5px;
+}
+
+.password-find button {
+    width: 292px;
+    height: 40px;
+    line-height: 30px;
+    background: #f1c40f;
+    font-size: 1em !important;
+}
+
+.password-find h1 {
+    margin-bottom: 20px;
+}
