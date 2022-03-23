@@ -1,9 +1,10 @@
 package com.zerogreen.zerogreeneco.service.detail;
 
-import zerogreen.eco.dto.detail.DetailReviewDto;
-import zerogreen.eco.entity.detail.DetailReview;
-import zerogreen.eco.entity.detail.ReviewImage;
-import zerogreen.eco.entity.userentity.BasicUser;
+
+import com.zerogreen.zerogreeneco.dto.detail.DetailReviewDto;
+import com.zerogreen.zerogreeneco.entity.detail.DetailReview;
+import com.zerogreen.zerogreeneco.entity.detail.ReviewImage;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
 
 import java.util.List;
 

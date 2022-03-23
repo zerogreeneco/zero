@@ -1,13 +1,13 @@
 package com.zerogreen.zerogreeneco.service.community;
 
+import com.zerogreen.zerogreeneco.dto.community.ImageFileDto;
+import com.zerogreen.zerogreeneco.entity.community.BoardImage;
+import com.zerogreen.zerogreeneco.entity.community.CommunityBoard;
+import com.zerogreen.zerogreeneco.repository.community.BoardImageRepository;
+import com.zerogreen.zerogreeneco.repository.community.CommunityBoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import zerogreen.eco.dto.community.ImageFileDto;
-import zerogreen.eco.entity.community.BoardImage;
-import zerogreen.eco.entity.community.CommunityBoard;
-import zerogreen.eco.repository.community.BoardImageRepository;
-import zerogreen.eco.repository.community.CommunityBoardRepository;
 
 import java.io.File;
 import java.nio.file.Path;

@@ -1,14 +1,14 @@
 package com.zerogreen.zerogreeneco.service.community;
 
+import com.zerogreen.zerogreeneco.dto.community.CommunityRequestDto;
+import com.zerogreen.zerogreeneco.dto.community.CommunityResponseDto;
+import com.zerogreen.zerogreeneco.dto.search.SearchCondition;
+import com.zerogreen.zerogreeneco.entity.community.BoardImage;
+import com.zerogreen.zerogreeneco.entity.community.Category;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.entity.userentity.Member;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import zerogreen.eco.dto.community.CommunityRequestDto;
-import zerogreen.eco.dto.community.CommunityResponseDto;
-import zerogreen.eco.dto.search.SearchCondition;
-import zerogreen.eco.entity.community.BoardImage;
-import zerogreen.eco.entity.community.Category;
-import zerogreen.eco.entity.userentity.BasicUser;
-import zerogreen.eco.entity.userentity.Member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

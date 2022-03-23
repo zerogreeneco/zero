@@ -1,23 +1,23 @@
 package com.zerogreen.zerogreeneco.service.community;
 
+import com.zerogreen.zerogreeneco.dto.community.CommunityRequestDto;
+import com.zerogreen.zerogreeneco.dto.community.CommunityResponseDto;
+import com.zerogreen.zerogreeneco.dto.search.SearchCondition;
+import com.zerogreen.zerogreeneco.entity.community.BoardImage;
+import com.zerogreen.zerogreeneco.entity.community.Category;
+import com.zerogreen.zerogreeneco.entity.community.CommunityBoard;
+import com.zerogreen.zerogreeneco.entity.community.CommunityLike;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.entity.userentity.Member;
+import com.zerogreen.zerogreeneco.repository.community.BoardImageRepository;
+import com.zerogreen.zerogreeneco.repository.community.CommunityBoardRepository;
+import com.zerogreen.zerogreeneco.repository.community.CommunityLikeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.dto.community.CommunityRequestDto;
-import zerogreen.eco.dto.community.CommunityResponseDto;
-import zerogreen.eco.dto.search.SearchCondition;
-import zerogreen.eco.entity.community.BoardImage;
-import zerogreen.eco.entity.community.Category;
-import zerogreen.eco.entity.community.CommunityBoard;
-import zerogreen.eco.entity.community.CommunityLike;
-import zerogreen.eco.entity.userentity.BasicUser;
-import zerogreen.eco.entity.userentity.Member;
-import zerogreen.eco.repository.community.BoardImageRepository;
-import zerogreen.eco.repository.community.CommunityBoardRepository;
-import zerogreen.eco.repository.community.CommunityLikeRepository;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

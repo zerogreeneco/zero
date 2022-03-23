@@ -1,10 +1,10 @@
 package com.zerogreen.zerogreeneco.service.store;
 
+import com.zerogreen.zerogreeneco.dto.store.StoreDto;
+import com.zerogreen.zerogreeneco.repository.file.StoreImageFileRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import zerogreen.eco.dto.store.StoreDto;
-import zerogreen.eco.repository.file.StoreImageFileRepository;
 
 import java.io.File;
 import java.util.List;

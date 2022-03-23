@@ -1,6 +1,7 @@
 package com.zerogreen.zerogreeneco.service.community;
 
-import zerogreen.eco.dto.community.ImageFileDto;
+
+import com.zerogreen.zerogreeneco.dto.community.ImageFileDto;
 
 import java.util.List;
 

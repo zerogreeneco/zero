@@ -1,7 +1,8 @@
 package com.zerogreen.zerogreeneco.service.detail;
 
-import zerogreen.eco.dto.detail.LikesDto;
-import zerogreen.eco.entity.userentity.BasicUser;
+
+import com.zerogreen.zerogreeneco.dto.detail.LikesDto;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
 
 import java.util.List;
 

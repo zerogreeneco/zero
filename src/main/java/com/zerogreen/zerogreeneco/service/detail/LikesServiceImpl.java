@@ -1,15 +1,15 @@
 package com.zerogreen.zerogreeneco.service.detail;
 
+import com.zerogreen.zerogreeneco.dto.detail.LikesDto;
+import com.zerogreen.zerogreeneco.entity.detail.Likes;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.entity.userentity.StoreMember;
+import com.zerogreen.zerogreeneco.repository.detail.LikesRepository;
+import com.zerogreen.zerogreeneco.repository.user.StoreMemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.dto.detail.LikesDto;
-import zerogreen.eco.entity.detail.Likes;
-import zerogreen.eco.entity.userentity.BasicUser;
-import zerogreen.eco.entity.userentity.StoreMember;
-import zerogreen.eco.repository.detail.LikesRepository;
-import zerogreen.eco.repository.user.StoreMemberRepository;
 
 import java.util.List;
 

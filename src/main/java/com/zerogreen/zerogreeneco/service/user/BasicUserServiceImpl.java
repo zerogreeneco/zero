@@ -1,5 +1,12 @@
 package com.zerogreen.zerogreeneco.service.user;
 
+import com.zerogreen.zerogreeneco.dto.member.FindMemberDto;
+import com.zerogreen.zerogreeneco.dto.member.PasswordUpdateDto;
+import com.zerogreen.zerogreeneco.dto.store.NonApprovalStoreDto;
+import com.zerogreen.zerogreeneco.dto.store.StoreUpdateDto;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
+import com.zerogreen.zerogreeneco.repository.user.BasicUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -7,13 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.dto.member.FindMemberDto;
-import zerogreen.eco.dto.member.PasswordUpdateDto;
-import zerogreen.eco.dto.store.NonApprovalStoreDto;
-import zerogreen.eco.dto.store.StoreUpdateDto;
-import zerogreen.eco.entity.userentity.BasicUser;
-import zerogreen.eco.entity.userentity.UserRole;
-import zerogreen.eco.repository.user.BasicUserRepository;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class BasicUserServiceImpl implements BasicUserService{
     public Long adminSave() {
 
         String encPassword = passwordEncoder.encode("1");
-        return basicUserRepository.save(new BasicUser("ADMIN", null, encPassword,UserRole.ADMIN, true))
+        return basicUserRepository.save(new BasicUser("ADMIN", null, encPassword, UserRole.ADMIN, true))
                 .getId();
     }
 

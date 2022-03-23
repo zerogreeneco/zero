@@ -1,7 +1,8 @@
 package com.zerogreen.zerogreeneco.service.community;
 
-import zerogreen.eco.dto.community.CommunityReplyDto;
-import zerogreen.eco.entity.userentity.BasicUser;
+
+import com.zerogreen.zerogreeneco.dto.community.CommunityReplyDto;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
 
 import java.util.List;
 

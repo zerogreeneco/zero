@@ -1,6 +1,7 @@
 package com.zerogreen.zerogreeneco.service.detail;
 
-import zerogreen.eco.dto.detail.ReviewImageDto;
+
+import com.zerogreen.zerogreeneco.dto.detail.ReviewImageDto;
 
 import java.util.List;
 

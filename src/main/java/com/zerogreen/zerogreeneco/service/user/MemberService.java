@@ -1,8 +1,9 @@
 package com.zerogreen.zerogreeneco.service.user;
 
-import zerogreen.eco.dto.member.MemberUpdateDto;
-import zerogreen.eco.entity.userentity.Member;
-import zerogreen.eco.entity.userentity.VegetarianGrade;
+
+import com.zerogreen.zerogreeneco.dto.member.MemberUpdateDto;
+import com.zerogreen.zerogreeneco.entity.userentity.Member;
+import com.zerogreen.zerogreeneco.entity.userentity.VegetarianGrade;
 
 import java.util.Optional;
 

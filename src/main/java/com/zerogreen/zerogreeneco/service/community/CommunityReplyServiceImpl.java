@@ -1,15 +1,15 @@
 package com.zerogreen.zerogreeneco.service.community;
 
+import com.zerogreen.zerogreeneco.dto.community.CommunityReplyDto;
+import com.zerogreen.zerogreeneco.entity.community.BoardReply;
+import com.zerogreen.zerogreeneco.entity.community.CommunityBoard;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.repository.community.BoardReplyRepository;
+import com.zerogreen.zerogreeneco.repository.community.CommunityBoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.dto.community.CommunityReplyDto;
-import zerogreen.eco.entity.community.BoardReply;
-import zerogreen.eco.entity.community.CommunityBoard;
-import zerogreen.eco.entity.userentity.BasicUser;
-import zerogreen.eco.repository.community.BoardReplyRepository;
-import zerogreen.eco.repository.community.CommunityBoardRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

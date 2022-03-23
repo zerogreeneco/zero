@@ -1,15 +1,13 @@
 package com.zerogreen.zerogreeneco.service.file;
 
+import com.zerogreen.zerogreeneco.entity.file.RegisterFile;
+import com.zerogreen.zerogreeneco.entity.file.StoreImageFile;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import zerogreen.eco.entity.community.BoardImage;
-import zerogreen.eco.entity.detail.ReviewImage;
-import zerogreen.eco.entity.file.RegisterFile;
-import zerogreen.eco.entity.file.StoreImageFile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

@@ -1,10 +1,10 @@
 package com.zerogreen.zerogreeneco.service.file;
 
+import com.zerogreen.zerogreeneco.entity.community.BoardImage;
+import com.zerogreen.zerogreeneco.entity.detail.ReviewImage;
+import com.zerogreen.zerogreeneco.entity.file.RegisterFile;
+import com.zerogreen.zerogreeneco.entity.file.StoreImageFile;
 import org.springframework.web.multipart.MultipartFile;
-import zerogreen.eco.entity.community.BoardImage;
-import zerogreen.eco.entity.detail.ReviewImage;
-import zerogreen.eco.entity.file.RegisterFile;
-import zerogreen.eco.entity.file.StoreImageFile;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,10 +1,10 @@
 package com.zerogreen.zerogreeneco.service.detail;
 
+import com.zerogreen.zerogreeneco.dto.detail.ReviewImageDto;
+import com.zerogreen.zerogreeneco.repository.detail.ReviewImageRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import zerogreen.eco.dto.detail.ReviewImageDto;
-import zerogreen.eco.repository.detail.ReviewImageRepository;
 
 import java.io.File;
 import java.util.List;

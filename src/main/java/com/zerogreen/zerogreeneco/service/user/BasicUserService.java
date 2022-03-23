@@ -1,12 +1,12 @@
 package com.zerogreen.zerogreeneco.service.user;
 
+import com.zerogreen.zerogreeneco.dto.member.FindMemberDto;
+import com.zerogreen.zerogreeneco.dto.member.PasswordUpdateDto;
+import com.zerogreen.zerogreeneco.dto.store.NonApprovalStoreDto;
+import com.zerogreen.zerogreeneco.dto.store.StoreUpdateDto;
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import zerogreen.eco.dto.member.FindMemberDto;
-import zerogreen.eco.dto.member.PasswordUpdateDto;
-import zerogreen.eco.dto.store.NonApprovalStoreDto;
-import zerogreen.eco.dto.store.StoreUpdateDto;
-import zerogreen.eco.entity.userentity.BasicUser;
 
 import java.util.List;
 

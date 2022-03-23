@@ -1,8 +1,9 @@
 package com.zerogreen.zerogreeneco.service.store;
 
-import zerogreen.eco.dto.store.StoreMenuDto;
-import zerogreen.eco.entity.userentity.StoreMenu;
-import zerogreen.eco.entity.userentity.VegetarianGrade;
+
+import com.zerogreen.zerogreeneco.dto.store.StoreMenuDto;
+import com.zerogreen.zerogreeneco.entity.userentity.StoreMenu;
+import com.zerogreen.zerogreeneco.entity.userentity.VegetarianGrade;
 
 import java.util.List;
 

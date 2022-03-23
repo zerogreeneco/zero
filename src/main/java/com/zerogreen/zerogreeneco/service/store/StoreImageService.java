@@ -1,6 +1,7 @@
 package com.zerogreen.zerogreeneco.service.store;
 
-import zerogreen.eco.dto.store.StoreDto;
+
+import com.zerogreen.zerogreeneco.dto.store.StoreDto;
 
 import java.util.List;
 

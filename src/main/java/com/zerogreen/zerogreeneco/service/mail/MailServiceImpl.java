@@ -1,5 +1,7 @@
 package com.zerogreen.zerogreeneco.service.mail;
 
+import com.zerogreen.zerogreeneco.entity.userentity.BasicUser;
+import com.zerogreen.zerogreeneco.repository.user.BasicUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
@@ -7,8 +9,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.entity.userentity.BasicUser;
-import zerogreen.eco.repository.user.BasicUserRepository;
 
 import java.util.Random;
 import java.util.UUID;

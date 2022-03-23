@@ -1,18 +1,18 @@
 package com.zerogreen.zerogreeneco.service.user;
 
 
+import com.zerogreen.zerogreeneco.dto.member.MemberUpdateDto;
+import com.zerogreen.zerogreeneco.entity.userentity.Member;
+import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
+import com.zerogreen.zerogreeneco.entity.userentity.VegetarianGrade;
+import com.zerogreen.zerogreeneco.repository.user.BasicUserRepository;
+import com.zerogreen.zerogreeneco.repository.user.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import zerogreen.eco.dto.member.MemberUpdateDto;
-import zerogreen.eco.entity.userentity.Member;
-import zerogreen.eco.entity.userentity.UserRole;
-import zerogreen.eco.entity.userentity.VegetarianGrade;
-import zerogreen.eco.repository.user.BasicUserRepository;
-import zerogreen.eco.repository.user.MemberRepository;
 
 import java.util.Optional;
 
