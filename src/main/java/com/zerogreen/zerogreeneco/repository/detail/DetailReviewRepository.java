@@ -16,12 +16,6 @@ public interface DetailReviewRepository extends JpaRepository<DetailReview, Long
             "where dr.depth = 1 and dr.storeMember.id =:sno")
     List<DetailReview> findByStore(@Param("sno") Long sno);
 
-//    @Query("select dr from DetailReview dr " +
-//            "join fetch dr.storeMember s " +
-//            "join fetch dr.reviewer r " +
-//            "where dr.depth = 1 and dr.storeMember.id =:sno")
-//    Page<DetailReview> findByStore1(@Param("sno") Long sno, Pageable pageable);
-
     //memberMyInfo에 나타나는 회원별 리뷰 수
     @Query("select count(dr.id) from DetailReview dr " +
             "where dr.reviewer.id =:id ")

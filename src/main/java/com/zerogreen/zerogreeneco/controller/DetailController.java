@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -90,12 +91,6 @@ public class DetailController {
         model.addAttribute("memberReview", result);
         Collections.reverse(result);
 
-//        Pageable pageable = requestPageSortDto.getPageableSort(Sort.by("id").descending());
-//        Page<DetailReviewDto> review = detailReviewService.findByStore1(sno, pageable);
-//        PagingDto reviewList = new PagingDto(review);
-//        model.addAttribute("memberReview", reviewList);
-
-
         //리뷰 이미지 리스트 (스토어전체)
         List<ReviewImageDto> reviewImages = reviewImageService.findByStore(sno);
         if (reviewImages.size() > 0) {
@@ -140,6 +135,44 @@ public class DetailController {
     }
 
 
+    //대댓글
+    @PostMapping("/page/detail/addReview/{sno}/{rno}")
+    public String saveNestedReview(@PathVariable("sno") Long sno,
+                                   @PathVariable("rno") Long rno,
+                                   @ModelAttribute("nestedReviewForm") DetailReviewDto reviewDto, Model model,
+                                   @AuthenticationPrincipal PrincipalDetails principalDetails, HttpServletRequest request) {
+
+        String reviewText = request.getParameter("reviewText");
+        detailReviewService.saveNestedReview(reviewText, sno, principalDetails.getBasicUser(), rno);
+
+        model.addAttribute("memberReview", detailReviewService.findByStore(sno));
+
+        return "page/detail :: #reviewList";
+    }
+
+
+    //멤버리뷰 수정
+    @ResponseBody
+    @PutMapping("/editReview/{rno}")
+    public ResponseEntity<Long> modifyReview(@PathVariable("rno") Long rno,
+                                             @Validated @RequestBody DetailReviewDto detailReviewDto, BindingResult bindingResult) {
+        detailReviewService.modifyReview(detailReviewDto);
+        return new ResponseEntity<>(rno, HttpStatus.OK);
+    }
+
+
+    //리뷰 삭제
+    @ResponseBody
+    @DeleteMapping("/deleteReview/{sno}/{rno}")
+    public ResponseEntity<Long> remove(@PathVariable("rno") Long rno,
+                                       @PathVariable("sno") Long sno,
+                                       @RequestBody DetailReviewDto detailReviewDto, Model model) {
+        detailReviewService.remove(rno);
+
+        return new ResponseEntity<>(rno, HttpStatus.OK);
+    }
+
+
     //리뷰 이미지 불러오기
     @ResponseBody
     @GetMapping("/page/detail/images/{filename}")
@@ -162,50 +195,17 @@ public class DetailController {
     @DeleteMapping("/{id}/imageDelete")
     public ResponseEntity<Map<String, String>> imageDelete(@PathVariable("id")Long id,
                                                            @RequestBody ReviewImageDto reviewImageDto) {
+
+        String date = reviewImageDto.getCreatedDate().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+
         HashMap<String, String> resultMap = new HashMap<>();
         String filePath = reviewImageDto.getFilePath();
-        String thumbnailName = "C:/upload/" + reviewImageDto.getThumbnailName();
+        String thumbnailName = "C:/upload/" + date + "/" +reviewImageDto.getThumbnailName();
 
         reviewImageService.deleteReviewImage(id, filePath, thumbnailName);
         resultMap.put("key", "success");
 
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
-    }
-
-
-    //대댓글
-    @PostMapping("/page/detail/addReview/{sno}/{rno}")
-    public String saveNestedReview(@PathVariable("sno") Long sno,
-                                   @PathVariable("rno") Long rno,
-                                   @ModelAttribute("nestedReviewForm") DetailReviewDto reviewDto, Model model,
-                                   @AuthenticationPrincipal PrincipalDetails principalDetails, HttpServletRequest request) {
-
-        String reviewText = request.getParameter("reviewText");
-        detailReviewService.saveNestedReview(reviewText, sno, principalDetails.getBasicUser(), rno);
-
-        model.addAttribute("memberReview", detailReviewService.findByStore(sno));
-//        model.addAttribute("memberReview", detailReviewService.findByStore(sno,rno));
-
-        return "page/detail :: #reviewList";
-    }
-
-
-    //멤버리뷰 수정
-    @ResponseBody
-    @PutMapping("/editReview/{rno}")
-    public ResponseEntity<Long> modifyReview(@PathVariable("rno") Long rno,
-                                             @Validated @RequestBody DetailReviewDto detailReviewDto, BindingResult bindingResult) {
-        detailReviewService.modifyReview(detailReviewDto);
-        return new ResponseEntity<>(rno, HttpStatus.OK);
-    }
-
-
-    //리뷰 삭제
-    @ResponseBody
-    @DeleteMapping("/deleteReview/{rno}")
-    public ResponseEntity<Long> remove(@PathVariable("rno") Long rno) {
-        detailReviewService.remove(rno);
-        return new ResponseEntity<>(rno, HttpStatus.OK);
     }
 
 
@@ -232,26 +232,5 @@ public class DetailController {
         // Map에 JSON 형태로 담긴 데이터를 Response 해줌
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
-
-
-    //save reviews with ajax. text only  ** on working **
-/*
-    @PostMapping("/page/detail/addReview/{sno}")
-    public String saveReview(@PathVariable("sno") Long sno, Model model, RequestPageSortDto requestPageSortDto,
-                            @ModelAttribute("review") DetailReviewDto reviewDto,
-                            @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
-
-//        List<ReviewImage> reviewImages = reviewImageService.reviewImageFiles(reviewDto.getImageFiles());
-//        detailReviewService.saveReview(reviewDto.getReviewText(), sno, principalDetails.getBasicUser(), reviewImages);
-        detailReviewService.saveReview(reviewDto.getReviewText(), sno, principalDetails.getBasicUser());
-
-        List<DetailReviewDto> saveResult = detailReviewService.findByStore(sno);
-        model.addAttribute("memberReview", saveResult);
-
-        return "page/detail :: #reviewList";
-    }
-*/
-
-
 
 }
