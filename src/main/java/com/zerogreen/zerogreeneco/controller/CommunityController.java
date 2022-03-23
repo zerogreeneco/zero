@@ -3,6 +3,7 @@ package com.zerogreen.zerogreeneco.controller;
 import com.zerogreen.zerogreeneco.dto.community.CommunityRequestDto;
 import com.zerogreen.zerogreeneco.dto.community.ImageFileDto;
 import com.zerogreen.zerogreeneco.dto.paging.RequestPageSortDto;
+import com.zerogreen.zerogreeneco.dto.search.SearchCondition;
 import com.zerogreen.zerogreeneco.dto.search.SearchType;
 import com.zerogreen.zerogreeneco.entity.community.BoardImage;
 import com.zerogreen.zerogreeneco.entity.community.Category;
