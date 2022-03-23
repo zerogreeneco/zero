@@ -22,7 +22,7 @@
         <div class="form-area">
             <form th:method="get" th:action>
                 <select class="dropdown" name="searchType">
-                    <option th:each="searchType : ${T(zerogreen.zerogreeneco.dto.search.SearchType).values()}"
+                    <option th:each="searchType : ${T(com.zerogreen.zerogreeneco.dto.search.SearchType).values()}"
                             th:value="${searchType}" th:text="${searchType.searchName}"></option>
                 </select>
                 <div class="search-bar">
