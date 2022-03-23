@@ -1,4 +1,4 @@
-const url = 'http://localhost:8080/zerogreen';
+const url = 'http://localhost:8080';
 let stompClient;
 let selectedUser;
 let newMessages = new Map();

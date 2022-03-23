@@ -19,7 +19,7 @@
                 if (scrollTop + widowHeight + 30 > documentHeight) {
                     ++startNum;
                     $.ajax({
-                        url: "/zerogreen/api/communityList?page=" + startNum,
+                        url: "/api/communityList?page=" + startNum,
                         method: "get",
                         dataType: "json",
                         contentType: "application/json;charset=UTF-8"
@@ -69,7 +69,7 @@
             });
 
                 $.ajax({
-                    url: "/zerogreen/api/communityList?page=" + startNum,
+                    url: "/api/communityList?page=" + startNum,
                     method: "get",
                     dataType: "json",
                     contentType: "application/json;charset=UTF-8"
@@ -118,7 +118,7 @@
                     });
 
             function detailView(boardId) {
-                location.href = "http://localhost:8080/zerogreen/community/read/" + boardId;
+                location.href = "http://localhost:8080/community/read/" + boardId;
             }
 
         </script>
