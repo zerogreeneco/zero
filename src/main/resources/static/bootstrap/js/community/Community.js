@@ -18,10 +18,10 @@ $(function () {
             }
         }).done(function (data) {
             if (data.count === 1) {
-                $(".like-img").attr("src", "/zerogreen/bootstrap/images/like/disLike.png")
+                $(".like-img").attr("src", "/bootstrap/images/like/disLike.png")
                 $(".test-count").text(data.totalCount);
             } else if (data.count === 0) {
-                $(".like-img").attr("src", "/zerogreen/bootstrap/images/like/like.png")
+                $(".like-img").attr("src", "/bootstrap/images/like/like.png")
                 $(".test-count").text(data.totalCount);
             }
         });
@@ -322,10 +322,10 @@ $(function () {
         })
             .done(function (data) {
                 if (data.count === 1) {
-                    likeBtn.closest(".like-count").find(".like-img").attr("src", "/zerogreen/bootstrap/images/like/disLike.png")
+                    likeBtn.closest(".like-count").find(".like-img").attr("src", "/bootstrap/images/like/disLike.png")
                     likeBtn.closest(".like-count").children(".test-count").text(data.totalCount);
                 } else if (data.count === 0) {
-                    likeBtn.closest(".like-count").find(".like-img").attr("src", "/zerogreen/bootstrap/images/like/like.png")
+                    likeBtn.closest(".like-count").find(".like-img").attr("src", "/bootstrap/images/like/like.png")
                     likeBtn.closest(".like-count").children(".test-count").text(data.totalCount);
                 }
             });
@@ -337,7 +337,7 @@ $(function () {
     });
 
     // 카테고리 태그 색상 변경
-    if (window.location.href == "http://localhost:8080/zerogreen/community") {
+    if (window.location.href == "http://localhost:8080/community") {
         $(".category-list li:first").css('background', '#16a085');
         $(".category-list a:first").css('color', '#fff');
     }

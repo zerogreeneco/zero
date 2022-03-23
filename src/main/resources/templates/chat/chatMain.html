@@ -2,7 +2,7 @@
 <th:block th:replace="~{basic/basicTemplate :: setContent(~{this::content})}" xmlns:th="http://www.w3.org/1999/xhtml">
     <th:block th:fragment="content">
 
-        <form class="form-signing" action="/zerogreen/chat/newChat" method="POST"
+        <form class="form-signing" action="/chat/newChat" method="POST"
               onsubmit="return nameChk();">
             <div class="form-group col-xs-10">
                 <input type="text" id="receiver" name="receiver" class="form-control"
@@ -48,7 +48,7 @@
         var nickname = /*[[${myId}]]*/
         /* ]]> */
         var stompClient = null;
-        var url = 'http://localhost:8080/zerogreen';
+        var url = 'http://localhost:8080';
         var socket = new SockJS(url + '/chat');
         connect();
 
@@ -87,7 +87,7 @@
             var flag = false;
             $.ajax({
                 type:'GET',
-                url: '/zerogreen/users/nameChk/' + $("#receiver").val(),
+                url: '/users/nameChk/' + $("#receiver").val(),
                 contentType: 'application/json; charset=utf-8',
                 async: false
             }).done(function(e){

@@ -28,7 +28,7 @@
             <div class="right-side">
                 <!-- 채팅 수정 삭제 -->
                 <div style="margin-bottom: 3px;">
-                    <form action="/zerogreen/chat/newChat" id="frm" method="POST" onsubmit="return nameChk();">
+                    <form action="/chat/newChat" id="frm" method="POST" onsubmit="return nameChk();">
                         <input type="hidden" th:value="*{username}" id="receiver" name="receiver" required>
                         <input type="hidden" th:value="${myId}" id="sender" name="sender" required>
                         <a onclick="document.getElementById('frm').submit();" class="noto-font update-btn" sec:authorize="isAuthenticated()"
