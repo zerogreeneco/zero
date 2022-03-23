@@ -81,7 +81,7 @@ $(function (event) {
                 .done(function (data) {
                     if (data.result === "success") {
                         alert("비밀번호가 변경되었습니다.\n다시 로그인해주십시오.");
-                        location.replace("/zerogreen/login");
+                        location.replace("/login");
                     } else if (data.result === "fail") {
                         alert("현재 비밀번호가 일치하지 않습니다.\n다시 확인해주십시오.");
                     }
@@ -103,7 +103,7 @@ $(function (event) {
         }).done(function (data) {
             if (data.result === "success") {
                 alert("꼭 다시 돌아와주세요..😥");
-                location.replace("/zerogreen");
+                location.replace("/");
             } else if (data.result === "fail") {
                 alert("비밀번호가 일치하지 않습니다.");
             }

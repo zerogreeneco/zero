@@ -11,7 +11,7 @@ $(document).ready(function () {
             error.css("color", "#dc3545")
         } else {
             $.ajax({
-                url: "/zerogreen/members/phoneNumber",
+                url: "/members/phoneNumber",
                 method: "post",
                 dataType: "json",
                 data: {
@@ -73,7 +73,7 @@ function pwdChange() {
         checkNewPassword.focus();
     } else {
         $.ajax({
-            url: "/zerogreen/members/account/pwdChange",
+            url: "/members/account/pwdChange",
             type: "patch",
             data: {
                 password: password.val(),
@@ -84,7 +84,7 @@ function pwdChange() {
             .done(function (data) {
                 if (data.result === "success") {
                     alert("비밀번호가 변경되었어요\n다시 로그인해 주세요");
-                    location.replace("/zerogreen/login");
+                    location.replace("/login");
                 } else if (data.result === "fail") {
                     re_error.html("");
                     check.html("");
@@ -113,7 +113,7 @@ function storeMemberDel() {
         error.css("margin-bottom", "0.5rem");
     } else{
         $.ajax({
-            url: "/zerogreen/members/account/deleteMember",
+            url: "/members/account/deleteMember",
             type: "delete",
             dataType: "json",
             data: {
@@ -121,7 +121,7 @@ function storeMemberDel() {
             }
         }).done(function (data) {
             if (data.result === "success") {
-                location.replace("/zerogreen");
+                location.replace("/");
             } else if (data.result === "fail") {
                 error.html("비밀번호가 일치하지 않아요");
                 error.css("color", "#dc3545");

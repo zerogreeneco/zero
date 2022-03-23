@@ -38,7 +38,7 @@ $(document).ready(function(e){
                 $(".like-cnt").html(Number(cnt.text())-1);
 
             } else if (data.memberCnt === 0) {
-                $(".liking").attr("src", "/zerogreen/bootstrap/images/like/like.png");
+                $(".liking").attr("src", "/bootstrap/images/like/like.png");
                 //$(".countLikes").text(data.totalCount);
                 $(".like-cnt").html(Number(cnt.text())+1);
             }

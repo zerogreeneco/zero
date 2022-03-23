@@ -105,7 +105,7 @@ function menuAdd() {
     }
 
     $.ajax({
-        url: "/zerogreen/stores/update/gradeTable",
+        url: "/stores/update/gradeTable",
         method: "post",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         data: {
@@ -138,7 +138,7 @@ function tableAdd() {
     }
 
     $.ajax({
-        url: "/zerogreen/stores/update/table",
+        url: "/stores/update/table",
         method: "post",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         data: {
@@ -159,7 +159,7 @@ function gradeDel(event) {
     let tableDel = $(event);
     let id = tableDel.parent().parent().find(".tableId").val();
     $.ajax({
-        url: "/zerogreen/stores/update/grade/delete",
+        url: "/stores/update/grade/delete",
         method: "delete",
         data: {
             id: id
@@ -175,7 +175,7 @@ function tableDel(event) {
     let tableDel = $(event);
     let id = tableDel.parent().parent().find(".tableId").val();
     $.ajax({
-        url: "/zerogreen/stores/update/table/delete",
+        url: "/stores/update/table/delete",
         method: "delete",
         data: {
             id: id
@@ -194,7 +194,7 @@ function imgDel(event) {
     let filePath = imgDel.parent().find(".filePath").val();
     let thumb = imgDel.parent().find(".thumb").val();
     $.ajax({
-        url: "/zerogreen/stores/update/img/delete",
+        url: "/stores/update/img/delete",
         method: "delete",
         dataType:"json",
         data: {

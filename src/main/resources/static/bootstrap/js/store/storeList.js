@@ -1,6 +1,6 @@
 $(document).ready(function() {
     let page = 1;
-    if (window.location.href == "http://localhost:8080/zerogreen/food/list") {
+    if (window.location.href == "http://localhost:8080/food/list") {
         $("label:first").css('background', '#16a085');
         $("label:first").css('color', '#fff');
     }
@@ -38,7 +38,7 @@ $(document).ready(function() {
         let searchType = getParameter("searchType");
         ++page;
         $.ajax({
-            url: "/zerogreen/shop/list",
+            url: "/shop/list",
             method: "post",
             data: {
                 page: page,
@@ -58,7 +58,7 @@ $(document).ready(function() {
         // let keyword = getParameter("keyword");
         ++page;
         $.ajax({
-            url: "/zerogreen/food/list",
+            url: "/food/list",
             method: "post",
             data: {
                 page: page,

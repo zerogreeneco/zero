@@ -458,7 +458,7 @@ function deleteImage(event) {
             (function(i) {
 
                 $.ajax({
-                    url: "/zerogreen/"+ id + "/imageDelete",
+                    url: "/"+ id + "/imageDelete",
                     type: "DELETE",
                     contentType:"application/json; charset=utf-8",
                     dataType: "json",
