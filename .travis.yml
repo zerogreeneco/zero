@@ -1,9 +1,9 @@
 language: java
 jdk:
-- openjdk11
+  - openjdk11
 branches:
   only:
-  - main
+    - main
 before_install:
   - chmod +x gradlew
 cache:
@@ -11,7 +11,7 @@ cache:
     - "$HOME/.m2/repository"
     - "$HOME/.gradle"
 script:
-- "./gradlew clean build"
+  - "./gradlew clean build"
 
 before_deploy:
   - zip -r zero *
@@ -27,7 +27,9 @@ deploy:
     acl: private
     local_dir: deploy
     wait-until-deployed: true
+    on:
+      branch: main
 notifications:
   email:
     recipients:
-    - dorothyyyj@naver.com
+      - dorothyyyj@naver.com
