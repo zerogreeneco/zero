@@ -4,12 +4,14 @@ jdk:
 branches:
   only:
   - main
+before_install:
+  - echo "권한추가"
+  - chmod +x gradlew
 cache:
   directories:
     - "$HOME/.m2/repository"
     - "$HOME/.gradle"
 script:
-- "chmod +x ./gradlew"
 - "./gradlew clean build"
 notifications:
   email:
