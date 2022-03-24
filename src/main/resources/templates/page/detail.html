@@ -142,7 +142,7 @@
                 <!-- 리뷰작성 textarea -->
                 <form id="replyForm" method="POST" th:object="${review}" enctype="multipart/form-data"
                 th:action="@{'/page/detail/addReview/'}+${getStore.sno}">
-                    <span class="js-storeId" style="display:none;">[[${getStore.sno}]]</span>
+                    <span class="js-storeId" id="sno" style="display:none;">[[${getStore.sno}]]</span>
 
                     <div class="insert-sec" >
                         <textarea th:field="*{reviewText}" name="reviewText" id="reviewText" class="reviewText"
@@ -193,7 +193,7 @@
                     </div>
                     <!-- end review image list -->
 
-                    <div th:each="mReview : ${memberReview}">
+                    <div th:each="mReview : ${memberReview}" class="div17">
                         <!-- 멤버리뷰 리스트 -->
                         <div class="reviewBox">
                             <span class="reviewProfile">
@@ -222,6 +222,7 @@
                                          th:if="${mImage.detailReview.id == mReview.rno}">
                                         <input class="imgPath" th:value="${mImage.filePath}">
                                         <input class="imgThumbPath" th:value="${mImage.thumbnailName}">
+                                        <input class="imgCreatedDate" th:value="${mImage.createdDate}">
                                         <input class="rnoRno" th:value="${mImage.detailReview.id}">
                                         <input class="imgId" th:value="${mImage.id}">
                                     </div>
