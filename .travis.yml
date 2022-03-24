@@ -4,8 +4,12 @@ jdk:
 branches:
   only:
   - main
+cache:
+  directories:
+    - "$HOME/.m2/repository"
+    - "$HOME/.gradle"
 script:
-- "chmod +x ./gradlew"
+#- "chmod +x ./gradlew"
 - "./gradlew clean build"
 notifications:
   email:
