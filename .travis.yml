@@ -5,6 +5,7 @@ branches:
   only:
   - main
 script:
+- "chmod +x ./gradlew"
 - "./gradlew clean build"
 notifications:
   email:
