@@ -107,7 +107,7 @@ public class TestDataInit {
             }
 
             for (int i = 0; i < ecoAddress.size(); i++) {
-                storeMemberService.saveV2(new StoreMember("ecoTest"+i, "01033334444", "1",
+                storeMemberService.saveV2(new StoreMember("ecottest"+i, "01033334444", "1",
                         UserRole.UN_STORE, "ECO_SHOP"+i, "REGNUM1111",StoreType.ECO_SHOP,
                         ecoAddress.get(i), "DA","0517778888","1111")
                         , new RegisterFile("origin3","store3", "path3"));
