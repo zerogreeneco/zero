@@ -3,7 +3,7 @@
     <th:block th:fragment="content">
         <link rel="stylesheet" th:href="@{/bootstrap/css/community/communityDetailView.css}"/>
         <link rel="stylesheet" th:href="@{/bootstrap/css/community/communityList.css}"/>
-        <script type="text/javascript" th:src="@{/bootstrap/js/community/community.js}"></script>
+        <script th:src="@{/bootstrap/js/community/community.js}"></script>
         <div th:object="${detailView}" class="cm-main-wrapper">
             <input type="hidden" th:field="*{id}">
             <input type="hidden" th:field="*{memberId}" id="userId">
@@ -141,7 +141,7 @@
             var nickname = /*[[${myId}]]*/
             /* ]]> */
             var stompClient = null;
-            var url = 'http://ec2-54-180-173-235.ap-northeast-2.compute.amazonaws.com/';
+            var url = 'http://ec2-54-180-173-235.ap-northeast-2.compute.amazonaws.com';
             var socket = new SockJS(url + '/chat');
             connect();
 
