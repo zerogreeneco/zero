@@ -12,7 +12,8 @@ public class SearchCondition {
         this.content = content;
         this.searchType = searchType;
     }
-    public SearchCondition(StoreSearchType searchType, String content){
+
+    public SearchCondition(StoreSearchType searchType, String content) {
         this.content = content;
         this.storeSearchType = searchType;
     }

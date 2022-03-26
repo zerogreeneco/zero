@@ -5,7 +5,7 @@ public enum StoreSearchType {
 
     private final String typeName;
 
-    StoreSearchType(String typeName){
+    StoreSearchType(String typeName) {
         this.typeName = typeName;
     }
 }
