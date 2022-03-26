@@ -129,6 +129,7 @@ public class MemberController {
         }
     }
 
+    // 회원 삭제
     @DeleteMapping("/account/deleteMember")
     @ResponseBody
     public ResponseEntity<Map<String, String>> deleteMember(@Validated @ModelAttribute("password") PasswordUpdateDto passwordUpdateDto,
@@ -149,7 +150,7 @@ public class MemberController {
             resultMap.put("result", "success");
             session.invalidate();
             return new ResponseEntity<>(resultMap, HttpStatus.OK);
-        } else if (!matches) {
+        } else {
             resultMap.put("result", "fail");
         }
         return new ResponseEntity<>(resultMap, HttpStatus.OK);

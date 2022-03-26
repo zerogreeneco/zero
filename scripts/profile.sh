@@ -13,7 +13,7 @@ function find_idle_profile()
   else
     CURRENT_PROFILE=$(curl -s http://localhost/profile)
   fi
-
+# Linux에서 변수를 사용할 때는 "" 필수
   if [ "${CURRENT_PROFILE}" == real1 ]
   then
     IDLE_PROFILE=real2
