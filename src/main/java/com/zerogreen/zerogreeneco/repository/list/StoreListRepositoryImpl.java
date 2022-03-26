@@ -140,28 +140,12 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                         storeMember.storeInfo.openTime,
                         storeMember.storeInfo.closeTime,
                         likes.id.count(),
-                        ExpressionUtils.as(
-                                JPAExpressions
-                                        .select(storeMenu.menuName)
-                                        .from(storeMenu, storeMenu)
-                                        .where(storeMenu.id.eq(
-                                                JPAExpressions
-                                                        .select(storeMenu.id.min())
-                                                        .from(storeMenu, storeMenu)
-                                                        .where(storeMenu.storeMember.id.eq(storeMember.id)))), "menuName"),
-
-                        ExpressionUtils.as(
-                                JPAExpressions
-                                        .select(storeImage.thumbnailName)
-                                        .from(storeImage, storeImage)
-                                        .where(storeImage.id.eq(
-                                                JPAExpressions
-                                                        .select(storeImage.id.min())
-                                                        .from(storeImage, storeImage)
-                                                        .where(storeImage.storeMember.id.eq(storeMember.id)))), "listThumbnail")))
+                        storeMenu.menuName.min(),
+                        storeImage.thumbnailName.min()))
                 .from(storeMember, storeMember)
                 .leftJoin(likes).on(likes.storeMember.id.eq(storeMember.id))
-                .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id));
+                .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id))
+                .leftJoin(storeImage).on(storeImage.storeMember.id.eq(storeMember.id));
     }
 
     private JPAQuery<StoreDto> foodProjections() {
@@ -173,24 +157,8 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                         storeMember.storeInfo.openTime,
                         storeMember.storeInfo.closeTime,
                         likes.id.count(),
-                        ExpressionUtils.as(
-                                JPAExpressions
-                                        .select(storeMenu.menuName)
-                                        .from(storeMenu, storeMenu)
-                                        .where(storeMenu.id.eq(
-                                                JPAExpressions
-                                                        .select(storeMenu.id.min())
-                                                        .from(storeMenu, storeMenu)
-                                                        .where(storeMenu.storeMember.id.eq(storeMember.id)))), "menuName"),
-                        ExpressionUtils.as(
-                                JPAExpressions
-                                        .select(storeImage.thumbnailName)
-                                        .from(storeImage, storeImage)
-                                        .where(storeImage.id.eq(
-                                                JPAExpressions
-                                                        .select(storeImage.id.min())
-                                                        .from(storeImage, storeImage)
-                                                        .where(storeImage.storeMember.id.eq(storeMember.id)))), "listThumbnail")))
+                        storeMenu.menuName.min(),
+                        storeImage.thumbnailName.min()))
                 .from(storeMember, storeMember)
                 .leftJoin(likes).on(likes.storeMember.id.eq(storeMember.id))
                 .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id));
