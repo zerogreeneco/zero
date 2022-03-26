@@ -42,6 +42,8 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                 shopProjections()
                         .where(storeMember._super.userRole.eq(STORE),
                                 storeMember.storeType.eq(StoreType.ECO_SHOP))
+                        .groupBy(storeMember.id)
+                        .orderBy(likes.id.count().desc().nullsLast())
                         .offset(pageable.getOffset())
                         .limit(pageable.getPageSize())
                         .fetch();
@@ -60,6 +62,8 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                         .where(storeMember._super.userRole.eq(STORE),
                                 storeMember.storeType.eq(StoreType.ECO_SHOP),
                                 isSearch(searchCondition.getStoreSearchType(), searchCondition.getContent()))
+                        .groupBy(storeMember.id)
+                        .orderBy(likes.id.count().desc().nullsLast())
                         .offset(pageable.getOffset())
                         .limit(pageable.getPageSize())
                         .fetch();
@@ -76,6 +80,8 @@ public class StoreListRepositoryImpl implements StoreListRepository {
         List<StoreDto> foodList = foodProjections()
                 .where(storeMember._super.userRole.eq(STORE),
                         storeMember.storeType.ne(StoreType.ECO_SHOP))
+                .groupBy(storeMember.id)
+                .orderBy(likes.id.count().desc().nullsLast())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -89,22 +95,21 @@ public class StoreListRepositoryImpl implements StoreListRepository {
 
     @Override
     public Slice<StoreDto> getFoodTypeList(Pageable pageable, StoreType storeType) {
-        List<StoreDto> foodTypeList = foodProjections()
+        List<StoreDto> foodList = foodProjections()
                 .where(storeMember._super.userRole.eq(STORE),
                         storeMember.storeType.ne(StoreType.ECO_SHOP),
                         storeMember.storeType.eq(storeType))
+                .groupBy(storeMember.id, storeMember.storeName)
+                .orderBy(likes.id.count().desc().nullsLast())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         List<StoreMember> countQuery = jpaQueryFactory
                 .selectFrom(storeMember)
-                .where(storeMember._super.userRole.eq(STORE),
-                        storeMember.storeType.ne(StoreType.ECO_SHOP),
-                        storeMember.storeType.eq(storeType))
                 .fetch();
 
-        return new PageImpl<>(foodTypeList, pageable, countQuery.size());
+        return new PageImpl<>(foodList, pageable, countQuery.size());
     }
 
     @Override
@@ -113,15 +118,14 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                 .where(storeMember._super.userRole.eq(STORE),
                         storeMember.storeType.ne(StoreType.ECO_SHOP),
                         isSearch(searchCondition.getStoreSearchType(), searchCondition.getContent()))
+                .groupBy(storeMember.id)
+                .orderBy(likes.id.count().desc().nullsLast())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         List<StoreMember> countQuery = jpaQueryFactory
                 .selectFrom(storeMember)
-                .where(storeMember._super.userRole.eq(STORE),
-                        storeMember.storeType.ne(StoreType.ECO_SHOP),
-                        isSearch(searchCondition.getStoreSearchType(), searchCondition.getContent()))
                 .fetch();
 
         return new PageImpl<>(foodList, pageable, countQuery.size());
@@ -157,9 +161,7 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                                                         .where(storeImage.storeMember.id.eq(storeMember.id)))), "listThumbnail")))
                 .from(storeMember, storeMember)
                 .leftJoin(likes).on(likes.storeMember.id.eq(storeMember.id))
-                .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id))
-                .groupBy(storeMember.id)
-                .orderBy(likes.id.count().desc().nullsLast());
+                .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id));
     }
 
     private JPAQuery<StoreDto> foodProjections() {
@@ -180,7 +182,6 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                                                         .select(storeMenu.id.min())
                                                         .from(storeMenu, storeMenu)
                                                         .where(storeMenu.storeMember.id.eq(storeMember.id)))), "menuName"),
-
                         ExpressionUtils.as(
                                 JPAExpressions
                                         .select(storeImage.thumbnailName)
@@ -192,9 +193,7 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                                                         .where(storeImage.storeMember.id.eq(storeMember.id)))), "listThumbnail")))
                 .from(storeMember, storeMember)
                 .leftJoin(likes).on(likes.storeMember.id.eq(storeMember.id))
-                .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id))
-                .groupBy(storeMember.id)
-                .orderBy(likes.id.count().desc().nullsLast());
+                .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id));
     }
 
     /*

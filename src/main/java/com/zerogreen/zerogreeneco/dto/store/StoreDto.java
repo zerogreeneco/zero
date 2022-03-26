@@ -85,8 +85,8 @@ public class StoreDto {
         this.storePhoneNumber = storePhoneNumber;
         this.openTime = openTime;
         this.closeTime = closeTime;
-        this.menuName = menuName;
         this.like = like;
+        this.menuName = menuName;
         this.thumbnailName = thumbnailName;
     }
 
