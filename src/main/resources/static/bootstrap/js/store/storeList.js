@@ -1,6 +1,6 @@
 $(document).ready(function() {
     let page = 1;
-    if (window.location.href == "http://localhost:8080/food/list") {
+    if (window.location.href == "http://www.zerogreen.ga/food/list") {
         $("label:first").css('background', '#16a085');
         $("label:first").css('color', '#fff');
     }
