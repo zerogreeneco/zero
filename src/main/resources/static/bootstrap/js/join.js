@@ -16,7 +16,7 @@ $(function () {
             alert("이메일 양식이 아닙니다.");
         } else {
             $.ajax({
-                url: "/members/checkMail",
+                url: "/checkMail",
                 type: "post",
                 dataType: "json",
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -73,7 +73,7 @@ $(function () {
             alert("닉네임을 입력해주세요.");
         } else {
             $.ajax({
-                url: "/members/nickname",
+                url: "/nickname",
                 method: "post",
                 dataType: "json",
                 data: {
@@ -112,7 +112,7 @@ $(function () {
             alert("연락처를 입력해주세요.");
         } else {
             $.ajax({
-                url: "/members/phoneNumber",
+                url: "/phoneNumber",
                 method: "post",
                 dataType: "json",
                 data: {
@@ -141,7 +141,7 @@ $(function () {
             alert("사업자 등록 번호를 입력해주세요.");
         } else {
             $.ajax({
-                url: "/members/storeRegNum",
+                url: "/storeRegNum",
                 method: "post",
                 dataType: "json",
                 data: {

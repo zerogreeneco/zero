@@ -34,7 +34,6 @@ import java.util.Map;
 
 @Controller
 @Slf4j
-@RequestMapping("/members")
 @RequiredArgsConstructor
 public class JoinController {
 

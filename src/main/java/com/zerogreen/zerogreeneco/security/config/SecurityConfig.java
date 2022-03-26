@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/users/**").authenticated()
+                .antMatchers("/members/**").authenticated()
                 .antMatchers("/storeUsers/**").access("hasRole('ROLE_STORE') or hasRole('ROLE_ADMIN')")
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/h2-console/**").permitAll()
