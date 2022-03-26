@@ -21,6 +21,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.zerogreen.zerogreeneco.entity.detail.QLikes.likes;
+import static com.zerogreen.zerogreeneco.entity.file.QStoreImageFile.storeImageFile;
 import static com.zerogreen.zerogreeneco.entity.userentity.QStoreMember.storeMember;
 import static com.zerogreen.zerogreeneco.entity.userentity.QStoreMenu.storeMenu;
 import static com.zerogreen.zerogreeneco.entity.userentity.UserRole.STORE;
@@ -33,8 +34,6 @@ public class StoreListRepositoryImpl implements StoreListRepository {
     public StoreListRepositoryImpl(EntityManager manager) {
         this.jpaQueryFactory = new JPAQueryFactory(manager);
     }
-
-    QStoreImageFile storeImage = new QStoreImageFile("storeImage");
 
     @Override
     public Slice<StoreDto> getShopList(Pageable pageable) {
@@ -141,11 +140,11 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                         storeMember.storeInfo.closeTime,
                         likes.id.count(),
                         storeMenu.menuName.min(),
-                        storeImage.thumbnailName.min()))
+                        storeImageFile.thumbnailName.min()))
                 .from(storeMember, storeMember)
                 .leftJoin(likes).on(likes.storeMember.id.eq(storeMember.id))
                 .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id))
-                .leftJoin(storeImage).on(storeImage.storeMember.id.eq(storeMember.id));
+                .leftJoin(storeImageFile).on(storeImageFile.storeMember.id.eq(storeMember.id));
     }
 
     private JPAQuery<StoreDto> foodProjections() {
@@ -158,10 +157,11 @@ public class StoreListRepositoryImpl implements StoreListRepository {
                         storeMember.storeInfo.closeTime,
                         likes.id.count(),
                         storeMenu.menuName.min(),
-                        storeImage.thumbnailName.min()))
+                        storeImageFile.thumbnailName.min()))
                 .from(storeMember, storeMember)
                 .leftJoin(likes).on(likes.storeMember.id.eq(storeMember.id))
-                .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id));
+                .leftJoin(storeMenu).on(storeMenu.storeMember.id.eq(storeMember.id))
+                .leftJoin(storeImageFile).on(storeImageFile.storeMember.id.eq(storeMember.id));
     }
 
     /*
