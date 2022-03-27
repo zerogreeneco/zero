@@ -34,16 +34,16 @@ $(document).ready(function() {
 
     // 더보기
     $("#nextShop").click(function () {
-        let keyword = getParameter("keyword");
         let searchType = getParameter("searchType");
+        let keyword = getParameter("keyword");
         ++page;
         $.ajax({
             url: "/shop/list",
             method: "post",
             data: {
                 page: page,
-                keyword: keyword,
-                searchType: searchType
+                searchType: searchType,
+                keyword: keyword
             }
         })
             .done(function (fragment) {
@@ -54,17 +54,17 @@ $(document).ready(function() {
     // 더보기
     $("#nextFood").click(function () {
         let storeType = getParameter("type");
-        // let searchType = getParameter("searchType");
-        // let keyword = getParameter("keyword");
+        let searchType = getParameter("searchType");
+        let keyword = getParameter("keyword");
         ++page;
         $.ajax({
             url: "/food/list",
             method: "post",
             data: {
                 page: page,
-                type: storeType
-                // searchType: searchType
-                // keyword: keyword,
+                type: storeType,
+                searchType: searchType,
+                keyword: keyword
             }
         })
             .done(function (fragment) {
