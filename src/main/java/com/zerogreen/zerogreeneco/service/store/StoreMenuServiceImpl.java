@@ -22,7 +22,6 @@ public class StoreMenuServiceImpl implements StoreMenuService {
     private final StoreMenuRepository storeMenuRepository;
     private final StoreMemberRepository storeMemberRepository;
 
-    @Transactional
     @Override
     public void updateStoreMenu(Long id, String menuName, String menuPrice, VegetarianGrade vegetarianGrade) {
         StoreMember storeMember = storeMemberRepository.findById(id).orElseThrow();
@@ -39,13 +38,11 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 
     @Override
     public List<StoreMenuDto> getStoreMenu(Long id) {
-        List<StoreMenu> tableList = storeMenuRepository.getStoreMenu(id);
-        return tableList.stream().map(StoreMenuDto::new).collect(Collectors.toList());
+        return storeMenuRepository.getStoreMenu(id).stream().map(StoreMenuDto::new).collect(Collectors.toList());
     }
 
     @Override
     public void deleteMenu(Long id) {
-        log.info("KGH"+id);
         storeMenuRepository.deleteById(id);
     }
 

@@ -50,7 +50,6 @@ function pwdChange() {
     let error = $(".pwd-error");
     let re_error = $(".rePwd-error");
     let check = $(".check-error");
-    console.log(password.val());
     if (password.val() === "" || newPassword.val() === "" || checkNewPassword.val() === "") {
         check.html("비밀번호를 입력해 주세요");
         check.css("color", "#dc3545");
