@@ -53,7 +53,8 @@ public class StoreDto {
     private StoreMember storeMember;
 
 
-    public StoreDto(){}
+    public StoreDto() {
+    }
 
     //image list
     public StoreDto(StoreImageFile storeImageFile) {
@@ -78,20 +79,20 @@ public class StoreDto {
 
     //List DTO
     public StoreDto(Long id, String storeName, String storePhoneNumber,
-                    String openTime, String closeTime, Long like, String menuName,  String thumbnailName) {
+                    String openTime, String closeTime, Long like, String menuName, String thumbnailName) {
         this.id = id;
         this.storeName = storeName;
         this.storePhoneNumber = storePhoneNumber;
         this.openTime = openTime;
         this.closeTime = closeTime;
-        this.menuName = menuName;
         this.like = like;
+        this.menuName = menuName;
         this.thumbnailName = thumbnailName;
     }
 
     //StoreUpdate
     public StoreDto(String storeName, StoreType storeType, String storePhoneNumber, String openTime, String closeTime,
-                    String storeDescription, String socialAddress1, String socialAddress2){
+                    String storeDescription, String socialAddress1, String socialAddress2) {
         this.storeName = storeName;
         this.storeType = storeType;
         this.storePhoneNumber = storePhoneNumber;

@@ -14,8 +14,9 @@
 
                     <form method="get" th:action="@{/food/list}" id="foodSearchForm">
                         <select class="dropdown" name="searchType">
-                            <option value="store_name">식당 이름</option>
-<!--                            <option value="item">메뉴</option>-->
+                            <option th:each="searchType: ${T(com.zerogreen.zerogreeneco.dto.search.StoreSearchType).values()}"
+                                    th:value="${searchType}" th:text="${searchType.storeSearchType}"
+                                    th:selected="${searchType==selectedType}"/>
                         </select>
                         <div class="search-bar">
                             <input id="search-input" name="keyword" th:value="${keyword}">
