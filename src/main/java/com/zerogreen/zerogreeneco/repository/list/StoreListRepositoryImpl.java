@@ -69,8 +69,7 @@ public class StoreListRepositoryImpl implements StoreListRepository {
         List<StoreMember> countQuery = jpaQueryFactory
                 .selectFrom(storeMember)
                 .where(storeMember._super.userRole.eq(STORE),
-                        storeMember.storeType.eq(StoreType.ECO_SHOP),
-                        isSearch(searchCondition.getStoreSearchType(), searchCondition.getContent()))
+                        storeMember.storeType.eq(StoreType.ECO_SHOP))
                 .fetch();
 
         return new PageImpl<>(shopList, pageable, countQuery.size());
@@ -132,8 +131,7 @@ public class StoreListRepositoryImpl implements StoreListRepository {
         List<StoreMember> countQuery = jpaQueryFactory
                 .selectFrom(storeMember)
                 .where(storeMember._super.userRole.eq(STORE),
-                        storeMember.storeType.ne(StoreType.ECO_SHOP),
-                        isSearch(searchCondition.getStoreSearchType(), searchCondition.getContent()))
+                        storeMember.storeType.ne(StoreType.ECO_SHOP))
                 .fetch();
 
         return new PageImpl<>(foodList, pageable, countQuery.size());
