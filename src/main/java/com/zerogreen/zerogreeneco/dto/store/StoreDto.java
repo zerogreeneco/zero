@@ -4,6 +4,7 @@ import com.sun.istack.Nullable;
 import com.zerogreen.zerogreeneco.entity.file.StoreImageFile;
 import com.zerogreen.zerogreeneco.entity.userentity.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class StoreDto {
 
     private Long id;
@@ -51,10 +53,6 @@ public class StoreDto {
     private String filePath;
     private String thumbPath;
     private StoreMember storeMember;
-
-
-    public StoreDto() {
-    }
 
     //image list
     public StoreDto(StoreImageFile storeImageFile) {

@@ -111,9 +111,8 @@ public class MemberController {
      * */
     @PatchMapping("/account/pwdChange")
     @ResponseBody
-    public ResponseEntity<Map<String, String>> passwordChange(@AuthenticationPrincipal PrincipalDetails principalDetails,
-                                                              @Validated @ModelAttribute("password") PasswordUpdateDto passwordDto, BindingResult bindingResult,
-                                                              HttpSession session) {
+    public ResponseEntity<Map<String, String>> passwordChange(@Validated @ModelAttribute("password") PasswordUpdateDto passwordDto, BindingResult bindingResult,
+                                                              @AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session) {
         Map<String, String> resultMap = new HashMap<>();
 
         if (passwordEncoder.matches(passwordDto.getPassword(), principalDetails.getPassword())) {

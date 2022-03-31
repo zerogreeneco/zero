@@ -4,6 +4,7 @@ import com.zerogreen.zerogreeneco.entity.userentity.StoreMember;
 import com.zerogreen.zerogreeneco.entity.userentity.StoreType;
 import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Slf4j
+@NoArgsConstructor
 public class StoreJoinDto {
     @NotBlank
     @Email
@@ -47,9 +49,6 @@ public class StoreJoinDto {
     private StoreType storeType;
 
     private MultipartFile attachFile;
-
-    public StoreJoinDto() {
-    }
 
     public StoreMember toStoreMember(StoreJoinDto storeDto) {
 
