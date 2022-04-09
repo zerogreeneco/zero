@@ -57,6 +57,7 @@
                                     <img class="liking like" th:attr="src = @{/bootstrap/images/like/like.png}">
                                 </div>
                             </div>
+
                             <!-- 비회원 좋아요 -->
                             <div sec:authorize="isAnonymous()">
                                 <img th:attr="src = @{/bootstrap/images/like/disLike.png}" class="like-img"/>
