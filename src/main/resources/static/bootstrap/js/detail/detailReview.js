@@ -5,6 +5,7 @@ $(document).ready(function(e){
     let count = 0;
 
     //** 페이징 작업중 **
+/*
     function paging(totalData, dataPerPage, pageCount, currentPage) {
         console.log("currentPage : " + currentPage);
 
@@ -67,6 +68,7 @@ $(document).ready(function(e){
         displayData(selectedPage, dataPerPage);
         });
     }
+*/
 
 /*        여기까지               */
 
@@ -83,18 +85,6 @@ $(document).ready(function(e){
    });
    $('.div14').change();
 
-/*
-    function divChange(event) {
-       let img = $(event).parent().find('.div12').find('.rv-img').val();
-       console.log(">>>>>>>>> "+img);
-       let div13 = $(event).parent('.div13');
-
-        if (img != null) {
-            $(event).css('marginLeft','130px');
-            div13.css('min-height','8em');
-        }
-    }
-*/
 
     //show 대댓글 입력박스
     $(".srv-toAdd").on("click", function(){
@@ -131,6 +121,19 @@ $(document).ready(function(e){
             })
             //btn.attr('style',"display:none;");
     }); //end save comment
+
+
+    //리뷰 유효성 검사 ** 작업중 **
+    $("#rv-btn").on("click", function () {
+        let review = $("#reviewText");
+        let message = $(".review-error");
+        if (review.val() === "") {
+            message.text("리뷰를 입력해주세요");
+            message.css("color", "red");
+        } else {
+            $("#replyForm").submit();
+        }
+    });
 
 
     //edit member reviews
@@ -408,23 +411,20 @@ $(document).ready(function(e){
 */
 
 
-    //리뷰 유효성 검사 ** 작업중 **
-/*
-    $("#rv-btn").on("click", function () {
-    console.log("btn ");
-        let review = $("#reviewText");
-        let message = $(".errorMessage");
-        if (review.val() === "") {
-            message.text("내용을 입력해주세요");
-        } else {
-            $("#replyForm").submit();
-        }
-    });
-*/
-
-
 }); //end script
 
+/*
+    function divChange(event) {
+       let img = $(event).parent().find('.div12').find('.rv-img').val();
+       console.log(">>>>>>>>> "+img);
+       let div13 = $(event).parent('.div13');
+
+        if (img != null) {
+            $(event).css('marginLeft','130px');
+            div13.css('min-height','8em');
+        }
+    }
+*/
 
 
 //업로드 가능한 파일크기, 파일

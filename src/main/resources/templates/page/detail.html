@@ -136,37 +136,37 @@
             <div class="rv" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_AUTH_USER')">
                 <div class="div16 inline">
 
-                <!-- preview -->
-                <div id="preview">
-                </div>
-
-                <!-- 리뷰작성 textarea -->
-                <form id="replyForm" method="POST" th:object="${review}" enctype="multipart/form-data"
-                th:action="@{'/page/detail/addReview/'}+${getStore.sno}">
-                    <span class="js-storeId" id="sno" style="display:none;">[[${getStore.sno}]]</span>
-
-                    <div class="insert-sec" >
-                        <textarea th:field="*{reviewText}" name="reviewText" id="reviewText" class="reviewText"
-                                  onkeyup="limitTextInput(this)" placeholder="리뷰를 남겨보세요!"></textarea>
-                        <div class="text-count-div">
-                            <span>띄어쓰기 포함 최대 500자까지 입력이 가능합니다. </span>
-                            <span class="text-count">0 / 500</span>
-                        </div>
-                        <div th:error="*{reviewText}">
-                        </div>
-                        <div class="errorMessage"></div>
+                    <!-- preview -->
+                    <div id="preview">
                     </div>
 
-                    <div class="button-sec">
-                        <label class="img-input rvrv-btn" for="img-input">사진선택</label><br>
-                        <input class="img-input" id="img-input" th:field="*{imageFiles}" name="reviewImages" type="file"
-                               accept="image/jpg,image/png,image/jpeg"
-                               multiple="multiple" style="display:none;"/>
-                        <label class="rvrv-btn" for="rv-btn">리뷰등록</label>
-                        <button type="submit" id="rv-btn" style="display:none;">리뷰등록</button>
-                        <!--                    <span typeof="button" class="rvrv-btn inline" id="rv-btn">리뷰등록</span>-->
-                    </div>
-                </form>
+                    <!-- 리뷰작성 textarea -->
+                    <form id="replyForm" method="POST" th:object="${review}" enctype="multipart/form-data"
+                    th:action="@{'/page/detail/addReview/'}+${getStore.sno}">
+                        <span class="js-storeId" id="sno" style="display:none;">[[${getStore.sno}]]</span>
+
+                        <div class="insert-sec" >
+                            <textarea th:field="*{reviewText}" name="reviewText" id="reviewText" class="reviewText"
+                                      onkeyup="limitTextInput(this)" placeholder="리뷰를 남겨보세요!"></textarea>
+                            <div class="text-count-div">
+                                <span>띄어쓰기 포함 최대 500자까지 입력이 가능합니다. </span>
+                                <span class="text-count">0 / 500</span>
+                            </div>
+                            <div th:error="*{reviewText}">
+                            </div>
+                            <div class="review-error"></div>
+                        </div>
+
+                        <div class="button-sec">
+                            <label class="img-input rvrv-btn" for="img-input">사진선택</label><br>
+                            <input class="img-input" id="img-input" th:field="*{imageFiles}" name="reviewImages" type="file"
+                                   accept="image/jpg,image/png,image/jpeg"
+                                   multiple="multiple" style="display:none;"/>
+                            <label class="rvrv-btn" for="rv-btn">리뷰등록</label>
+                            <button type="button" id="rv-btn" style="display:none;">리뷰등록</button>
+                            <!--                    <span typeof="button" class="rvrv-btn inline" id="rv-btn">리뷰등록</span>-->
+                        </div>
+                    </form>
                 </div>
             </div>
 
