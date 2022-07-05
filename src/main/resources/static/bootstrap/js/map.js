@@ -141,21 +141,6 @@ $(function(){
                     });
                 marker.setMap(map);
                 }
-            var image;
-            if (type == "ECO_SHOP") {
-                image = new kakao.maps.MarkerImage("/bootstrap/images/map/yellowpin.png", imageSize, imageOption);
-//                image = "/bootstrap/images/map/yellowpin.png";
-            }else if (type == "VEGAN_FOOD"){
-                image = new kakao.maps.MarkerImage("/bootstrap/images/map/deeppin.png", imageSize, imageOption);
-//                image = "/bootstrap/images/map/deeppin.png";
-            }else if (type == "GENERAL_FOOD"){
-               image = new kakao.maps.MarkerImage("/bootstrap/images/map/greenpin.png", imageSize, imageOption);
-//               image = "/bootstrap/images/map/greenpin.png";
-             }
-            // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-//            var markerImage = new kakao.maps.MarkerImage(image, imageSize, imageOption); // 마커가 표시될 위치입니다
-            // 주소로 좌표를 검색합니다
-
             });
     }
 });
