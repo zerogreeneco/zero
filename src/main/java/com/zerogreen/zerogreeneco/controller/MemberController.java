@@ -84,7 +84,7 @@ public class MemberController {
             String nickname = params.get("nickname").toString();
             String phoneNumber = params.get("phoneNumber").toString();
 
-            if (nickname.equals("") || phoneNumber.equals("")) {
+            if ("".equals(nickname) || "".equals(phoneNumber)) {
                 resultMap.put("result", "fail");
                 return new ResponseEntity<>(resultMap, HttpStatus.OK);
             }

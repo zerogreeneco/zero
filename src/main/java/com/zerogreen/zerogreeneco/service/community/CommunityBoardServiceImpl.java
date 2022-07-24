@@ -23,6 +23,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -69,7 +70,7 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
         Cookie viewCookie = null;
         Cookie[] cookies = request.getCookies();
 
-        if (cookies != null) {
+        if (Objects.nonNull(cookies)) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals(boardId + "_community")) {
                     viewCookie = cookie;
@@ -79,7 +80,7 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
             log.info("COOKIE IS NOT EXIST!");
         }
 
-        if (viewCookie == null) {
+        if (Objects.nonNull(viewCookie)) {
             Cookie newCookie = new Cookie(boardId + "_community", "boardView");
             response.addCookie(newCookie);
             boardRepository.addViewCount(boardId);

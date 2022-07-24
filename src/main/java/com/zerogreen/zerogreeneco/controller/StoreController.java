@@ -194,7 +194,7 @@ public class StoreController {
     @ResponseBody
     public ResponseEntity<Map<String, String>> imgDelete(HttpServletRequest request) {
 
-        HashMap<String, String> resultMap = new HashMap<>();
+        Map<String, String> resultMap = new HashMap<>();
         Long id = Long.valueOf(request.getParameter("id"));
         String filePath = request.getParameter("filePath");
         String thumb = request.getParameter("thumb");

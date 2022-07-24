@@ -36,16 +36,8 @@ public class CommunityReplyDto {
 
     // 댓글
     public CommunityReplyDto(BoardReply boardReply) {
-
         // 멤버 타입에 따라서 nickname 분기
-        if (boardReply.getReplier() instanceof Member) {
-            this.nickname = ((Member) boardReply.getReplier()).getNickname();
-            this.vegetarianGrade = ((Member) boardReply.getReplier()).getVegetarianGrade();
-        } else if (boardReply.getReplier() instanceof StoreMember) {
-            this.nickname = ((StoreMember) boardReply.getReplier()).getStoreName();
-        } else if (boardReply.getReplier().getUserRole().equals(UserRole.ADMIN)) {
-            this.nickname = boardReply.getReplier().getUsername();
-        }
+        setNicknameByMember(boardReply);
 
         this.replyId = boardReply.getId();
         this.boardId = boardReply.getBoard().getId();
@@ -54,5 +46,16 @@ public class CommunityReplyDto {
         this.username = boardReply.getReplier().getUsername();
         this.createdTime = boardReply.getModifiedDate();
         this.depth = boardReply.getDepth();
+    }
+
+    private void setNicknameByMember(BoardReply boardReply) {
+        if (boardReply.getReplier() instanceof Member) {
+            this.nickname = ((Member) boardReply.getReplier()).getNickname();
+            this.vegetarianGrade = ((Member) boardReply.getReplier()).getVegetarianGrade();
+        } else if (boardReply.getReplier() instanceof StoreMember) {
+            this.nickname = ((StoreMember) boardReply.getReplier()).getStoreName();
+        } else if (boardReply.getReplier().getUserRole().equals(UserRole.ADMIN)) {
+            this.nickname = boardReply.getReplier().getUsername();
+        }
     }
 }

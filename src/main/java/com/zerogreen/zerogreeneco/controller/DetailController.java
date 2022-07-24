@@ -33,10 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -67,7 +64,7 @@ public class DetailController {
         log.info("<<<<< " + storeDto.getLikesCount());
         log.info("<<<<< " + storeDto.getReviewCount());
 
-        if (principalDetails == null) {
+        if (Objects.nonNull(principalDetails) ) {
             model.addAttribute("getStore",storeDto);
         } else {
             model.addAttribute("getStore",storeDto);

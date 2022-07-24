@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @Slf4j
@@ -31,7 +32,7 @@ public class LoginController {
         String referer = request.getHeader("Referer");
         request.getSession().setAttribute("redirectURI", referer);
 
-        if (error != null) {
+        if (Objects.nonNull(error)) {
             model.addAttribute("error", "아이디 비번 체크");
         }
 

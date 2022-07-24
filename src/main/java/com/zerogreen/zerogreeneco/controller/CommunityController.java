@@ -39,6 +39,7 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @Slf4j
@@ -95,7 +96,6 @@ public class CommunityController {
 
     @PostMapping("/write")
     public String write(@Validated @ModelAttribute("writeForm") CommunityRequestDto dto,
-                        BindingResult bindingResult,
                         @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
 
         Long boardId = boardService.boardRegister(dto, (Member) principalDetails.getBasicUser(),
@@ -119,8 +119,10 @@ public class CommunityController {
     @PostMapping("/{boardId}/modify")
     public String modifyBoard(@PathVariable("boardId") Long boardId,
                               @ModelAttribute("writeForm") CommunityRequestDto requestDto) throws IOException {
+
         boardService.boardModify(boardId, requestDto.getCategory(), requestDto.getText());
         List<BoardImage> storeImages = fileService.boardImageFiles(requestDto.getImageFiles());
+
         for (BoardImage storeImage : storeImages) {
             boardImageService.modifyImage(boardId, storeImage.getStoreFileName(),
                     storeImage.getUploadFileName(), storeImage.getFilePath());
@@ -153,7 +155,7 @@ public class CommunityController {
                              HttpSession session) {
         log.info("게시글 상세보기>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
-        if (principalDetails != null) {
+        if (Objects.nonNull(principalDetails) ) {
             model.addAttribute("likeCount", boardService.countLike(boardId, principalDetails.getBasicUser().getId()));
             session.setAttribute("loginUser", principalDetails.getBasicUser().getUsername());
             model.addAttribute("myId",principalDetails.getUsername());
@@ -220,24 +222,6 @@ public class CommunityController {
     }
 
     /*
-     * 댓글
-     * */
-//    @PostMapping("/{boardId}/reply")
-//    public String replySend(@PathVariable("boardId") Long boardId, Model model,
-//                            @ModelAttribute("reply") CommunityReplyDto replyDto,
-//                            @AuthenticationPrincipal PrincipalDetails principalDetails) {
-//
-//        replyService.replySave(replyDto.getText(), boardId, principalDetails.getBasicUser());
-//        List<CommunityReplyDto> replyByBoardId = replyService.findReplyByBoardId(boardId);
-//        for (CommunityReplyDto communityReplyDto : replyByBoardId) {
-//            System.out.println("REPLY communityReplyDto = " + communityReplyDto.getNickname());
-//        }
-//        model.addAttribute("replyList", replyByBoardId);
-//
-//        return "community/communityDetailView :: #review-table";
-//    }
-
-    /*
     * 댓글
     * */
     @PostMapping(value = "/{boardId}/reply", produces = "application/json; charset=utf-8")
@@ -284,26 +268,6 @@ public class CommunityController {
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
-    /*
-     * 대댓글
-     * */
-//    @PostMapping("/{boardId}/{replyId}/nestedReply")
-//    public String nestedReplySend(@PathVariable("boardId") Long boardId, @PathVariable("replyId") Long replyId,
-//                                  @ModelAttribute("nestedReplyForm") CommunityReplyDto replyDto,
-//                                  Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, HttpServletRequest request, HttpServletResponse response) {
-//
-//        String text = request.getParameter("text");
-//        replyService.nestedReplySave(text, boardId, principalDetails.getBasicUser(), replyId);
-//
-//        List<CommunityReplyDto> replyByBoardId = replyService.findReplyByBoardId(boardId);
-//        for (CommunityReplyDto communityReplyDto : replyByBoardId) {
-//            System.out.println("NEST communityReplyDto = " + communityReplyDto.getNickname());
-//        }
-//        model.addAttribute("replyList", replyByBoardId);
-//
-//        return "community/communityDetailView :: #review-table";
-//    }
-
     // 대댓글
     @PostMapping(value = "/{boardId}/{replyId}/nestedReply", produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -327,15 +291,16 @@ public class CommunityController {
     }
 
     // Paging List
-    private void communityPagingList(RequestPageSortDto requestPageDto, Model model, SearchType searchType, String keyword, Category category) {
+    private void communityPagingList(RequestPageSortDto requestPageDto, Model model,
+                                     SearchType searchType, String keyword, Category category) {
 
         Pageable pageable = requestPageDto.getPageableSort(Sort.by("createdDate").descending());
 
         model.addAttribute("searchType", searchType);
         model.addAttribute("keyword", keyword);
 
-        if (category == null) {
-            if (searchType == null) {
+        if (Objects.nonNull(category)) {
+            if (Objects.nonNull(searchType)) {
                 model.addAttribute("communityList", boardService.findAllCommunityBoard(pageable));
             } else {
                 model.addAttribute("communityList", boardService.findAllCommunityBoard(pageable, new SearchCondition(keyword, searchType)));

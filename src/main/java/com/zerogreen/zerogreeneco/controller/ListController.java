@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Objects;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -70,7 +72,7 @@ public class ListController {
         model.addAttribute("keyword", keyword);
         Pageable pageable = requestPageDto.getPageableSort();
 
-        if (searchType == null) {
+        if (Objects.isNull(searchType)) {
             model.addAttribute("list", storeMemberService.getShopList(pageable));
         } else {
             model.addAttribute("list", storeMemberService.getShopSearchList(pageable, new SearchCondition(searchType, keyword)));
@@ -83,8 +85,8 @@ public class ListController {
         model.addAttribute("keyword", keyword);
         Pageable pageable = requestPageDto.getPageableSort();
 
-        if (storeType == null) {
-            if (searchType == null) {
+        if (Objects.isNull(storeType)) {
+            if (Objects.isNull(searchType)) {
                 model.addAttribute("list", storeMemberService.getFoodList(pageable));
             } else {
                 model.addAttribute("list", storeMemberService.getFoodSearchList(pageable, new SearchCondition(searchType, keyword)));

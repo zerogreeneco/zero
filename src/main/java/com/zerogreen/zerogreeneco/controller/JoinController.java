@@ -99,9 +99,9 @@ public class JoinController {
      * */
     @PostMapping("/checkMail")
     @ResponseBody
-    public HashMap<String, String> sendMail(String mail) {
+    public Map<String, String> sendMail(String mail) {
 
-        HashMap<String, String> keyMap = new HashMap<>();
+        Map<String, String> keyMap = new HashMap<>();
 
         long count = basicUserService.countByUsername(mail);
 
@@ -185,7 +185,7 @@ public class JoinController {
     @PostMapping("/nickname")
     @ResponseBody
     public ResponseEntity<Map<String, Integer>> nicknameDuplicateCheck(String nickname) {
-        HashMap<String, Integer> resultMap = new HashMap<>();
+        Map<String, Integer> resultMap = new HashMap<>();
 
         Integer count = memberService.countByNickname(nickname);
 
@@ -202,7 +202,7 @@ public class JoinController {
     @PostMapping("/phoneNumber")
     @ResponseBody
     public ResponseEntity<Map<String, Integer>> phoneNumberDuplicateCheck(String phoneNumber) {
-        HashMap<String, Integer> resultMap = new HashMap<>();
+        Map<String, Integer> resultMap = new HashMap<>();
 
         Integer count = basicUserService.countByPhoneNumber(phoneNumber);
 
@@ -216,7 +216,7 @@ public class JoinController {
     @PostMapping("/storeRegNum")
     @ResponseBody
     public ResponseEntity<Map<String, Integer>> storeRegNumDuplicateCheck(String storeRegNum) {
-        HashMap<String, Integer> resultMap = new HashMap<>();
+        Map<String, Integer> resultMap = new HashMap<>();
 
         Integer count = storeMemberService.countByStoreRegNum(storeRegNum);
 

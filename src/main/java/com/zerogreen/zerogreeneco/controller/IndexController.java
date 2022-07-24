@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @Slf4j
@@ -35,10 +36,10 @@ public class IndexController {
                                 @AuthenticationPrincipal PrincipalDetails principalDetails, Authentication authentication) {
 
         // 로그인시, session에 담길 데이터
-        if (principalDetails != null) {
+        if (Objects.nonNull(principalDetails) ) {
             session.setAttribute("memberId", principalDetails.getBasicUser().getId());
 
-            if (principalDetails.getBasicUser().getUserRole().equals(UserRole.USER)) {
+            if (UserRole.USER.equals(principalDetails.getBasicUser().getUserRole())) {
                 session.setAttribute("veganGrade", principalDetails.getVegetarianGrade());
             }
 

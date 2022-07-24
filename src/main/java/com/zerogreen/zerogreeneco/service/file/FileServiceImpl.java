@@ -107,7 +107,7 @@ public class FileServiceImpl implements FileService {
     public RegisterFile saveFile(MultipartFile multipartFile) throws IOException {
 
         if (multipartFile.isEmpty()) {
-            return null;
+            throw new IOException("업로드된 이미지가 없습니다. 다시 확인해주세요.");
         }
         // 사용자가 저장한 파일 이름
         String originalFilename = multipartFile.getOriginalFilename();
@@ -125,7 +125,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public StoreImageFile saveImageFile(MultipartFile multipartFile, String storeName) throws IOException {
         if (multipartFile.isEmpty()) {
-            return null;
+            throw new IOException("업로드된 이미지가 없습니다. 다시 확인해주세요.");
         }
         // 사용자가 저장한 파일 이름
         String originalFilename = multipartFile.getOriginalFilename();
@@ -155,7 +155,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public BoardImage saveBoardImageFile(MultipartFile multipartFile) throws IOException {
         if (multipartFile.isEmpty()) {
-            return null;
+            throw new IOException("업로드된 이미지가 없습니다. 다시 확인해주세요.");
         }
         // 사용자가 저장한 파일 이름
         String originalFilename = multipartFile.getOriginalFilename();
@@ -199,7 +199,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public ReviewImage saveReviewImage(MultipartFile multipartFile) throws IOException {
         if (multipartFile.isEmpty()) {
-            return null;
+            throw new IOException("업로드된 이미지가 없습니다. 다시 확인해주세요.");
         }
         String originalFilename = multipartFile.getOriginalFilename();
         String reviewFileName = createStoreFilename(originalFilename);

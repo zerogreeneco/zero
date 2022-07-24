@@ -73,31 +73,15 @@ public class AdminController {
                 .body(urlResource);
     }
 
-//    /*
-//     * UNSTORE -> STORE 권한 변경
-//     * */
-//    @PostMapping("/approve")
-//    @ResponseBody
-//    public ResponseEntity<Map<String, String>> changeUserRole(@RequestParam(value = "memberId[]", defaultValue = "0") List<Long> memberId) {
-//        Map<String, String> resultMap = new HashMap<>();
-//        if (memberId.contains(0L)) {
-//            resultMap.put("result", "fail");
-//            return new ResponseEntity<>(resultMap, HttpStatus.OK);
-//        }
-//        log.info("APPROVAL MEMBERID LIST={}", memberId);
-//        log.info("APPROVAL MEMBERID LIST={}", memberId.size());
-//        basicUserService.changeStoreUserRole(memberId);
-//        resultMap.put("result", "success");
-//        return new ResponseEntity<>(resultMap, HttpStatus.OK);
-//    }
-
     /*
      * UNSTORE -> STORE 권한 변경
      * */
     @PostMapping("/approve")
     public String changeUserRole(@RequestParam(value = "memberId[]", defaultValue = "0") List<Long> memberId, Model model, RequestPageSortDto requestPageDto) {
 
-        if (memberId.contains(0L)) {
+        final long unAuthUserCnt = 0L;
+
+        if (memberId.contains(unAuthUserCnt)) {
             model.addAttribute("msg", "회원가입을 승인할 회원을 체크해주세요.");
             return "admin/approvalStore";
         }

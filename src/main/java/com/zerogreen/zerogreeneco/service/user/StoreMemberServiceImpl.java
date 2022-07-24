@@ -6,6 +6,7 @@ import com.zerogreen.zerogreeneco.dto.store.NonApprovalStoreDto;
 import com.zerogreen.zerogreeneco.dto.store.StoreDto;
 import com.zerogreen.zerogreeneco.entity.file.RegisterFile;
 import com.zerogreen.zerogreeneco.entity.file.StoreImageFile;
+import com.zerogreen.zerogreeneco.entity.userentity.StoreInfo;
 import com.zerogreen.zerogreeneco.entity.userentity.StoreMember;
 import com.zerogreen.zerogreeneco.entity.userentity.StoreType;
 import com.zerogreen.zerogreeneco.entity.userentity.UserRole;
@@ -120,13 +121,9 @@ public class StoreMemberServiceImpl implements StoreMemberService {
     public void updateStore(Long id, StoreDto storeDto, List<StoreImageFile> storeImageFile) {
         StoreMember storeMember = storeMemberRepository.findById(id).orElseThrow();
         //더티 체킹
-        storeMember.getStoreInfo().setStorePhoneNumber(storeDto.getStorePhoneNumber());
-        storeMember.getStoreInfo().setOpenTime(storeDto.getOpenTime());
-        storeMember.getStoreInfo().setCloseTime(storeDto.getCloseTime());
-        storeMember.getStoreInfo().setStoreDescription(storeDto.getStoreDescription());
-        storeMember.getStoreInfo().setSocialAddress1(storeDto.getSocialAddress1());
-        storeMember.getStoreInfo().setSocialAddress2(storeDto.getSocialAddress2());
+        StoreInfo getStoreInfo = storeMember.getStoreInfo();
 
+        setStoreInfo(storeDto, getStoreInfo);
         // 트랜젝션 전에 지연 SQL 저장소 -> DB로 전송
         storeMemberRepository.flush();
 
@@ -137,6 +134,15 @@ public class StoreMemberServiceImpl implements StoreMemberService {
                         image.getStoreFileName(), image.getThumbnailName(), image.getFilePath(), image.getThumbPath(), storeMember));
             }
         }
+    }
+
+    private void setStoreInfo(StoreDto storeDto, StoreInfo getStoreInfo) {
+        getStoreInfo.setStorePhoneNumber(storeDto.getStorePhoneNumber());
+        getStoreInfo.setOpenTime(storeDto.getOpenTime());
+        getStoreInfo.setCloseTime(storeDto.getCloseTime());
+        getStoreInfo.setStoreDescription(storeDto.getStoreDescription());
+        getStoreInfo.setSocialAddress1(storeDto.getSocialAddress1());
+        getStoreInfo.setSocialAddress2(storeDto.getSocialAddress2());
     }
 
     @Override
@@ -169,6 +175,4 @@ public class StoreMemberServiceImpl implements StoreMemberService {
                         storeMember.getStoreInfo().getOpenTime(), storeMember.getStoreInfo().getCloseTime(), registerFile1))
                 .getId();
     }
-
-
 }
