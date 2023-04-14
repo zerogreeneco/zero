@@ -1,9 +1,5 @@
 package com.zerogreen.zerogreeneco;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import com.zerogreen.zerogreeneco.dto.community.CommunityRequestDto;
 import com.zerogreen.zerogreeneco.entity.community.Category;
 import com.zerogreen.zerogreeneco.entity.community.CommunityBoard;
@@ -19,6 +15,10 @@ import com.zerogreen.zerogreeneco.service.store.StoreMenuService;
 import com.zerogreen.zerogreeneco.service.user.BasicUserService;
 import com.zerogreen.zerogreeneco.service.user.MemberService;
 import com.zerogreen.zerogreeneco.service.user.StoreMemberService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
