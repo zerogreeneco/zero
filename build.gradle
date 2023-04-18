@@ -59,6 +59,7 @@ dependencies {
 	implementation 'org.springframework.security:spring-security-test'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.6.2'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	testCompileOnly('org.springframework.boot:spring-boot-starter-mustache');
 }
 
 tasks.named('test') {
