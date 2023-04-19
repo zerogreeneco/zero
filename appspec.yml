@@ -14,7 +14,7 @@ permissions:
 hooks:
 
   ApplicationStart:
-    - location: deploy.sh # 엔진엑스와 연결되어 있지 않은 Port로 새 버전의 스프링부트 시작
+    - location: scripts/deploy.sh # 엔진엑스와 연결되어 있지 않은 Port로 새 버전의 스프링부트 시작
       timeout: 60
       runas: ec2-user
 
