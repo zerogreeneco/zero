@@ -53,7 +53,7 @@ public class IndexController {
         List<NonApprovalStoreDto> result = storeMemberService.findByApprovalStore(userRole);
         model.addAttribute("approval", result);
         log.info(result+"yjyjyjyjyjyjyjyj");
-        return "/index.html";
+        return "/index";
     }
 
     @GetMapping("/user")
