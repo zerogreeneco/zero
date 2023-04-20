@@ -31,7 +31,7 @@ public class IndexController {
     private final MemberRepository memberRepository;
     private final CommunityBoardService boardService;
 
-    @GetMapping({"", "/"})
+    @GetMapping({""})
     public String approvedStore(Model model, UserRole userRole, HttpSession session,
                                 @AuthenticationPrincipal PrincipalDetails principalDetails, Authentication authentication) {
 
