@@ -74,6 +74,7 @@ public class IndexController {
     public @ResponseBody
     String store(Model model) {
         model.addAttribute("store", "store");
+        log.info("스토어 테스트 yjyjyj");
         return "store";
     }
 
