@@ -2,6 +2,8 @@ package com.zerogreen.zerogreeneco;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.zerogreen.zerogreeneco.entity.community.CommunityBoard;
@@ -31,7 +33,9 @@ public class TestDataInit {
 
     private final InitService initService;
 
-    @PostConstruct
+//  @PostConstruct
+    @EventListener(ApplicationReadyEvent.class)
+    @Transactional
     public void initService() {
         initService.init();
     }
