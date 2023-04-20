@@ -33,9 +33,9 @@ public class TestDataInit {
 
     private final InitService initService;
 
-//  @PostConstruct
-    @EventListener(ApplicationReadyEvent.class)
-    @Transactional
+    @PostConstruct
+//    @EventListener(ApplicationReadyEvent.class)
+//    @Transactional
     public void initService() {
         initService.init();
     }
