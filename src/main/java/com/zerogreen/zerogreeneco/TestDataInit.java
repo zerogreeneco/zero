@@ -260,11 +260,7 @@ public class TestDataInit {
 
             em.flush();
             em.clear();
-
-
         }
-
-
     }
 
 }
