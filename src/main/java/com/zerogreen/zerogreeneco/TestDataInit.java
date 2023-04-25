@@ -180,10 +180,10 @@ public class TestDataInit {
             //Detail 부모리뷰 추가
 //            Member findMember1 = memberRepository.findByUsername("test").get();
 //            Member findMember2 = memberRepository.findByUsername("test2").get();
-            StoreMember findEcoStore1 = storeMemberRepository.findByUsername("ecotest5").get();
-            StoreMember findEcoStore2 = storeMemberRepository.findByUsername("ecotest6").get();
-            StoreMember foodTest1 = storeMemberRepository.findByUsername("foodTest1").get();
-            StoreMember generalTest1 = storeMemberRepository.findByUsername("generalTest1").get();
+//            StoreMember findEcoStore1 = storeMemberRepository.findByUsername("ecotest5").get();
+//            StoreMember findEcoStore2 = storeMemberRepository.findByUsername("ecotest6").get();
+            List<StoreMember> foodTest1 = (List<StoreMember>) storeMemberRepository.findByUsername("foodTest1").get();
+            List<StoreMember> generalTest1 = (List<StoreMember>) storeMemberRepository.findByUsername("generalTest1").get();
 
 
 //            DetailReview detailReview1 = new DetailReview("mReview1 by test",findMember1,findEcoStore1);
@@ -249,13 +249,13 @@ public class TestDataInit {
 
 
             // StoreMenu
-            StoreMenu storeMenu1 = new StoreMenu("menu1-1","1,000",VegetarianGrade.LACTO, foodTest1);
+            StoreMenu storeMenu1 = new StoreMenu("menu1-1","1,000",VegetarianGrade.LACTO, (StoreMember) foodTest1);
             storeMenuService.saveStoreMenuTest(storeMenu1);
-            StoreMenu storeMenu11 = new StoreMenu("menu1-2 Luv","1,000",VegetarianGrade.PLEXITARIAN, foodTest1);
+            StoreMenu storeMenu11 = new StoreMenu("menu1-2 Luv","1,000",VegetarianGrade.PLEXITARIAN,  (StoreMember) foodTest1);
             storeMenuService.saveStoreMenuTest(storeMenu11);
-            StoreMenu storeMenu2 = new StoreMenu("menu2-1","5,000",VegetarianGrade.PLEXITARIAN, generalTest1);
+            StoreMenu storeMenu2 = new StoreMenu("menu2-1","5,000",VegetarianGrade.PLEXITARIAN, (StoreMember)  generalTest1);
             storeMenuService.saveStoreMenuTest(storeMenu2);
-            StoreMenu storeMenu22 = new StoreMenu("menu2-2 XO","5,000",VegetarianGrade.PLEXITARIAN, generalTest1);
+            StoreMenu storeMenu22 = new StoreMenu("menu2-2 XO","5,000",VegetarianGrade.PLEXITARIAN, (StoreMember)  generalTest1);
             storeMenuService.saveStoreMenuTest(storeMenu22);
 
             em.flush();
