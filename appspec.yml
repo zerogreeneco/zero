@@ -15,7 +15,7 @@ hooks:
   AfterInstall:
     - location: stop.sh # 엔진 엑스에 연결되어 있지 않은 스프링부트 종료
       timeout: 60
-      runas: ec2-user
+#      runas: ec2-user
 
   ApplicationStart:
     - location: start.sh # 엔진엑스와 연결되어 있지 않은 Port로 새 버전의 스프링부트 시작
