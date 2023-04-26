@@ -7,6 +7,9 @@ source ${ABSDIR}/profile.sh
 REPOSITORY=/home/ec2-user/app/step3
 PROJECT_NAME=zero
 
+echo "> 이전 Build 파일 삭제"
+rm $REPOSITORY/zero*.jar
+
 echo "> Build 파일 복사"
 echo "> cp $REPOSITORY/zip/*.jar $REPOSITORY/"
 
