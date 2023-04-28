@@ -23,8 +23,8 @@ public class ProfileController {
         List<String> realProfiles = Arrays.asList("real", "real1", "real2");
         String defaultProfile = profiles.isEmpty() ? "default" : profiles.get(0);
         log.info("yjyjtest22222"+defaultProfile);
-        log.info("yjyjtest3333"+profiles.stream().filter(realProfiles::contains).findAny().orElse(defaultProfile));
 
+        log.info("yjyjtest3333"+profiles.stream().filter(realProfiles::contains).findAny().orElse(defaultProfile));
         return profiles.stream().filter(realProfiles::contains).findAny().orElse(defaultProfile);
     }
 
