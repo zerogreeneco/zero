@@ -130,9 +130,7 @@ $(function(){
                     console.log(shopLeng);
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
 //                    console.log(kkmmkkmm);
-                    var inner = "<p>"+shopLeng+" 떨어져 있음</p>";
-                    console.log(inner+"테스트 테스트 테스트");
-                    shopName.innerHTML = inner;
+                    shopName.innerHTML ="<p>"+shopLeng+"</p>";
                     });
                 }
                     // 결과값으로 받은 위치를 마커로 표시합니다
