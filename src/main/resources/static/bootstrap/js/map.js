@@ -20,6 +20,7 @@ $(function(){
     var mapAddress = document.getElementsByClassName('mapAddress');
     var mapType = document.getElementsByClassName('mapType');
     var mapSize = document.getElementById('mapSize').value;
+    console.log(mapSize+'맵 사이즈');
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new window.kakao.maps.LatLng(37.5662, 126.97865), // 지도의 중심좌표
