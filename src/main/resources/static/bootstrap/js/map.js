@@ -134,7 +134,6 @@ $(function(){
                     console.log(j+"    4");
                     });
                 }
-                var imageSrc = "/bootstrap/images/map/here.png";
                     // 결과값으로 받은 위치를 마커로 표시합니다
                     var marker = new kakao.maps.Marker({
                         image: imageSrc,
