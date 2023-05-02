@@ -96,8 +96,9 @@ $(function(){
 
         for(var j=0;j<=mapSize;j++){
             var address = mapAddress[j].value;
+            console.log("address"+address);
             var type = mapType[j].value;
-            var shopName = document.getElementsByClassName("nn-name")[j];
+            var shopName = document.getElementsByClassName("nn-name")[j].value;
             console.log("shop name "+shopName);
 
             var geocoder = new kakao.maps.services.Geocoder();
