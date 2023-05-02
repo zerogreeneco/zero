@@ -98,7 +98,7 @@ $(function(){
             var address = mapAddress[j].value;
             console.log("address"+address);
             var type = mapType[j].value;
-            var shopName = document.getElementsByClassName("nn-name");
+            var shopName = document.getElementsByClassName("nn-name")[j].value;
             console.log("shop name    "+shopName+"   "+j);
 
             var geocoder = new kakao.maps.services.Geocoder();
@@ -126,7 +126,7 @@ $(function(){
                         });
                     var leng = polyline.getLength()/1000;
                     var shopLeng = leng.toFixed(1)+"km";
-                    console.log("내 위치 : "+lat+" , "+lon+"에서 "+shopLeng+" 떨어져있음")
+                    console.log("내 위치 : "+lat+" , "+lon+"에서 "+shopLeng+" 떨어져있음");
 
                     console.log(shopLeng);
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
