@@ -89,8 +89,8 @@
                 src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8b90a59d1c1c795a8266f3f47ebfd1ac&libraries=services"></script>
         <div th:each="app,i : ${approval}" class="ddiv" hidden>
             <input class="mapAddress" th:value="${app.storeAddress}" hidden>
-            <input class="mapType" th:value="${app.storeType}" hidden>
-            <input id="mapSize" th:value="${i.size}" hidden>
+            <input class="mapType" th:value="${app.storeType}">
+            <input id="mapSize" th:value="${i.size}">
             <span class="kkmmkkmm"></span>
             <input class="mapEco" th:if="${app.storeType.toString().equals('ECO_SHOP')}" th:value="${app.storeAddress}"
                    th:text="${app.storeAddress} + ' ' + ${app.storeType}" hidden>
