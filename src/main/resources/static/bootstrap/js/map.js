@@ -20,6 +20,7 @@ $(function(){
     var mapAddress = document.getElementsByClassName('mapAddress');
     var mapType = document.getElementsByClassName('mapType');
     var mapSize = document.getElementById('mapSize').value;
+    //가게 수
     console.log(mapSize+'맵 사이즈');
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
