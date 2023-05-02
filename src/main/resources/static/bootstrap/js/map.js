@@ -130,7 +130,7 @@ $(function(){
                     console.log(shopLeng);
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
 //                    console.log(kkmmkkmm);
-                    var inner = shopLeng+" 떨어져 있음";
+                    var inner = "<p>"+shopLeng+" 떨어져 있음</p>";
                     console.log(inner+"테스트 테스트 테스트");
                     shopName.innerHTML = inner;
                     });
