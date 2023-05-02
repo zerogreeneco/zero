@@ -130,7 +130,7 @@ $(function(){
                     console.log(shopLeng);
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
 //                    console.log(kkmmkkmm);
-                    shopName.innerHTML = "현재 거리에서 "+shopLeng+" 떨어져 있음";
+                    shopName.innerHTML = " 떨어져 있음";
                     });
                 }
                     // 결과값으로 받은 위치를 마커로 표시합니다
