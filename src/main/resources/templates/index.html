@@ -11,7 +11,6 @@
                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
                 crossorigin="anonymous"></script>
         <script type="text/javascript" th:src="@{/bootstrap/js/index/slider.js}"></script>
-        <script type="text/javascript" th:src="@{/bootstrap/js/map.js}"></script>
         <div class="row gtr-200">
             <!--Shop List-->
             <div id="leftSide">
@@ -83,7 +82,7 @@
             }
 
         </script>
-
+        <script type="text/javascript" th:src="@{/bootstrap/js/map.js}"></script>
         <!--지도 부분-->
         <script type="text/javascript"
                 src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8b90a59d1c1c795a8266f3f47ebfd1ac&libraries=services"></script>
@@ -101,6 +100,7 @@
                    th:value="${app.storeAddress}" th:text="${app.storeAddress} + ' ' + ${app.storeType}" hidden>
             <hr>
         </div>
+
     </th:block>
 </th:block>
 </html>
