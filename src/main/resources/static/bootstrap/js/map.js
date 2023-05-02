@@ -98,12 +98,11 @@ $(function(){
             var address = mapAddress[j].value;
             console.log("address"+address);
             var type = mapType[j].value;
-            var shopName = document.getElementsByClassName("nn-name")[j].value;
-            console.log("shop name "+shopName);
+            var shopName = document.getElementsByClassName("nn-name")[j];
+            console.log("shop name    "+shopName+"   "+j);
 
             var geocoder = new kakao.maps.services.Geocoder();
             // 마커이미지의 주소입니다
-                    console.log(j+"    1");
             var eco = "ECO_SHOP", vegan ="VEGAN_FOOD", general = "GENERAL_FOOD";
             var imageSize = new kakao.maps.Size(25, 25), // 마커이미지의 크기입니다
             imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -132,7 +131,7 @@ $(function(){
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
 //                    console.log(kkmmkkmm);
                     console.log("샵네임 "+shopName);
-                    shopName.innerHTML = shopLeng;
+                    shopName.innerTEXT = shopLeng;
                     });
                 }
                     // 결과값으로 받은 위치를 마커로 표시합니다
