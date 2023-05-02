@@ -128,7 +128,7 @@ $(function(){
                     console.log("내 위치 : "+lat+" , "+lon+"에서 "+shopLeng+" 떨어져있음");
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
 //                    console.log(kkmmkkmm);
-                    shopName.innerHTML = "<p>"+shopLeng+"</p>";
+                    shopName.innerHTML = "<p>shopLeng</p>";
                     });
                 }
                     // 결과값으로 받은 위치를 마커로 표시합니다
