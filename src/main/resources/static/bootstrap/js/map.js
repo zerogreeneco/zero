@@ -141,7 +141,7 @@ $(function(){
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 
                     // 결과값으로 받은 위치를 마커로 표시합니다
-                    var marker = new kakao.maps.Marker({
+                    let marker = new kakao.maps.Marker({
 
                         image: markerImage,
                         position: coords
