@@ -126,11 +126,9 @@ $(function(){
                     var leng = polyline.getLength()/1000;
                     var shopLeng = leng.toFixed(1)+"km";
                     console.log("내 위치 : "+lat+" , "+lon+"에서 "+shopLeng+" 떨어져있음");
-
-                    console.log(shopLeng);
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
 //                    console.log(kkmmkkmm);
-                    shopName.innerHTML ="<p>shopLeng</p>";
+                    shopName.innerHTML = "<p>"+shopLeng+"</p>";
                     });
                 }
                     // 결과값으로 받은 위치를 마커로 표시합니다

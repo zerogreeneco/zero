@@ -82,7 +82,6 @@
             }
 
         </script>
-        <script type="text/javascript" th:src="@{/bootstrap/js/map.js}"></script>
         <!--지도 부분-->
         <script type="text/javascript"
                 src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8b90a59d1c1c795a8266f3f47ebfd1ac&libraries=services"></script>
@@ -100,6 +99,7 @@
                    th:value="${app.storeAddress}" th:text="${app.storeAddress} + ' ' + ${app.storeType}" hidden>
             <hr>
         </div>
+        <script type="text/javascript" th:src="@{/bootstrap/js/map.js}"></script>
 
     </th:block>
 </th:block>
