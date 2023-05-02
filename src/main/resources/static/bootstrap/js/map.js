@@ -98,7 +98,7 @@ $(function(){
             var address = mapAddress[j].value;
             console.log("address"+address);
             var type = mapType[j].value;
-            var shopName = document.getElementsByClassName("nn-name")[j].value;
+            var shopName = document.getElementsByClassName("nn-name")[j];
             console.log("shop name    "+shopName+"   "+j);
 
             var geocoder = new kakao.maps.services.Geocoder();
@@ -132,7 +132,7 @@ $(function(){
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
 //                    console.log(kkmmkkmm);
                     console.log("샵네임 "+shopName);
-                    shopName.innerHTML = "현재 거리에서 "+shopLeng;
+                    shopName.innerHTML = "현재 거리에서 ";
                     });
                 }
                     // 결과값으로 받은 위치를 마커로 표시합니다
