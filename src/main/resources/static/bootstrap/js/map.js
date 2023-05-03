@@ -101,7 +101,6 @@ $(function(){
             console.log("mapType"+type);
 //            var shopName = document.getElementById("nn-name")[j];
 //            shopName.innerHTML = "<p>dfdfdf</p>";
-            document.getElementById('nn-name').innerHTML = '<p>1111111</p>';
 
             var geocoder = new kakao.maps.services.Geocoder();
             // 마커이미지의 주소입니다
@@ -132,6 +131,8 @@ $(function(){
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
 //                    console.log(kkmmkkmm);
 //                    shopName.innerTEXT = "<p>shopLeng</p>";
+                    document.getElementById('nn-name').innerHTML = '<p>'+shopLeng+'</p>';
+
                     });
                 }
                     // 결과값으로 받은 위치를 마커로 표시합니다
