@@ -132,7 +132,7 @@ $(function(){
 //                    console.log(kkmmkkmm);
 //                    shopName.innerTEXT = "<p>shopLeng</p>";
 
-                    document.getElementsByClassName('nn-name')[j].innerHTML = '<p>'+shopLeng+'</p>';
+                    document.getElementsByClassName('nn-name').innerHTML = '<p>'+shopLeng+'</p>';
 
                     });
                 }
