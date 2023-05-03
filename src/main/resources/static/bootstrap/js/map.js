@@ -101,9 +101,7 @@ $(function(){
             console.log("mapType"+type);
 //            var shopName = document.getElementById("nn-name")[j];
 //            shopName.innerHTML = "<p>dfdfdf</p>";
-            document.getElementById('nn-name')[1].innerHTML = '<p>1111111</p>';
-            document.getElementById('nn-name')[2].innerHTML = '<p>222222</p>';
-            document.getElementById('nn-name')[3].innerHTML = '<p>333333</p>';
+            document.getElementById('nn-name').innerHTML = '<p>1111111</p>';
 
             var geocoder = new kakao.maps.services.Geocoder();
             // 마커이미지의 주소입니다
