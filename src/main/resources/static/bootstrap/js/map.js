@@ -131,8 +131,8 @@ $(function(){
 //                    var kkmmkkmm = document.getElementsByClassName("kkmmkkmm")[0];
 //                    console.log(kkmmkkmm);
 //                    shopName.innerTEXT = "<p>shopLeng</p>";
-                    var shopkm = document.getElementById('nn-name');
-                    shopkm[j].innerHTML = '<p>'+shopLeng+'</p>';
+
+                    document.getElementsByClassName('nn-name')[j].innerHTML = '<p>'+shopLeng+'</p>';
 
                     });
                 }
