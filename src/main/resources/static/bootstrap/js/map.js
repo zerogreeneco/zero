@@ -98,9 +98,10 @@ $(function(){
             var address = mapAddress[j].value;
             console.log("address"+address);
             var type = mapType[j].value;
+            console.log("mapType"+type);
 //            var shopName = document.getElementById("nn-name")[j];
 //            shopName.innerHTML = "<p>dfdfdf</p>";
-            document.getElementById('nn-name').innerHTML = '<p>dfdfdf</p>';
+            document.getElementById('nn-name')[j].innerHTML = '<p>dfdfdf</p>';
 
             var geocoder = new kakao.maps.services.Geocoder();
             // 마커이미지의 주소입니다
